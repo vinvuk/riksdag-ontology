@@ -1,0 +1,16 @@
+<div class="mermaid-diagram">
+<pre class="mermaid">
+flowchart LR
+    CommitteeMembership[CommitteeMembership]
+    ParliamentaryTenure[ParliamentaryTenure]
+    PartyMembership[PartyMembership]
+    org_Membership[org:Membership]:::ext
+    ParliamentaryTenure -->|subclass| org_Membership
+    CommitteeMembership -->|subclass| org_Membership
+    PartyMembership -->|subclass| org_Membership
+    style ParliamentaryTenure fill:#e0f2fe,stroke:#94a3b8,color:#1e293b
+    style CommitteeMembership fill:#e0f2fe,stroke:#94a3b8,color:#1e293b
+    style PartyMembership fill:#e0f2fe,stroke:#94a3b8,color:#1e293b
+    style org_Membership fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray: 5 5
+</pre>
+</div>

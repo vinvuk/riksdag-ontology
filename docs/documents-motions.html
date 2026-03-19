@@ -1,0 +1,22 @@
+<div class="mermaid-diagram">
+<pre class="mermaid">
+flowchart BT
+    CommitteeMotion[CommitteeMotion]
+    FollowUpMotion[FollowUpMotion]
+    IndividualMotion[IndividualMotion]
+    Motion[Motion]
+    MultiPartyMotion[MultiPartyMotion]
+    PartyMotion[PartyMotion]
+    IndividualMotion -->|subclass| Motion
+    PartyMotion -->|subclass| Motion
+    CommitteeMotion -->|subclass| Motion
+    FollowUpMotion -->|subclass| Motion
+    MultiPartyMotion -->|subclass| Motion
+    style IndividualMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
+    style PartyMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
+    style CommitteeMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
+    style Motion fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
+    style FollowUpMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
+    style MultiPartyMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
+</pre>
+</div>

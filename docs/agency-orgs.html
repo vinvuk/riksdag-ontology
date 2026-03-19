@@ -1,0 +1,32 @@
+<div class="mermaid-diagram">
+<pre class="mermaid">
+flowchart BT
+    Committee[Committee]
+    CouncilOnLegislation[CouncilOnLegislation]
+    EUCommittee[EUCommittee]
+    ElectoralDistrict[ElectoralDistrict]
+    Government[Government]
+    Ministry[Ministry]
+    ParliamentaryBody[ParliamentaryBody]
+    PoliticalParty[PoliticalParty]
+    org_FormalOrganization[org:FormalOrganization]:::ext
+    org_OrganizationalUnit[org:OrganizationalUnit]:::ext
+    EUCommittee -->|subclass| Committee
+    Ministry -->|subclass| org_OrganizationalUnit
+    Government -->|subclass| org_FormalOrganization
+    Committee -->|subclass| org_FormalOrganization
+    ParliamentaryBody -->|subclass| org_FormalOrganization
+    CouncilOnLegislation -->|subclass| ParliamentaryBody
+    PoliticalParty -->|subclass| org_FormalOrganization
+    style ElectoralDistrict fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style EUCommittee fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style Ministry fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style Government fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style Committee fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style ParliamentaryBody fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style CouncilOnLegislation fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style PoliticalParty fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style org_FormalOrganization fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray: 5 5
+    style org_OrganizationalUnit fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray: 5 5
+</pre>
+</div>

@@ -130,11 +130,59 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <li><a href="#namespaces">Namespaces</a></li>
 </ol></nav>
 <h2>Diagrams</h2>
-<p class="meta">Hollow triangles (△) = subclass. Blue arrows = object properties. Dashed boxes = external standards.</p>
+<p class="meta">Solid arrows = subclass (rdfs:subClassOf). Dashed arrows = object properties. Dashed boxes = external standards.</p>
 <h3>Procedure model</h3>
-<div class="diagram"><img src="procedure-core.svg" alt="Procedure model"></div>
+<div class="mermaid-diagram">
+<pre class="mermaid">
+flowchart LR
+    BusinessItem[BusinessItem]
+    ProceduralStage[ProceduralStage]
+    Procedure[Procedure]
+    Route[Route]
+    Step[Step]
+    WorkPackage[WorkPackage]
+    ProceduralStage -->|subclass| Step
+    WorkPackage -.->|hasProcedure| Procedure
+    Procedure -.->|hasStep| Step
+    Step -.->|stepOf| Procedure
+    Route -.->|fromStep| Step
+    Route -.->|toStep| Step
+    WorkPackage -.->|hasBusinessItem| BusinessItem
+    BusinessItem -.->|actualisesStep| Step
+    style Route fill:#fef3c7,stroke:#94a3b8,color:#1e293b
+    style Procedure fill:#fef3c7,stroke:#94a3b8,color:#1e293b
+    style BusinessItem fill:#fde68a,stroke:#94a3b8,color:#1e293b
+    style WorkPackage fill:#fde68a,stroke:#94a3b8,color:#1e293b
+    style ProceduralStage fill:#fed7aa,stroke:#94a3b8,color:#1e293b
+    style Step fill:#fef3c7,stroke:#94a3b8,color:#1e293b
+</pre>
+</div>
 <h3>Legislative stages</h3>
-<div class="diagram"><img src="procedure-stages.svg" alt="Legislative stages"></div>
+<div class="mermaid-diagram">
+<pre class="mermaid">
+flowchart BT
+    ChamberDebate[ChamberDebate]
+    ChamberDecision[ChamberDecision]
+    CommitteeDeliberation[CommitteeDeliberation]
+    CommitteeReferral[CommitteeReferral]
+    ProceduralStage[ProceduralStage]
+    Promulgation[Promulgation]
+    Tabling[Tabling]
+    ChamberDebate -->|subclass| ProceduralStage
+    Promulgation -->|subclass| ProceduralStage
+    ChamberDecision -->|subclass| ProceduralStage
+    Tabling -->|subclass| ProceduralStage
+    CommitteeReferral -->|subclass| ProceduralStage
+    CommitteeDeliberation -->|subclass| ProceduralStage
+    style ChamberDebate fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
+    style ProceduralStage fill:#fed7aa,stroke:#94a3b8,color:#1e293b
+    style Promulgation fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
+    style ChamberDecision fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
+    style Tabling fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
+    style CommitteeReferral fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
+    style CommitteeDeliberation fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
+</pre>
+</div>
 <h2 id="classes">Classes</h2>
 <h3 id="BudgetProcedure">BudgetProcedure</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/BudgetProcedure</code></p>
@@ -557,5 +605,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
     <p>Riksdag Ontology v0.1.0 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
     · <a href="index.html">Back to index</a></p>
 </footer>
+<script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+<script>mermaid.initialize({startOnLoad:true, theme:'neutral', flowchart:{curve:'basis', padding:20}});</script>
 </body>
 </html>

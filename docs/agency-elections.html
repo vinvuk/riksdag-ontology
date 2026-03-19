@@ -1,0 +1,19 @@
+<div class="mermaid-diagram">
+<pre class="mermaid">
+flowchart TB
+    AdjustmentSeat[AdjustmentSeat]
+    Election[Election]
+    ElectionResult[ElectionResult]
+    FixedSeat[FixedSeat]
+    SeatType[SeatType]
+    FixedSeat -->|subclass| SeatType
+    AdjustmentSeat -->|subclass| SeatType
+    ElectionResult -.->|inElection| Election
+    ElectionResult -.->|seatType| SeatType
+    style FixedSeat fill:#ede9fe,stroke:#94a3b8,color:#1e293b
+    style ElectionResult fill:#ede9fe,stroke:#94a3b8,color:#1e293b
+    style Election fill:#ede9fe,stroke:#94a3b8,color:#1e293b
+    style AdjustmentSeat fill:#ede9fe,stroke:#94a3b8,color:#1e293b
+    style SeatType fill:#ede9fe,stroke:#94a3b8,color:#1e293b
+</pre>
+</div>

@@ -1,0 +1,25 @@
+<div class="mermaid-diagram">
+<pre class="mermaid">
+flowchart LR
+    BusinessItem[BusinessItem]
+    ProceduralStage[ProceduralStage]
+    Procedure[Procedure]
+    Route[Route]
+    Step[Step]
+    WorkPackage[WorkPackage]
+    ProceduralStage -->|subclass| Step
+    WorkPackage -.->|hasProcedure| Procedure
+    Procedure -.->|hasStep| Step
+    Step -.->|stepOf| Procedure
+    Route -.->|fromStep| Step
+    Route -.->|toStep| Step
+    WorkPackage -.->|hasBusinessItem| BusinessItem
+    BusinessItem -.->|actualisesStep| Step
+    style Route fill:#fef3c7,stroke:#94a3b8,color:#1e293b
+    style Procedure fill:#fef3c7,stroke:#94a3b8,color:#1e293b
+    style BusinessItem fill:#fde68a,stroke:#94a3b8,color:#1e293b
+    style WorkPackage fill:#fde68a,stroke:#94a3b8,color:#1e293b
+    style ProceduralStage fill:#fed7aa,stroke:#94a3b8,color:#1e293b
+    style Step fill:#fef3c7,stroke:#94a3b8,color:#1e293b
+</pre>
+</div>

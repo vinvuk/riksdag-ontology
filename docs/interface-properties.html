@@ -1,0 +1,102 @@
+<div class="mermaid-diagram">
+<pre class="mermaid">
+flowchart LR
+    documentDate[documentDate]
+    eli_date_document[eli:date_document]
+    documentDate -->|subPropertyOf| eli_date_document
+    entryIntoForceDate[entryIntoForceDate]
+    eli_date_entry_into_force[eli:date_entry_into_force]
+    entryIntoForceDate -->|subPropertyOf| eli_date_entry_into_force
+    amends[amends]
+    eli_amends[eli:amends]
+    amends -->|subPropertyOf| eli_amends
+    repeals[repeals]
+    eli_repeals[eli:repeals]
+    repeals -->|subPropertyOf| eli_repeals
+    hasExpression[hasExpression]
+    eli_has_expression[eli:has_expression]
+    hasExpression -->|subPropertyOf| eli_has_expression
+    hasFormat[hasFormat]
+    eli_has_format[eli:has_format]
+    hasFormat -->|subPropertyOf| eli_has_format
+    sfsNumber[sfsNumber]
+    rpubl_fsNummer[rpubl:fsNummer]
+    sfsNumber -->|subPropertyOf| rpubl_fsNummer
+    rpubl_ikrafttradandedatum[rpubl:ikrafttradandedatum]
+    entryIntoForceDate -->|subPropertyOf| rpubl_ikrafttradandedatum
+    documentTitle[documentTitle]
+    schema_name[schema:name]
+    documentTitle -->|subPropertyOf| schema_name
+    author[author]
+    schema_author[schema:author]
+    author -->|subPropertyOf| schema_author
+    hasMembership[hasMembership]
+    org_hasMembership[org:hasMembership]
+    hasMembership -->|subPropertyOf| org_hasMembership
+    inOrganization[inOrganization]
+    org_organization[org:organization]
+    inOrganization -->|subPropertyOf| org_organization
+    hasRole[hasRole]
+    org_role[org:role]
+    hasRole -->|subPropertyOf| org_role
+    partOf[partOf]
+    org_subOrganizationOf[org:subOrganizationOf]
+    partOf -->|subPropertyOf| org_subOrganizationOf
+    organCode[organCode]
+    org_identifier[org:identifier]
+    organCode -->|subPropertyOf| org_identifier
+    designation[designation]
+    dcterms_identifier[dcterms:identifier]
+    designation -->|subPropertyOf| dcterms_identifier
+    dcterms_date[dcterms:date]
+    documentDate -->|subPropertyOf| dcterms_date
+    dcterms_title[dcterms:title]
+    documentTitle -->|subPropertyOf| dcterms_title
+    dcterms_creator[dcterms:creator]
+    author -->|subPropertyOf| dcterms_creator
+    intressentId[intressentId]
+    foaf_accountName[foaf:accountName]
+    intressentId -->|subPropertyOf| foaf_accountName
+    imageUrl[imageUrl]
+    foaf_depiction[foaf:depiction]
+    imageUrl -->|subPropertyOf| foaf_depiction
+    style hasFormat fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style rpubl_fsNummer fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style eli_has_format fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style partOf fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style org_hasMembership fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style eli_has_expression fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style dcterms_creator fill:#e0e7ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style intressentId fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style amends fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style documentDate fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style hasExpression fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style hasMembership fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style schema_author fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style eli_repeals fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style schema_name fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style dcterms_identifier fill:#e0e7ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style imageUrl fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style designation fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style dcterms_date fill:#e0e7ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style eli_amends fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style eli_date_document fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style author fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style inOrganization fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style repeals fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style organCode fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style org_role fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style org_identifier fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style hasRole fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style dcterms_title fill:#e0e7ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style sfsNumber fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style org_organization fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style rpubl_ikrafttradandedatum fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style foaf_accountName fill:#fff7ed,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style eli_date_entry_into_force fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style entryIntoForceDate fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style foaf_depiction fill:#fff7ed,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+    style documentTitle fill:#dbeafe,stroke:#94a3b8,color:#1e293b
+    style org_subOrganizationOf fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
+</pre>
+</div>
