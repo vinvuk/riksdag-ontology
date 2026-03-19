@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20.0 -10 752.0 68"
+  width="752.0" height="68"
+  style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,system-ui,sans-serif">
+
+  <defs>
+    <marker id="tri" viewBox="0 0 10 10" refX="10" refY="5"
+      markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="white" stroke="#94a3b8" stroke-width="1.2"/>
+    </marker>
+    <marker id="arr" viewBox="0 0 10 6" refX="10" refY="3"
+      markerWidth="8" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,3 L0,6" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <path d="M504.0,38.0 C504.0,68.0 356.0,68.0 356.0,38.0" fill="none" stroke="#3b82f6"    stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="430.0" y="56.0" text-anchor="middle"    font-size="10" fill="#2563eb">hasBallot</text>
+  <path d="M356.0,38.0 C356.0,68.0 652.0,68.0 652.0,38.0" fill="none" stroke="#3b82f6"    stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="504.0" y="56.0" text-anchor="middle"    font-size="10" fill="#2563eb">voteOption</text>
+  <path d="M504.0,38.0 C504.0,68.0 60.0,68.0 60.0,38.0" fill="none" stroke="#3b82f6"    stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="282.0" y="56.0" text-anchor="middle"    font-size="10" fill="#2563eb">hasOutcome</text>
+  <path d="M504.0,38.0 C504.0,68.0 208.0,68.0 208.0,38.0" fill="none" stroke="#3b82f6"    stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="356.0" y="56.0" text-anchor="middle"    font-size="10" fill="#2563eb">hasMethod</text>
+  <path d="M356.0,38.0 C356.0,68.0 504.0,68.0 504.0,38.0" fill="none" stroke="#3b82f6"    stroke-width="1.2" marker-end="url(#arr)"/>
+  <text x="430.0" y="56.0" text-anchor="middle"    font-size="10" fill="#2563eb">inVotingEvent</text>
+  <rect x="0.0" y="0.0" width="120.0" height="38"    rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="60.0" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">VoteOutcome</text>
+  <rect x="148.0" y="0.0" width="120.0" height="38"    rx="6" fill="#fecaca" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="208.0" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">VotingMethod</text>
+  <rect x="296.0" y="0.0" width="120.0" height="38"    rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="356.0" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">Ballot</text>
+  <rect x="444.0" y="0.0" width="120.0" height="38"    rx="6" fill="#fee2e2" stroke="#fca5a5" stroke-width="1.5"/>
+  <text x="504.0" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">VotingEvent</text>
+  <rect x="592.0" y="0.0" width="120.0" height="38"    rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="652.0" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#64748b">skos:Concept</text>
+</svg>

@@ -107,6 +107,10 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 </ol></li>
 <li><a href="#namespaces">Namespaces</a></li>
 </ol></nav>
+<h2>Diagrams</h2>
+<p class="meta">Hollow triangles (△) = subclass. Blue arrows = object properties. Dashed boxes = external standards.</p>
+<h3>Voting model</h3>
+<div class="diagram"><img src="voting-model.svg" alt="Voting model"></div>
 <h2 id="classes">Classes</h2>
 <h3 id="Ballot">Ballot</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Ballot</code></p>
@@ -151,6 +155,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasBallot</code></p>
 <p><strong>har röst</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>An individual ballot cast in the voting event.</dd>
+<dt>Definition (sv)</dt><dd>En enskild röst som ingår i voteringen.</dd>
 <dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#Ballot">Ballot</a> <span class="badge badge-class">c</span></dd>
 </dl>
@@ -159,6 +165,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasMethod</code></p>
 <p><strong>har metod</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The method used for the vote.</dd>
+<dt>Definition (sv)</dt><dd>Metoden som användes vid omröstningen.</dd>
 <dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#VotingMethod">VotingMethod</a> <span class="badge badge-class">c</span></dd>
 </dl>
@@ -167,6 +175,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasOutcome</code></p>
 <p><strong>har utfall</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The voting result (approved or rejected).</dd>
+<dt>Definition (sv)</dt><dd>Voteringsresultatet (bifall eller avslag).</dd>
 <dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#VoteOutcome">VoteOutcome</a> <span class="badge badge-class">c</span></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -176,6 +186,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/inVotingEvent</code></p>
 <p><strong>i votering</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The voting event to which the ballot belongs.</dd>
+<dt>Definition (sv)</dt><dd>Den votering som rösten tillhör.</dd>
 <dt>Domain</dt><dd><a href="#Ballot">Ballot</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -216,6 +228,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/voter</code></p>
 <p><strong>röstande</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The member of parliament who cast the ballot.</dd>
+<dt>Definition (sv)</dt><dd>Den ledamot som avgivit rösten.</dd>
 <dt>Domain</dt><dd><a href="#Ballot">Ballot</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#MemberOfParliament">MemberOfParliament</a> <span class="badge badge-class">c</span></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -226,6 +240,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/absentCount</code></p>
 <p><strong>frånvarande</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Number of members absent during the division.</dd>
+<dt>Definition (sv)</dt><dd>Antal frånvarande ledamöter vid voteringen.</dd>
 <dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -235,6 +251,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/abstainCount</code></p>
 <p><strong>avstår-röster</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Number of members who abstained in the division.</dd>
+<dt>Definition (sv)</dt><dd>Antal ledamöter som avstod i voteringen.</dd>
 <dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -244,6 +262,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/noCount</code></p>
 <p><strong>nej-röster</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Number of no votes in the division.</dd>
+<dt>Definition (sv)</dt><dd>Antal nej-röster i voteringen.</dd>
 <dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -264,6 +284,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/voteDate</code></p>
 <p><strong>voteringsdatum</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Date when the vote was held.</dd>
+<dt>Definition (sv)</dt><dd>Datum då voteringen genomfördes.</dd>
 <dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>date</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -294,6 +316,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/yesCount</code></p>
 <p><strong>ja-röster</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Number of yes votes in the division.</dd>
+<dt>Definition (sv)</dt><dd>Antal ja-röster i voteringen.</dd>
 <dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>

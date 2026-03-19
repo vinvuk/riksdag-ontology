@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20.0 -10 770.5999999999999 68"
+  width="770.5999999999999" height="68"
+  style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,system-ui,sans-serif">
+
+  <defs>
+    <marker id="tri" viewBox="0 0 10 10" refX="10" refY="5"
+      markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="white" stroke="#94a3b8" stroke-width="1.2"/>
+    </marker>
+    <marker id="arr" viewBox="0 0 10 6" refX="10" refY="3"
+      markerWidth="8" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,3 L0,6" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <rect x="0.0" y="0.0" width="125.4" height="38"    rx="6" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1.5"/>
+  <text x="62.7" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">ProposalPoint</text>
+  <rect x="153.4" y="0.0" width="120.0" height="38"    rx="6" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1.5"/>
+  <text x="213.4" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">Reservation</text>
+  <rect x="301.4" y="0.0" width="133.2" height="38"    rx="6" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1.5"/>
+  <text x="368.0" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">SpecialOpinion</text>
+  <rect x="462.6" y="0.0" width="120.0" height="38"    rx="6" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1.5"/>
+  <text x="522.6" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">Debate</text>
+  <rect x="610.6" y="0.0" width="120.0" height="38"    rx="6" fill="#fce7f3" stroke="#f9a8d4" stroke-width="1.5"/>
+  <text x="670.6" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">Speech</text>
+</svg>

@@ -73,8 +73,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 
 
 <div class="stats">
-    <div class="stat"><div class="stat-value">20</div><div class="stat-label">Classes</div></div>
-    <div class="stat"><div class="stat-value">8</div><div class="stat-label">Object Properties</div></div>
+    <div class="stat"><div class="stat-value">21</div><div class="stat-label">Classes</div></div>
+    <div class="stat"><div class="stat-value">10</div><div class="stat-label">Object Properties</div></div>
     <div class="stat"><div class="stat-value">10</div><div class="stat-label">Datatype Properties</div></div>
 </div>
 
@@ -99,6 +99,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <li><a href="#ParliamentaryTenure">ParliamentaryTenure</a></li>
 <li><a href="#PartyMembership">PartyMembership</a></li>
 <li><a href="#PoliticalParty">PoliticalParty</a></li>
+<li><a href="#SeatType">SeatType</a></li>
 <li><a href="#Speaker">Speaker</a></li>
 </ol></li>
 <li><a href="#object-properties">Object Properties</a><ol>
@@ -108,8 +109,10 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <li><a href="#prop-inDistrict">inDistrict</a></li>
 <li><a href="#prop-inElection">inElection</a></li>
 <li><a href="#prop-inOrganization">inOrganization</a></li>
+<li><a href="#prop-memberOf">memberOf</a></li>
 <li><a href="#prop-partOf">partOf</a></li>
 <li><a href="#prop-representsDistrict">representsDistrict</a></li>
+<li><a href="#prop-seatType">seatType</a></li>
 </ol></li>
 <li><a href="#datatype-properties">Datatype Properties</a><ol>
 <li><a href="#prop-birthYear">birthYear</a></li>
@@ -125,6 +128,16 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 </ol></li>
 <li><a href="#namespaces">Namespaces</a></li>
 </ol></nav>
+<h2>Diagrams</h2>
+<p class="meta">Hollow triangles (△) = subclass. Blue arrows = object properties. Dashed boxes = external standards.</p>
+<h3>Elections</h3>
+<div class="diagram"><img src="agency-elections.svg" alt="Elections"></div>
+<h3>Memberships</h3>
+<div class="diagram"><img src="agency-memberships.svg" alt="Memberships"></div>
+<h3>Organizations</h3>
+<div class="diagram"><img src="agency-orgs.svg" alt="Organizations"></div>
+<h3>People</h3>
+<div class="diagram"><img src="agency-people.svg" alt="People"></div>
 <h2 id="classes">Classes</h2>
 <h3 id="AdjustmentSeat">AdjustmentSeat</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/AdjustmentSeat</code></p>
@@ -132,6 +145,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dl class="definition">
 <dt>Definition (en)</dt><dd>An adjustment seat — one of the 39 seats distributed nationally to equalize proportionality.</dd>
 <dt>Definition (sv)</dt><dd>Ett utjämningsmandat — ett av de 39 mandaten som fördelas nationellt för att utjämna proportionaliteten.</dd>
+<dt>Subclass of</dt><dd><a href="#SeatType">SeatType</a> <span class="badge badge-class">c</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="AlternateMember">AlternateMember</h3>
@@ -196,7 +210,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dl class="definition">
 <dt>Definition (en)</dt><dd>Election result per party and electoral district in a general election.</dd>
 <dt>Definition (sv)</dt><dd>Valresultat per parti och valkrets i ett riksdagsval.</dd>
-<dt>In domain of</dt><dd><a href="#prop-forParty">forParty</a> <span class="badge badge-op">op</span>, <a href="#prop-inDistrict">inDistrict</a> <span class="badge badge-op">op</span>, <a href="#prop-inElection">inElection</a> <span class="badge badge-op">op</span>, <a href="#prop-mandateCount">mandateCount</a> <span class="badge badge-dp">dp</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-forParty">forParty</a> <span class="badge badge-op">op</span>, <a href="#prop-inDistrict">inDistrict</a> <span class="badge badge-op">op</span>, <a href="#prop-inElection">inElection</a> <span class="badge badge-op">op</span>, <a href="#prop-mandateCount">mandateCount</a> <span class="badge badge-dp">dp</span>, <a href="#prop-seatType">seatType</a> <span class="badge badge-op">op</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="ElectoralDistrict">ElectoralDistrict</h3>
@@ -214,6 +228,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dl class="definition">
 <dt>Definition (en)</dt><dd>A fixed seat — one of the 310 seats distributed among the electoral districts.</dd>
 <dt>Definition (sv)</dt><dd>Ett fast mandat — ett av de 310 mandaten som fördelas i valkretsarna.</dd>
+<dt>Subclass of</dt><dd><a href="#SeatType">SeatType</a> <span class="badge badge-class">c</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="Government">Government</h3>
@@ -302,6 +317,16 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>In range of</dt><dd><a href="#prop-forParty">forParty</a> <span class="badge badge-op">op</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="SeatType">SeatType</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/SeatType</code></p>
+<p><strong>Mandattyp</strong> / Seat Type</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Type of parliamentary seat — fixed seat or adjustment seat.</dd>
+<dt>Definition (sv)</dt><dd>Typ av riksdagsmandat — fast mandat eller utjämningsmandat.</dd>
+<dt>Has subclasses</dt><dd><a href="#AdjustmentSeat">AdjustmentSeat</a> <span class="badge badge-class">c</span>, <a href="#FixedSeat">FixedSeat</a> <span class="badge badge-class">c</span></dd>
+<dt>In range of</dt><dd><a href="#prop-seatType">seatType</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="Speaker">Speaker</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Speaker</code></p>
 <p><strong>Talman</strong> / Speaker</p>
@@ -370,6 +395,15 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Sub-property of</dt><dd><code>organization</code></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-memberOf">memberOf</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/memberOf</code></p>
+<p><strong>medlem</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Links a membership back to the person it pertains to.</dd>
+<dt>Definition (sv)</dt><dd>Kopplar ett medlemskap tillbaka till den person det avser.</dd>
+<dt>Range</dt><dd><code>Person</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="prop-partOf">partOf</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/partOf</code></p>
 <p><strong>del av</strong></p>
@@ -390,11 +424,23 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Range</dt><dd><a href="#ElectoralDistrict">ElectoralDistrict</a> <span class="badge badge-class">c</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-seatType">seatType</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/seatType</code></p>
+<p><strong>mandattyp</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Type of seat in the election result (fixed seat or adjustment seat).</dd>
+<dt>Definition (sv)</dt><dd>Typ av mandat i valresultatet (fast mandat eller utjämningsmandat).</dd>
+<dt>Domain</dt><dd><a href="#ElectionResult">ElectionResult</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#SeatType">SeatType</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h2 id="datatype-properties">Datatype Properties</h2>
 <h3 id="prop-birthYear">birthYear</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/birthYear</code></p>
 <p><strong>födelseår</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The person&#x27;s year of birth.</dd>
+<dt>Definition (sv)</dt><dd>Personens födelseår.</dd>
 <dt>Range</dt><dd><code>gYear</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
 </dl>
@@ -403,6 +449,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/electionDate</code></p>
 <p><strong>valdag</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Date on which the general election is held.</dd>
+<dt>Definition (sv)</dt><dd>Datum då riksdagsvalet hålls.</dd>
 <dt>Domain</dt><dd><a href="#Election">Election</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>date</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -412,6 +460,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/endDate</code></p>
 <p><strong>slutdatum</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Date when the membership or assignment ends.</dd>
+<dt>Definition (sv)</dt><dd>Datum då medlemskapet eller uppdraget upphör.</dd>
 <dt>Range</dt><dd><code>date</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
 </dl>
@@ -420,6 +470,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/gender</code></p>
 <p><strong>kön</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The person&#x27;s gender as recorded in the Riksdag register.</dd>
+<dt>Definition (sv)</dt><dd>Personens kön enligt riksdagens register.</dd>
 <dt>Range</dt><dd><code>string</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
 </dl>
@@ -428,6 +480,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/imageUrl</code></p>
 <p><strong>bild-URL</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>URL to the person&#x27;s official portrait image.</dd>
+<dt>Definition (sv)</dt><dd>URL till personens officiella porträttbild.</dd>
 <dt>Range</dt><dd><code>anyURI</code></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
@@ -465,6 +519,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/partyAbbreviation</code></p>
 <p><strong>partiförkortning</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The party&#x27;s official abbreviation (e.g. S, M, SD).</dd>
+<dt>Definition (sv)</dt><dd>Partiets officiella förkortning (t.ex. S, M, SD).</dd>
 <dt>Domain</dt><dd><a href="#PoliticalParty">PoliticalParty</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>string</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -474,6 +530,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/startDate</code></p>
 <p><strong>startdatum</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Date when the membership or assignment begins.</dd>
+<dt>Definition (sv)</dt><dd>Datum då medlemskapet eller uppdraget börjar.</dd>
 <dt>Range</dt><dd><code>date</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
 </dl>

@@ -74,7 +74,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 
 <div class="stats">
     <div class="stat"><div class="stat-value">28</div><div class="stat-label">Classes</div></div>
-    <div class="stat"><div class="stat-value">10</div><div class="stat-label">Object Properties</div></div>
+    <div class="stat"><div class="stat-value">11</div><div class="stat-label">Object Properties</div></div>
     <div class="stat"><div class="stat-value">3</div><div class="stat-label">Datatype Properties</div></div>
 </div>
 
@@ -119,6 +119,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <li><a href="#prop-hasSubject">hasSubject</a></li>
 <li><a href="#prop-partOfMandatePeriod">partOfMandatePeriod</a></li>
 <li><a href="#prop-routeLogic">routeLogic</a></li>
+<li><a href="#prop-stepOf">stepOf</a></li>
 <li><a href="#prop-toStep">toStep</a></li>
 </ol></li>
 <li><a href="#datatype-properties">Datatype Properties</a><ol>
@@ -128,6 +129,12 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 </ol></li>
 <li><a href="#namespaces">Namespaces</a></li>
 </ol></nav>
+<h2>Diagrams</h2>
+<p class="meta">Hollow triangles (△) = subclass. Blue arrows = object properties. Dashed boxes = external standards.</p>
+<h3>Procedure model</h3>
+<div class="diagram"><img src="procedure-core.svg" alt="Procedure model"></div>
+<h3>Legislative stages</h3>
+<div class="diagram"><img src="procedure-stages.svg" alt="Legislative stages"></div>
 <h2 id="classes">Classes</h2>
 <h3 id="BudgetProcedure">BudgetProcedure</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/BudgetProcedure</code></p>
@@ -309,7 +316,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Definition (sv)</dt><dd>En formell riksdagsprocedur, t.ex. lagstiftningsprocessen, interpellationsprocessen, eller budgetprocessen.</dd>
 <dt>Has subclasses</dt><dd><a href="#BudgetProcedure">BudgetProcedure</a> <span class="badge badge-class">c</span>, <a href="#EUSubsidiarityProcedure">EUSubsidiarityProcedure</a> <span class="badge badge-class">c</span></dd>
 <dt>In domain of</dt><dd><a href="#prop-hasStep">hasStep</a> <span class="badge badge-op">op</span></dd>
-<dt>In range of</dt><dd><a href="#prop-hasProcedure">hasProcedure</a> <span class="badge badge-op">op</span></dd>
+<dt>In range of</dt><dd><a href="#prop-hasProcedure">hasProcedure</a> <span class="badge badge-op">op</span>, <a href="#prop-stepOf">stepOf</a> <span class="badge badge-op">op</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="Promulgation">Promulgation</h3>
@@ -346,6 +353,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Definition (en)</dt><dd>A possible step in a procedure. Steps can be of various types (action, decision, document) and are connected via routes.</dd>
 <dt>Definition (sv)</dt><dd>Ett möjligt steg i en procedur. Steg kan vara av olika typer (handling, beslut, dokument) och kopplas samman via rutter.</dd>
 <dt>Has subclasses</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-stepOf">stepOf</a> <span class="badge badge-op">op</span></dd>
 <dt>In range of</dt><dd><a href="#prop-actualisesStep">actualisesStep</a> <span class="badge badge-op">op</span>, <a href="#prop-fromStep">fromStep</a> <span class="badge badge-op">op</span>, <a href="#prop-hasStep">hasStep</a> <span class="badge badge-op">op</span>, <a href="#prop-toStep">toStep</a> <span class="badge badge-op">op</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
@@ -400,6 +408,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/concernsDocument</code></p>
 <p><strong>avser dokument</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The document that the business item concerns.</dd>
+<dt>Definition (sv)</dt><dd>Det dokument som händelsen avser.</dd>
 <dt>Domain</dt><dd><a href="#BusinessItem">BusinessItem</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 </dl>
@@ -408,6 +418,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/fromStep</code></p>
 <p><strong>från steg</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The step from which the route originates.</dd>
+<dt>Definition (sv)</dt><dd>Det steg som rutten utgår från.</dd>
 <dt>Domain</dt><dd><a href="#Route">Route</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#Step">Step</a> <span class="badge badge-class">c</span></dd>
 </dl>
@@ -416,6 +428,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasBusinessItem</code></p>
 <p><strong>har händelse</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>A business item that is part of the work package.</dd>
+<dt>Definition (sv)</dt><dd>En händelse som ingår i ärendepaketet.</dd>
 <dt>Domain</dt><dd><a href="#WorkPackage">WorkPackage</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#BusinessItem">BusinessItem</a> <span class="badge badge-class">c</span></dd>
 </dl>
@@ -432,6 +446,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasStep</code></p>
 <p><strong>har steg</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>A step that is part of the procedure.</dd>
+<dt>Definition (sv)</dt><dd>Ett steg som ingår i proceduren.</dd>
 <dt>Domain</dt><dd><a href="#Procedure">Procedure</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#Step">Step</a> <span class="badge badge-class">c</span></dd>
 </dl>
@@ -450,6 +466,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/partOfMandatePeriod</code></p>
 <p><strong>ingår i mandatperiod</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The mandate period the parliamentary session belongs to.</dd>
+<dt>Definition (sv)</dt><dd>Den mandatperiod som riksmötet tillhör.</dd>
 <dt>Domain</dt><dd><a href="#ParliamentarySession">ParliamentarySession</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#MandatePeriod">MandatePeriod</a> <span class="badge badge-class">c</span></dd>
 </dl>
@@ -464,10 +482,22 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Range</dt><dd><code>Concept</code></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-stepOf">stepOf</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/stepOf</code></p>
+<p><strong>steg i</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The procedure to which this step belongs.</dd>
+<dt>Definition (sv)</dt><dd>Den procedur som detta steg tillhör.</dd>
+<dt>Domain</dt><dd><a href="#Step">Step</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Procedure">Procedure</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="prop-toStep">toStep</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/toStep</code></p>
 <p><strong>till steg</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The step to which the route leads.</dd>
+<dt>Definition (sv)</dt><dd>Det steg som rutten leder till.</dd>
 <dt>Domain</dt><dd><a href="#Route">Route</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#Step">Step</a> <span class="badge badge-class">c</span></dd>
 </dl>
@@ -487,6 +517,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/eventDate</code></p>
 <p><strong>händelsedatum</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Date when the event occurred.</dd>
+<dt>Definition (sv)</dt><dd>Datum då händelsen inträffade.</dd>
 <dt>Domain</dt><dd><a href="#BusinessItem">BusinessItem</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>date</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>

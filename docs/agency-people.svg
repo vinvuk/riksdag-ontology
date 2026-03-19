@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="-20.0 -10 521.4 264"
+  width="521.4" height="264"
+  style="font-family:-apple-system,BlinkMacSystemFont,Segoe UI,system-ui,sans-serif">
+
+  <defs>
+    <marker id="tri" viewBox="0 0 10 10" refX="10" refY="5"
+      markerWidth="10" markerHeight="10" orient="auto">
+      <path d="M0,0 L10,5 L0,10 Z" fill="white" stroke="#94a3b8" stroke-width="1.2"/>
+    </marker>
+    <marker id="arr" viewBox="0 0 10 6" refX="10" refY="3"
+      markerWidth="8" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,3 L0,6" fill="none" stroke="#3b82f6" stroke-width="1.5"/>
+    </marker>
+  </defs>
+
+  <line x1="82.2" y1="98.0" x2="164.0" y2="38.0"    stroke="#94a3b8" stroke-width="1.5" marker-end="url(#tri)"/>
+  <line x1="82.2" y1="98.0" x2="314.7" y2="38.0"    stroke="#94a3b8" stroke-width="1.5" marker-end="url(#tri)"/>
+  <line x1="252.4" y1="98.0" x2="164.0" y2="38.0"    stroke="#94a3b8" stroke-width="1.5" marker-end="url(#tri)"/>
+  <line x1="240.7" y1="196.0" x2="82.2" y2="136.0"    stroke="#94a3b8" stroke-width="1.5" marker-end="url(#tri)"/>
+  <line x1="410.9" y1="98.0" x2="164.0" y2="38.0"    stroke="#94a3b8" stroke-width="1.5" marker-end="url(#tri)"/>
+  <rect x="0.0" y="98.0" width="164.4" height="38"    rx="6" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="82.2" y="122.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">MemberOfParliament</text>
+  <rect x="192.4" y="98.0" width="120.0" height="38"    rx="6" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="252.4" y="122.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">Minister</text>
+  <rect x="180.7" y="196.0" width="120.0" height="38"    rx="6" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="240.7" y="220.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">Speaker</text>
+  <rect x="340.4" y="98.0" width="141.0" height="38"    rx="6" fill="#bfdbfe" stroke="#93c5fd" stroke-width="1.5"/>
+  <text x="410.9" y="122.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#1e293b">AlternateMember</text>
+  <rect x="104.0" y="0.0" width="120.0" height="38"    rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="164.0" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#64748b">foaf:Person</text>
+  <rect x="252.0" y="0.0" width="125.4" height="38"    rx="6" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="314.7" y="24.0" text-anchor="middle"    font-size="13" font-weight="500" fill="#64748b">schema:Person</text>
+</svg>

@@ -74,7 +74,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 
 <div class="stats">
     <div class="stat"><div class="stat-value">49</div><div class="stat-label">Classes</div></div>
-    <div class="stat"><div class="stat-value">28</div><div class="stat-label">Object Properties</div></div>
+    <div class="stat"><div class="stat-value">33</div><div class="stat-label">Object Properties</div></div>
     <div class="stat"><div class="stat-value">13</div><div class="stat-label">Datatype Properties</div></div>
 </div>
 
@@ -132,10 +132,12 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 </ol></li>
 <li><a href="#object-properties">Object Properties</a><ol>
 <li><a href="#prop-addressedTo">addressedTo</a></li>
+<li><a href="#prop-amendedBy">amendedBy</a></li>
 <li><a href="#prop-amends">amends</a></li>
 <li><a href="#prop-answeredBy">answeredBy</a></li>
 <li><a href="#prop-answeredIn">answeredIn</a></li>
 <li><a href="#prop-author">author</a></li>
+<li><a href="#prop-authorOf">authorOf</a></li>
 <li><a href="#prop-baseLaw">baseLaw</a></li>
 <li><a href="#prop-basedOn">basedOn</a></li>
 <li><a href="#prop-consolidatedBy">consolidatedBy</a></li>
@@ -147,13 +149,16 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <li><a href="#prop-hasFormat">hasFormat</a></li>
 <li><a href="#prop-hasProposalPoint">hasProposalPoint</a></li>
 <li><a href="#prop-hasReservation">hasReservation</a></li>
+<li><a href="#prop-hasSpecialOpinion">hasSpecialOpinion</a></li>
 <li><a href="#prop-implementedBy">implementedBy</a></li>
 <li><a href="#prop-inReplyChain">inReplyChain</a></li>
 <li><a href="#prop-inResponseTo">inResponseTo</a></li>
 <li><a href="#prop-includesAmendments">includesAmendments</a></li>
 <li><a href="#prop-partOfDebate">partOfDebate</a></li>
 <li><a href="#prop-partOfSession">partOfSession</a></li>
+<li><a href="#prop-referencedBy">referencedBy</a></li>
 <li><a href="#prop-references">references</a></li>
+<li><a href="#prop-repealedBy">repealedBy</a></li>
 <li><a href="#prop-repeals">repeals</a></li>
 <li><a href="#prop-replyTo">replyTo</a></li>
 <li><a href="#prop-respondsTo">respondsTo</a></li>
@@ -177,6 +182,16 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 </ol></li>
 <li><a href="#namespaces">Namespaces</a></li>
 </ol></nav>
+<h2>Diagrams</h2>
+<p class="meta">Hollow triangles (△) = subclass. Blue arrows = object properties. Dashed boxes = external standards.</p>
+<h3>Debates and speeches</h3>
+<div class="diagram"><img src="documents-debates.svg" alt="Debates and speeches"></div>
+<h3>Core document types</h3>
+<div class="diagram"><img src="documents-hierarchy.svg" alt="Core document types"></div>
+<h3>Legal publications</h3>
+<div class="diagram"><img src="documents-legal.svg" alt="Legal publications"></div>
+<h3>Motion subtypes</h3>
+<div class="diagram"><img src="documents-motions.svg" alt="Motion subtypes"></div>
 <h2 id="classes">Classes</h2>
 <h3 id="Act">Act</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Act</code></p>
@@ -232,7 +247,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Definition (en)</dt><dd>A committee report (bet.) — the committee&#x27;s proposal for the Riksdag&#x27;s decision.</dd>
 <dt>Definition (sv)</dt><dd>Ett betänkande (bet.) — utskottets förslag till riksdagens beslut.</dd>
 <dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
-<dt>In domain of</dt><dd><a href="#prop-hasProposalPoint">hasProposalPoint</a> <span class="badge badge-op">op</span>, <a href="#prop-hasReservation">hasReservation</a> <span class="badge badge-op">op</span>, <a href="#prop-resultsIn">resultsIn</a> <span class="badge badge-op">op</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-hasProposalPoint">hasProposalPoint</a> <span class="badge badge-op">op</span>, <a href="#prop-hasReservation">hasReservation</a> <span class="badge badge-op">op</span>, <a href="#prop-hasSpecialOpinion">hasSpecialOpinion</a> <span class="badge badge-op">op</span>, <a href="#prop-resultsIn">resultsIn</a> <span class="badge badge-op">op</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="CommitteeStatement">CommitteeStatement</h3>
@@ -482,8 +497,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Definition (sv)</dt><dd>Abstrakt överklass för alla dokument i riksdagens verksamhet. Motsvarar ELI:s Work-nivå (det abstrakta verket).</dd>
 <dt>Subclass of</dt><dd><code>LegalResource</code></dd>
 <dt>Has subclasses</dt><dd><a href="#CommitteeOpinion">CommitteeOpinion</a> <span class="badge badge-class">c</span>, <a href="#CommitteeReport">CommitteeReport</a> <span class="badge badge-class">c</span>, <a href="#CommitteeStatement">CommitteeStatement</a> <span class="badge badge-class">c</span>, <a href="#ConsultationResponse">ConsultationResponse</a> <span class="badge badge-class">c</span>, <a href="#ConsultationSummary">ConsultationSummary</a> <span class="badge badge-class">c</span>, <a href="#CouncilOpinion">CouncilOpinion</a> <span class="badge badge-class">c</span>, <a href="#CouncilReferral">CouncilReferral</a> <span class="badge badge-class">c</span>, <a href="#EUFactsheet">EUFactsheet</a> <span class="badge badge-class">c</span>, <a href="#GovernmentBill">GovernmentBill</a> <span class="badge badge-class">c</span>, <a href="#GovernmentCommunication">GovernmentCommunication</a> <span class="badge badge-class">c</span>, <a href="#GovernmentInquiryReport">GovernmentInquiryReport</a> <span class="badge badge-class">c</span>, <a href="#GreenPaper">GreenPaper</a> <span class="badge badge-class">c</span>, <a href="#Interpellation">Interpellation</a> <span class="badge badge-class">c</span>, <a href="#MinistryReport">MinistryReport</a> <span class="badge badge-class">c</span>, <a href="#Motion">Motion</a> <span class="badge badge-class">c</span>, <a href="#ParliamentaryCommunication">ParliamentaryCommunication</a> <span class="badge badge-class">c</span>, <a href="#Pronouncement">Pronouncement</a> <span class="badge badge-class">c</span>, <a href="#TermsOfReference">TermsOfReference</a> <span class="badge badge-class">c</span>, <a href="#WhitePaper">WhitePaper</a> <span class="badge badge-class">c</span>, <a href="#WrittenAnswer">WrittenAnswer</a> <span class="badge badge-class">c</span>, <a href="#WrittenQuestion">WrittenQuestion</a> <span class="badge badge-class">c</span></dd>
-<dt>In domain of</dt><dd><a href="#prop-author">author</a> <span class="badge badge-op">op</span>, <a href="#prop-debateDate">debateDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-decisionDate">decisionDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-designation">designation</a> <span class="badge badge-dp">dp</span>, <a href="#prop-documentDate">documentDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-documentTitle">documentTitle</a> <span class="badge badge-dp">dp</span>, <a href="#prop-dokId">dokId</a> <span class="badge badge-dp">dp</span>, <a href="#prop-handledBy">handledBy</a> <span class="badge badge-op">op</span>, <a href="#prop-hasExpression">hasExpression</a> <span class="badge badge-op">op</span>, <a href="#prop-partOfSession">partOfSession</a> <span class="badge badge-op">op</span>, <a href="#prop-references">references</a> <span class="badge badge-op">op</span></dd>
-<dt>In range of</dt><dd><a href="#prop-basedOn">basedOn</a> <span class="badge badge-op">op</span>, <a href="#prop-inResponseTo">inResponseTo</a> <span class="badge badge-op">op</span>, <a href="#prop-references">references</a> <span class="badge badge-op">op</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-author">author</a> <span class="badge badge-op">op</span>, <a href="#prop-debateDate">debateDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-decisionDate">decisionDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-designation">designation</a> <span class="badge badge-dp">dp</span>, <a href="#prop-documentDate">documentDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-documentTitle">documentTitle</a> <span class="badge badge-dp">dp</span>, <a href="#prop-dokId">dokId</a> <span class="badge badge-dp">dp</span>, <a href="#prop-handledBy">handledBy</a> <span class="badge badge-op">op</span>, <a href="#prop-hasExpression">hasExpression</a> <span class="badge badge-op">op</span>, <a href="#prop-partOfSession">partOfSession</a> <span class="badge badge-op">op</span>, <a href="#prop-referencedBy">referencedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-references">references</a> <span class="badge badge-op">op</span></dd>
+<dt>In range of</dt><dd><a href="#prop-authorOf">authorOf</a> <span class="badge badge-op">op</span>, <a href="#prop-basedOn">basedOn</a> <span class="badge badge-op">op</span>, <a href="#prop-inResponseTo">inResponseTo</a> <span class="badge badge-op">op</span>, <a href="#prop-referencedBy">referencedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-references">references</a> <span class="badge badge-op">op</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="PartyLeaderDebate">PartyLeaderDebate</h3>
@@ -545,6 +560,7 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dl class="definition">
 <dt>Definition (en)</dt><dd>A special opinion — an addendum by a committee member who supports the decision but wants to explain their position.</dd>
 <dt>Definition (sv)</dt><dd>Ett särskilt yttrande — tillägg av en utskottsledamot som stödjer beslutet men vill motivera sin ståndpunkt.</dd>
+<dt>In range of</dt><dd><a href="#prop-hasSpecialOpinion">hasSpecialOpinion</a> <span class="badge badge-op">op</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="Speech">Speech</h3>
@@ -574,8 +590,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Definition (sv)</dt><dd>En författning publicerad i Svensk författningssamling (SFS).</dd>
 <dt>Subclass of</dt><dd><code>LegalResource</code></dd>
 <dt>Has subclasses</dt><dd><a href="#Act">Act</a> <span class="badge badge-class">c</span>, <a href="#Ordinance">Ordinance</a> <span class="badge badge-class">c</span></dd>
-<dt>In domain of</dt><dd><a href="#prop-amends">amends</a> <span class="badge badge-op">op</span>, <a href="#prop-consolidatedBy">consolidatedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-entryIntoForceDate">entryIntoForceDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-repeals">repeals</a> <span class="badge badge-op">op</span>, <a href="#prop-sfsNumber">sfsNumber</a> <span class="badge badge-dp">dp</span>, <a href="#prop-transitionProvision">transitionProvision</a> <span class="badge badge-dp">dp</span></dd>
-<dt>In range of</dt><dd><a href="#prop-amends">amends</a> <span class="badge badge-op">op</span>, <a href="#prop-baseLaw">baseLaw</a> <span class="badge badge-op">op</span>, <a href="#prop-implementedBy">implementedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-repeals">repeals</a> <span class="badge badge-op">op</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-amendedBy">amendedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-amends">amends</a> <span class="badge badge-op">op</span>, <a href="#prop-consolidatedBy">consolidatedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-entryIntoForceDate">entryIntoForceDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-repealedBy">repealedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-repeals">repeals</a> <span class="badge badge-op">op</span>, <a href="#prop-sfsNumber">sfsNumber</a> <span class="badge badge-dp">dp</span>, <a href="#prop-transitionProvision">transitionProvision</a> <span class="badge badge-dp">dp</span></dd>
+<dt>In range of</dt><dd><a href="#prop-amendedBy">amendedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-amends">amends</a> <span class="badge badge-op">op</span>, <a href="#prop-baseLaw">baseLaw</a> <span class="badge badge-op">op</span>, <a href="#prop-implementedBy">implementedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-repealedBy">repealedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-repeals">repeals</a> <span class="badge badge-op">op</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="SubjectDebate">SubjectDebate</h3>
@@ -652,10 +668,22 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Range</dt><dd><a href="#Minister">Minister</a> <span class="badge badge-class">c</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-amendedBy">amendedBy</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/amendedBy</code></p>
+<p><strong>ändrad av</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The statute that amends this statute.</dd>
+<dt>Definition (sv)</dt><dd>Den författning som ändrar denna författning.</dd>
+<dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="prop-amends">amends</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/amends</code></p>
 <p><strong>ändrar</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The statute that this statute amends.</dd>
+<dt>Definition (sv)</dt><dd>Den författning som denna författning ändrar.</dd>
 <dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
 <dt>Sub-property of</dt><dd><code>amends</code></dd>
@@ -665,6 +693,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/answeredBy</code></p>
 <p><strong>besvarad av</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The written answer that responds to the interpellation or question.</dd>
+<dt>Definition (sv)</dt><dd>Det skriftliga svar som besvarar interpellationen eller frågan.</dd>
 <dt>Range</dt><dd><a href="#WrittenAnswer">WrittenAnswer</a> <span class="badge badge-class">c</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
@@ -686,6 +716,15 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Definition (sv)</dt><dd>Person som författat eller undertecknat dokumentet.</dd>
 <dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>Person</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-authorOf">authorOf</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/authorOf</code></p>
+<p><strong>författare till</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Document that the person authored or signed.</dd>
+<dt>Definition (sv)</dt><dd>Dokument som personen har författat eller undertecknat.</dd>
+<dt>Range</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="prop-baseLaw">baseLaw</h3>
@@ -762,6 +801,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasExpression</code></p>
 <p><strong>har uttryck</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Links a document (Work) to a specific expression (Expression) per ELI/FRBR.</dd>
+<dt>Definition (sv)</dt><dd>Kopplar ett dokument (Work) till ett specifikt uttryck (Expression) enligt ELI/FRBR.</dd>
 <dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#DocumentExpression">DocumentExpression</a> <span class="badge badge-class">c</span></dd>
 <dt>Sub-property of</dt><dd><code>has_expression</code></dd>
@@ -771,6 +812,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasFormat</code></p>
 <p><strong>har format</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Links a document expression to a specific digital representation (PDF, HTML, XML).</dd>
+<dt>Definition (sv)</dt><dd>Kopplar ett dokumentuttryck till en specifik digital representation (PDF, HTML, XML).</dd>
 <dt>Domain</dt><dd><a href="#DocumentExpression">DocumentExpression</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#DocumentFormat">DocumentFormat</a> <span class="badge badge-class">c</span></dd>
 <dt>Sub-property of</dt><dd><code>has_format</code></dd>
@@ -780,6 +823,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasProposalPoint</code></p>
 <p><strong>har förslagspunkt</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>A proposal point contained in the committee report.</dd>
+<dt>Definition (sv)</dt><dd>En förslagspunkt som ingår i betänkandet.</dd>
 <dt>Domain</dt><dd><a href="#CommitteeReport">CommitteeReport</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#ProposalPoint">ProposalPoint</a> <span class="badge badge-class">c</span></dd>
 </dl>
@@ -788,8 +833,20 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasReservation</code></p>
 <p><strong>har reservation</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>A reservation (dissenting opinion) appended to the committee report.</dd>
+<dt>Definition (sv)</dt><dd>En reservation (avvikande mening) bifogad till betänkandet.</dd>
 <dt>Domain</dt><dd><a href="#CommitteeReport">CommitteeReport</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#Reservation">Reservation</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasSpecialOpinion">hasSpecialOpinion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasSpecialOpinion</code></p>
+<p><strong>har särskilt yttrande</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A special opinion appended to the committee report.</dd>
+<dt>Definition (sv)</dt><dd>Ett särskilt yttrande bifogat till betänkandet.</dd>
+<dt>Domain</dt><dd><a href="#CommitteeReport">CommitteeReport</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#SpecialOpinion">SpecialOpinion</a> <span class="badge badge-class">c</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="prop-implementedBy">implementedBy</h3>
@@ -845,8 +902,20 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/partOfSession</code></p>
 <p><strong>ingår i riksmöte</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The parliamentary session the document belongs to.</dd>
+<dt>Definition (sv)</dt><dd>Det riksmöte som dokumentet tillhör.</dd>
 <dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#ParliamentarySession">ParliamentarySession</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-referencedBy">referencedBy</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/referencedBy</code></p>
+<p><strong>refererad av</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Document that references this document.</dd>
+<dt>Definition (sv)</dt><dd>Dokument som refererar till detta dokument.</dd>
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="prop-references">references</h3>
@@ -859,10 +928,22 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <dt>Range</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 </dl>
 <p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-repealedBy">repealedBy</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/repealedBy</code></p>
+<p><strong>upphävd av</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The statute that repeals this statute.</dd>
+<dt>Definition (sv)</dt><dd>Den författning som upphäver denna författning.</dd>
+<dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
 <h3 id="prop-repeals">repeals</h3>
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/repeals</code></p>
 <p><strong>upphäver</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The statute that this statute repeals.</dd>
+<dt>Definition (sv)</dt><dd>Den författning som denna författning upphäver.</dd>
 <dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
 <dt>Sub-property of</dt><dd><code>repeals</code></dd>
@@ -902,6 +983,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/speaker</code></p>
 <p><strong>talare</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The person delivering the speech.</dd>
+<dt>Definition (sv)</dt><dd>Den person som håller anförandet.</dd>
 <dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>Person</code></dd>
 </dl>
@@ -922,6 +1005,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/debateDate</code></p>
 <p><strong>debattdag</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Date when the debate on the document took place in the chamber.</dd>
+<dt>Definition (sv)</dt><dd>Datum då debatten om dokumentet ägde rum i kammaren.</dd>
 <dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>date</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -931,6 +1016,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/decisionDate</code></p>
 <p><strong>beslutsdatum</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Date when the decision on the document was taken.</dd>
+<dt>Definition (sv)</dt><dd>Datum då beslut fattades om dokumentet.</dd>
 <dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>date</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -951,6 +1038,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/documentDate</code></p>
 <p><strong>dokumentdatum</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Date when the document was created or published.</dd>
+<dt>Definition (sv)</dt><dd>Datum då dokumentet upprättades eller publicerades.</dd>
 <dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>date</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -960,6 +1049,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/documentTitle</code></p>
 <p><strong>dokumenttitel</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The document&#x27;s official title.</dd>
+<dt>Definition (sv)</dt><dd>Dokumentets officiella titel.</dd>
 <dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>langString</code></dd>
 </dl>
@@ -979,6 +1070,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/entryIntoForceDate</code></p>
 <p><strong>ikraftträdandedatum</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Date when the statute enters into force.</dd>
+<dt>Definition (sv)</dt><dd>Datum då författningen träder i kraft.</dd>
 <dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>date</code></dd>
 </dl>
@@ -998,6 +1091,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/speechId</code></p>
 <p><strong>anförande-ID</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>Unique identifier for the speech from the Riksdag API.</dd>
+<dt>Definition (sv)</dt><dd>Unikt identifieringsnummer för anförandet från riksdagens API.</dd>
 <dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>string</code></dd>
 <dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
@@ -1007,6 +1102,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/speechNumber</code></p>
 <p><strong>anförandenummer</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The speech&#x27;s sequential number within the debate.</dd>
+<dt>Definition (sv)</dt><dd>Anförandets ordningsnummer i debatten.</dd>
 <dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
 </dl>
@@ -1015,6 +1112,8 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <p class="meta">IRI: <code>https://ontology.riksdagen.se/def/speechText</code></p>
 <p><strong>anförandetext</strong></p>
 <dl class="definition">
+<dt>Definition (en)</dt><dd>The full text of the speech.</dd>
+<dt>Definition (sv)</dt><dd>Den fullständiga texten av anförandet.</dd>
 <dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
 <dt>Range</dt><dd><code>string</code></dd>
 </dl>
