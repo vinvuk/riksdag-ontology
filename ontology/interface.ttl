@@ -1,0 +1,184 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix org:     <http://www.w3.org/ns/org#> .
+@prefix schema:  <https://schema.org/> .
+@prefix eli:     <http://data.europa.eu/eli/ontology#> .
+@prefix rpubl:   <http://rinfo.lagrummet.se/ns/2008/11/rinfo/publ#> .
+@prefix rksdag:  <https://ontology.riksdagen.se/def/> .
+
+# =============================================================================
+# Interface Module — External Alignment Axioms
+# =============================================================================
+#
+# This module contains ONLY alignment axioms mapping the Riksdag ontology
+# to external standards. No new classes or properties are defined here.
+#
+# Aligned vocabularies:
+#   - ELI (European Legislation Identifier)
+#   - rpubl (rättsinformationssystemet)
+#   - W3C Organization Ontology
+#   - Schema.org
+#   - Dublin Core Terms
+#   - FOAF
+# =============================================================================
+
+<https://ontology.riksdagen.se/def/interface>
+    a owl:Ontology ;
+    dcterms:title "Riksdagsontologin — Kopplingsmodul"@sv ,
+                  "Riksdag Ontology — Interface Module"@en ;
+    dcterms:description
+        """Kopplar riksdagsontologin till internationella standarder: ELI, rättsinformationssystemet, Schema.org, W3C ORG."""@sv ,
+        """Aligns the Riksdag ontology to international standards: ELI, rättsinformationssystemet, Schema.org, W3C ORG."""@en ;
+    owl:versionInfo "0.1.0" .
+
+# -----------------------------------------------------------------------------
+# ELI Alignments — Document Classes
+# -----------------------------------------------------------------------------
+
+# ParliamentaryDocument is already declared as subclass of eli:LegalResource
+# in documents.ttl. Here we add finer-grained ELI mappings.
+
+rksdag:GovernmentBill
+    rdfs:subClassOf eli:LegalResource ;
+    rdfs:seeAlso <http://data.europa.eu/eli/ontology#LegalResource> .
+
+rksdag:Statute
+    rdfs:subClassOf eli:LegalResource .
+
+rksdag:Act
+    rdfs:subClassOf eli:LegalResource .
+
+rksdag:Ordinance
+    rdfs:subClassOf eli:LegalResource .
+
+# ELI property alignments
+rksdag:documentDate
+    rdfs:subPropertyOf eli:date_document .
+
+rksdag:entryIntoForceDate
+    rdfs:subPropertyOf eli:date_entry_into_force .
+
+rksdag:amends
+    rdfs:subPropertyOf eli:amends .
+
+rksdag:repeals
+    rdfs:subPropertyOf eli:repeals .
+
+rksdag:hasExpression
+    rdfs:subPropertyOf eli:has_expression .
+
+rksdag:hasFormat
+    rdfs:subPropertyOf eli:has_format .
+
+# -----------------------------------------------------------------------------
+# rpubl Alignments — Swedish Legal System
+# -----------------------------------------------------------------------------
+
+rksdag:GovernmentBill
+    owl:equivalentClass rpubl:Proposition .
+
+rksdag:GovernmentInquiryReport
+    owl:equivalentClass rpubl:Utredningsbetankande .
+
+rksdag:CommitteeReport
+    rdfs:seeAlso rpubl:Riksdagsdokument .
+
+rksdag:Statute
+    rdfs:subClassOf rpubl:Forfattning .
+
+rksdag:Act
+    owl:equivalentClass rpubl:Lag .
+
+rksdag:Ordinance
+    owl:equivalentClass rpubl:Forordning .
+
+rksdag:sfsNumber
+    rdfs:subPropertyOf rpubl:fsNummer .
+
+rksdag:entryIntoForceDate
+    rdfs:subPropertyOf rpubl:ikrafttradandedatum .
+
+# -----------------------------------------------------------------------------
+# Schema.org Alignments
+# -----------------------------------------------------------------------------
+
+rksdag:MemberOfParliament
+    rdfs:subClassOf schema:Person .
+
+rksdag:Committee
+    rdfs:subClassOf schema:Organization .
+
+rksdag:PoliticalParty
+    rdfs:subClassOf schema:Organization .
+
+rksdag:ParliamentaryBody
+    rdfs:subClassOf schema:Organization .
+
+rksdag:Government
+    rdfs:subClassOf schema:GovernmentOrganization .
+
+rksdag:Ministry
+    rdfs:subClassOf schema:GovernmentOrganization .
+
+rksdag:ParliamentaryDocument
+    rdfs:subClassOf schema:Legislation .
+
+rksdag:documentTitle
+    rdfs:subPropertyOf schema:name .
+
+rksdag:author
+    rdfs:subPropertyOf schema:author .
+
+# -----------------------------------------------------------------------------
+# W3C ORG Alignments
+# -----------------------------------------------------------------------------
+
+# Class alignments are declared in agency.ttl (PoliticalParty, Committee,
+# ParliamentaryBody all subclass org:FormalOrganization). Here we add
+# property-level alignments.
+
+rksdag:hasMembership
+    rdfs:subPropertyOf org:hasMembership .
+
+rksdag:inOrganization
+    rdfs:subPropertyOf org:organization .
+
+rksdag:hasRole
+    rdfs:subPropertyOf org:role .
+
+rksdag:partOf
+    rdfs:subPropertyOf org:subOrganizationOf .
+
+rksdag:organCode
+    rdfs:subPropertyOf org:identifier .
+
+# -----------------------------------------------------------------------------
+# Dublin Core Alignments
+# -----------------------------------------------------------------------------
+
+rksdag:designation
+    rdfs:subPropertyOf dcterms:identifier .
+
+rksdag:documentDate
+    rdfs:subPropertyOf dcterms:date .
+
+rksdag:documentTitle
+    rdfs:subPropertyOf dcterms:title .
+
+rksdag:author
+    rdfs:subPropertyOf dcterms:creator .
+
+# -----------------------------------------------------------------------------
+# FOAF Alignments
+# -----------------------------------------------------------------------------
+
+rksdag:intressentId
+    rdfs:subPropertyOf foaf:accountName .
+
+rksdag:imageUrl
+    rdfs:subPropertyOf foaf:depiction .

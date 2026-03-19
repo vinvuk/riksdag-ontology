@@ -1,0 +1,19 @@
+# Competency Q18: Most interpellations per answering minister
+PREFIX rksdag: <https://ontology.riksdagen.se/def/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?designation ?title ?date ?author
+WHERE {
+    ?doc a rksdag:Interpellation ;
+         rksdag:designation ?designation ;
+         rksdag:documentTitle ?title .
+    ?doc rksdag:partOfSession ?session .
+    ?session rksdag:sessionId "2024/25" .
+    OPTIONAL { ?doc rksdag:documentDate ?date }
+    OPTIONAL {
+        ?doc rksdag:author ?authorPerson .
+        ?authorPerson rdfs:label ?author .
+    }
+}
+ORDER BY DESC(?date)
+LIMIT 20

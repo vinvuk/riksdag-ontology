@@ -1,0 +1,158 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# SKOS Concept Scheme — Electoral Districts (Valkretsar)
+# =============================================================================
+
+rksdagv:ConstituencyScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "Valkretsar"@sv , "Electoral Districts"@en ;
+    dcterms:description
+        "De 29 valkretsarna för val till Sveriges riksdag."@sv ,
+        "The 29 electoral districts for elections to the Swedish Riksdag."@en ;
+    dcterms:created "2026-03-19"^^xsd:date .
+
+rksdagv:constituency-stockholms-kommun
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Stockholms kommun"@sv , "Stockholm Municipality"@en .
+
+rksdagv:constituency-stockholms-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Stockholms län"@sv , "Stockholm County"@en .
+
+rksdagv:constituency-uppsala-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Uppsala län"@sv , "Uppsala County"@en .
+
+rksdagv:constituency-sodermanlands-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Södermanlands län"@sv , "Södermanland County"@en .
+
+rksdagv:constituency-ostergotlands-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Östergötlands län"@sv , "Östergötland County"@en .
+
+rksdagv:constituency-jonkopings-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Jönköpings län"@sv , "Jönköping County"@en .
+
+rksdagv:constituency-kronobergs-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Kronobergs län"@sv , "Kronoberg County"@en .
+
+rksdagv:constituency-kalmar-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Kalmar län"@sv , "Kalmar County"@en .
+
+rksdagv:constituency-gotlands-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Gotlands län"@sv , "Gotland County"@en .
+
+rksdagv:constituency-blekinge-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Blekinge län"@sv , "Blekinge County"@en .
+
+rksdagv:constituency-skane-lanet-sodra
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Skåne läns södra"@sv , "Skåne County South"@en .
+
+rksdagv:constituency-skane-lanet-norra-och-ostra
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Skåne läns norra och östra"@sv ,
+                   "Skåne County North and East"@en .
+
+rksdagv:constituency-skane-lanet-vastra
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Skåne läns västra"@sv , "Skåne County West"@en .
+
+rksdagv:constituency-hallands-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Hallands län"@sv , "Halland County"@en .
+
+rksdagv:constituency-vastra-gotalands-lanet-vastra
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Västra Götalands läns västra"@sv ,
+                   "Västra Götaland County West"@en .
+
+rksdagv:constituency-vastra-gotalands-lanet-norra
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Västra Götalands läns norra"@sv ,
+                   "Västra Götaland County North"@en .
+
+rksdagv:constituency-vastra-gotalands-lanet-sodra
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Västra Götalands läns södra"@sv ,
+                   "Västra Götaland County South"@en .
+
+rksdagv:constituency-vastra-gotalands-lanet-ostra
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Västra Götalands läns östra"@sv ,
+                   "Västra Götaland County East"@en .
+
+rksdagv:constituency-varmlands-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Värmlands län"@sv , "Värmland County"@en .
+
+rksdagv:constituency-orebro-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Örebro län"@sv , "Örebro County"@en .
+
+rksdagv:constituency-vastmanlands-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Västmanlands län"@sv , "Västmanland County"@en .
+
+rksdagv:constituency-dalarnas-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Dalarnas län"@sv , "Dalarna County"@en .
+
+rksdagv:constituency-gavleborgs-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Gävleborgs län"@sv , "Gävleborg County"@en .
+
+rksdagv:constituency-vasternorrlands-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Västernorrlands län"@sv , "Västernorrland County"@en .
+
+rksdagv:constituency-jamtlands-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Jämtlands län"@sv , "Jämtland County"@en .
+
+rksdagv:constituency-vasterbottens-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Västerbottens län"@sv , "Västerbotten County"@en .
+
+rksdagv:constituency-norrbottens-lan
+    a skos:Concept ;
+    skos:inScheme rksdagv:ConstituencyScheme ;
+    skos:prefLabel "Norrbottens län"@sv , "Norrbotten County"@en .

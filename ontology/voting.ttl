@@ -1,0 +1,236 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix rksdag:  <https://ontology.riksdagen.se/def/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# Voting Module — Vote Events, Ballots, Outcomes
+# =============================================================================
+
+<https://ontology.riksdagen.se/def/voting>
+    a owl:Ontology ;
+    dcterms:title "Riksdagsontologin — Voteringsmodul"@sv ,
+                  "Riksdag Ontology — Voting Module"@en ;
+    dcterms:description
+        """Modellerar voteringar i riksdagens kammare, inklusive röstningsresultat per ledamot."""@sv ,
+        """Models votes in the Riksdag chamber, including individual member voting records."""@en ;
+    owl:versionInfo "0.1.0" .
+
+# -----------------------------------------------------------------------------
+# Classes
+# -----------------------------------------------------------------------------
+
+rksdag:VotingEvent
+    a owl:Class ;
+    rdfs:label "Votering"@sv , "Voting Event"@en ;
+    rdfs:comment
+        """En enskild omröstning i kammaren, identifierad av votering_id. Kan gälla en förslagspunkt i ett betänkande."""@sv ,
+        """A single division in the chamber, identified by votering_id. May concern a proposal point in a committee report."""@en .
+
+rksdag:Ballot
+    a owl:Class ;
+    rdfs:label "Röst"@sv , "Ballot"@en ;
+    rdfs:comment
+        "En enskild ledamots röst i en votering."@sv ,
+        "An individual member's vote in a division."@en .
+
+rksdag:VoteOutcome
+    a owl:Class ;
+    rdfs:label "Röstningsutfall"@sv , "Vote Outcome"@en ;
+    rdfs:comment
+        "Utfallet av en votering (bifall, avslag)."@sv ,
+        "The outcome of a vote (approved, rejected)."@en .
+
+# Voting method types
+rksdag:VotingMethod
+    a owl:Class ;
+    rdfs:label "Omröstningsmetod"@sv , "Voting Method"@en ;
+    rdfs:comment
+        """Metod för omröstning: acklamation, uppresning, elektronisk, namnupprop, eller lottning."""@sv ,
+        """Method of voting: acclamation, standing, electronic, roll call, or drawing of lots."""@en .
+
+# Named individuals for voting methods
+rksdag:Acclamation
+    a rksdag:VotingMethod ;
+    rdfs:label "Acklamation"@sv , "Acclamation"@en .
+
+rksdag:StandingVote
+    a rksdag:VotingMethod ;
+    rdfs:label "Uppresning"@sv , "Standing Vote"@en .
+
+rksdag:ElectronicVote
+    a rksdag:VotingMethod ;
+    rdfs:label "Elektronisk omröstning"@sv , "Electronic Vote"@en .
+
+rksdag:RollCall
+    a rksdag:VotingMethod ;
+    rdfs:label "Namnupprop"@sv , "Roll Call"@en .
+
+rksdag:DrawingOfLots
+    a rksdag:VotingMethod ;
+    rdfs:label "Lottning"@sv , "Drawing of Lots"@en .
+
+# -----------------------------------------------------------------------------
+# Object Properties
+# -----------------------------------------------------------------------------
+
+rksdag:onProposal
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range rksdag:ProposalPoint ;
+    rdfs:label "gäller förslagspunkt"@sv , "on proposal"@en ;
+    rdfs:comment
+        "Den förslagspunkt som voteringen gäller."@sv ,
+        "The proposal point the voting event concerns."@en .
+
+rksdag:onDocument
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range rksdag:CommitteeReport ;
+    rdfs:label "gäller betänkande"@sv , "on document"@en ;
+    rdfs:comment
+        "Det betänkande som voteringen härrör från."@sv ,
+        "The committee report the voting event originates from."@en .
+
+rksdag:hasBallot
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range rksdag:Ballot ;
+    rdfs:label "har röst"@sv , "has ballot"@en ;
+    rdfs:comment
+        "En enskild röst som ingår i voteringen."@sv ,
+        "An individual ballot cast in the voting event."@en .
+
+rksdag:voter
+    a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:Ballot ;
+    rdfs:range rksdag:MemberOfParliament ;
+    rdfs:label "röstande"@sv , "voter"@en ;
+    rdfs:comment
+        "Den ledamot som avgivit rösten."@sv ,
+        "The member of parliament who cast the ballot."@en .
+
+rksdag:voteOption
+    a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:Ballot ;
+    rdfs:range skos:Concept ;
+    rdfs:label "röstar"@sv , "vote option"@en ;
+    rdfs:comment
+        """Röstval: Ja, Nej, Avstår, Frånvarande — refererar till SKOS-begrepp i voteringsvokabuläret."""@sv ,
+        """Vote choice: Yes, No, Abstain, Absent — references SKOS concepts in the vote options vocabulary."""@en .
+
+rksdag:hasOutcome
+    a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range rksdag:VoteOutcome ;
+    rdfs:label "har utfall"@sv , "has outcome"@en ;
+    rdfs:comment
+        "Voteringsresultatet (bifall eller avslag)."@sv ,
+        "The voting result (approved or rejected)."@en .
+
+rksdag:hasMethod
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range rksdag:VotingMethod ;
+    rdfs:label "har metod"@sv , "has method"@en ;
+    rdfs:comment
+        "Metoden som användes vid omröstningen."@sv ,
+        "The method used for the vote."@en .
+
+rksdag:inVotingEvent
+    a owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:Ballot ;
+    rdfs:range rksdag:VotingEvent ;
+    rdfs:label "i votering"@sv , "in voting event"@en ;
+    rdfs:comment
+        "Den votering som rösten tillhör."@sv ,
+        "The voting event to which the ballot belongs."@en ;
+    owl:inverseOf rksdag:hasBallot .
+
+# -----------------------------------------------------------------------------
+# Datatype Properties
+# -----------------------------------------------------------------------------
+
+rksdag:voteringId
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "voterings-ID"@sv , "voting ID"@en ;
+    rdfs:comment "UUID-identifierare för voteringen."@sv ,
+                 "UUID identifier for the voting event."@en .
+
+rksdag:pointNumber
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "punkt"@sv , "point number"@en ;
+    rdfs:comment "Förslagspunktens nummer i betänkandet."@sv ,
+                 "The proposal point number in the committee report."@en .
+
+rksdag:voteDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range xsd:date ;
+    rdfs:label "voteringsdatum"@sv , "vote date"@en ;
+    rdfs:comment
+        "Datum då voteringen genomfördes."@sv ,
+        "Date when the vote was held."@en .
+
+rksdag:yesCount
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "ja-röster"@sv , "yes count"@en ;
+    rdfs:comment
+        "Antal ja-röster i voteringen."@sv ,
+        "Number of yes votes in the division."@en .
+
+rksdag:noCount
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "nej-röster"@sv , "no count"@en ;
+    rdfs:comment
+        "Antal nej-röster i voteringen."@sv ,
+        "Number of no votes in the division."@en .
+
+rksdag:abstainCount
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "avstår-röster"@sv , "abstain count"@en ;
+    rdfs:comment
+        "Antal ledamöter som avstod i voteringen."@sv ,
+        "Number of members who abstained in the division."@en .
+
+rksdag:absentCount
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "frånvarande"@sv , "absent count"@en ;
+    rdfs:comment
+        "Antal frånvarande ledamöter vid voteringen."@sv ,
+        "Number of members absent during the division."@en .
+
+rksdag:winningOption
+    a owl:DatatypeProperty ;
+    rdfs:domain rksdag:VotingEvent ;
+    rdfs:range xsd:string ;
+    rdfs:label "vinnande förslag"@sv , "winning option"@en ;
+    rdfs:comment "Markerar om Ja eller Nej vann voteringen."@sv ,
+                 "Indicates whether Yes or No won the division."@en .
+
+# -----------------------------------------------------------------------------
+# Disjointness Axioms
+# -----------------------------------------------------------------------------
+
+rksdag:VotingEvent owl:disjointWith rksdag:Ballot .
+rksdag:VotingEvent owl:disjointWith rksdag:VoteOutcome .
+rksdag:VotingEvent owl:disjointWith rksdag:VotingMethod .
+rksdag:Ballot owl:disjointWith rksdag:VoteOutcome .
+rksdag:Ballot owl:disjointWith rksdag:VotingMethod .

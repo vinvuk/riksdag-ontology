@@ -1,0 +1,35 @@
+@prefix :        <#> .
+@prefix fuseki:  <http://jena.apache.org/fuseki#> .
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix ja:      <http://jena.hpl.hp.com/2005/11/Assembler#> .
+@prefix tdb2:    <http://jena.apache.org/2016/tdb#> .
+
+# =============================================================================
+# Fuseki configuration for the Riksdag Ontology knowledge graph
+# =============================================================================
+#
+# Uses TDB2 for persistent on-disk storage.
+# Exposes SPARQL query, update, and graph store protocol endpoints.
+#
+# Start with:
+#   fuseki-server --config=config/fuseki-config.ttl
+#
+# Endpoints:
+#   Query:   http://localhost:3030/riksdag/query
+#   Update:  http://localhost:3030/riksdag/update
+#   Data:    http://localhost:3030/riksdag/data
+#   UI:      http://localhost:3030/
+# =============================================================================
+
+:service a fuseki:Service ;
+    fuseki:name "riksdag" ;
+    fuseki:endpoint [ fuseki:operation fuseki:query ;   fuseki:name "query" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:update ;  fuseki:name "update" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:gsp_r ;   fuseki:name "data" ] ;
+    fuseki:endpoint [ fuseki:operation fuseki:gsp_rw ;  fuseki:name "data" ] ;
+    fuseki:dataset :dataset .
+
+:dataset a tdb2:DatasetTDB2 ;
+    tdb2:location "run/databases/riksdag" ;
+    tdb2:unionDefaultGraph true .

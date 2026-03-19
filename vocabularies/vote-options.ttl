@@ -1,0 +1,46 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# SKOS Concept Scheme — Vote Options (Röstningsalternativ)
+# =============================================================================
+
+rksdagv:VoteOptionScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "Röstningsalternativ"@sv , "Vote Options"@en ;
+    dcterms:description
+        "Möjliga röstningsalternativ i riksdagens voteringar."@sv ,
+        "Possible vote options in Riksdag divisions."@en ;
+    dcterms:created "2026-03-19"^^xsd:date .
+
+rksdagv:vote-Ja
+    a skos:Concept ;
+    skos:inScheme rksdagv:VoteOptionScheme ;
+    skos:notation "Ja" ;
+    skos:prefLabel "Ja"@sv , "Yes"@en ;
+    skos:definition "Röstar för förslaget."@sv , "Votes in favour."@en .
+
+rksdagv:vote-Nej
+    a skos:Concept ;
+    skos:inScheme rksdagv:VoteOptionScheme ;
+    skos:notation "Nej" ;
+    skos:prefLabel "Nej"@sv , "No"@en ;
+    skos:definition "Röstar mot förslaget."@sv , "Votes against."@en .
+
+rksdagv:vote-Avstar
+    a skos:Concept ;
+    skos:inScheme rksdagv:VoteOptionScheme ;
+    skos:notation "Avstår" ;
+    skos:prefLabel "Avstår"@sv , "Abstain"@en ;
+    skos:definition "Avstår från att rösta."@sv , "Abstains from voting."@en .
+
+rksdagv:vote-Franvarande
+    a skos:Concept ;
+    skos:inScheme rksdagv:VoteOptionScheme ;
+    skos:notation "Frånvarande" ;
+    skos:prefLabel "Frånvarande"@sv , "Absent"@en ;
+    skos:definition "Frånvarande vid voteringen."@sv , "Absent from the division."@en .

@@ -1,0 +1,179 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix rksdag:  <https://ontology.riksdagen.se/def/> .
+@prefix rksdagd: <https://data.riksdagen.se/id/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# Sample Instance Data — For SHACL Validation and Competency Query Testing
+# =============================================================================
+
+# --- Session ---
+
+<https://data.riksdagen.se/id/session/2024-25>
+    a rksdag:ParliamentarySession ;
+    rksdag:sessionId "2024/25" ;
+    rdfs:label "Riksmötet 2024/25"@sv , "Parliamentary Session 2024/25"@en .
+
+# --- Party ---
+
+<https://data.riksdagen.se/id/org/S>
+    a rksdag:PoliticalParty ;
+    rksdag:partyAbbreviation "S" ;
+    rdfs:label "Socialdemokraterna"@sv , "Social Democrats"@en .
+
+<https://data.riksdagen.se/id/org/M>
+    a rksdag:PoliticalParty ;
+    rksdag:partyAbbreviation "M" ;
+    rdfs:label "Moderaterna"@sv , "Moderate Party"@en .
+
+# --- Committee ---
+
+<https://data.riksdagen.se/id/org/FiU>
+    a rksdag:Committee ;
+    rksdag:organCode "FiU" ;
+    rdfs:label "Finansutskottet"@sv , "Committee on Finance"@en .
+
+# --- Members ---
+
+<https://data.riksdagen.se/id/person/0123456789>
+    a rksdag:MemberOfParliament ;
+    rksdag:intressentId "0123456789" ;
+    foaf:givenName "Anna" ;
+    foaf:familyName "Andersson" ;
+    rksdag:birthYear "1975"^^xsd:gYear ;
+    rksdag:gender "kvinna" ;
+    rksdag:hasMembership <https://data.riksdagen.se/id/membership/anna-party-s> ,
+                         <https://data.riksdagen.se/id/membership/anna-fiu> .
+
+<https://data.riksdagen.se/id/person/9876543210>
+    a rksdag:MemberOfParliament ;
+    rksdag:intressentId "9876543210" ;
+    foaf:givenName "Erik" ;
+    foaf:familyName "Eriksson" ;
+    rksdag:birthYear "1980"^^xsd:gYear ;
+    rksdag:gender "man" ;
+    rksdag:hasMembership <https://data.riksdagen.se/id/membership/erik-party-m> .
+
+# --- Memberships ---
+
+<https://data.riksdagen.se/id/membership/anna-party-s>
+    a rksdag:PartyMembership ;
+    rksdag:inOrganization <https://data.riksdagen.se/id/org/S> ;
+    rksdag:startDate "2014-09-29"^^xsd:date .
+
+<https://data.riksdagen.se/id/membership/anna-fiu>
+    a rksdag:CommitteeMembership ;
+    rksdag:inOrganization <https://data.riksdagen.se/id/org/FiU> ;
+    rksdag:hasRole rksdagv:role-Ordforande ;
+    rksdag:startDate "2022-10-24"^^xsd:date .
+
+<https://data.riksdagen.se/id/membership/erik-party-m>
+    a rksdag:PartyMembership ;
+    rksdag:inOrganization <https://data.riksdagen.se/id/org/M> ;
+    rksdag:startDate "2018-09-24"^^xsd:date .
+
+# --- Documents ---
+
+<https://data.riksdagen.se/id/doc/H903FiU1>
+    a rksdag:CommitteeReport ;
+    rksdag:dokId "H903FiU1" ;
+    rksdag:designation "FiU1" ;
+    rksdag:documentTitle "Utgiftsramar och beräkning av statsinkomsterna"@sv ;
+    rksdag:documentDate "2024-11-20"^^xsd:date ;
+    rksdag:decisionDate "2024-11-27"^^xsd:date ;
+    rksdag:handledBy <https://data.riksdagen.se/id/org/FiU> ;
+    rksdag:partOfSession <https://data.riksdagen.se/id/session/2024-25> .
+
+<https://data.riksdagen.se/id/doc/H90342>
+    a rksdag:GovernmentBill ;
+    rksdag:dokId "H90342" ;
+    rksdag:designation "2024/25:42" ;
+    rksdag:documentTitle "Höständringsbudget för 2024"@sv ;
+    rksdag:documentDate "2024-09-18"^^xsd:date ;
+    rksdag:partOfSession <https://data.riksdagen.se/id/session/2024-25> .
+
+<https://data.riksdagen.se/id/doc/H902mot123>
+    a rksdag:IndividualMotion ;
+    rksdag:dokId "H902mot123" ;
+    rksdag:designation "2024/25:123" ;
+    rksdag:documentTitle "En motion om skattereform"@sv ;
+    rksdag:documentDate "2024-10-01"^^xsd:date ;
+    rksdag:author <https://data.riksdagen.se/id/person/0123456789> ;
+    rksdag:references <https://data.riksdagen.se/id/doc/H90342> ;
+    rksdag:partOfSession <https://data.riksdagen.se/id/session/2024-25> .
+
+# --- Voting ---
+
+<https://data.riksdagen.se/id/vote/2024-11-27-fiu1-p1>
+    a rksdag:VotingEvent ;
+    rksdag:voteringId "a1b2c3d4-e5f6-7890-abcd-ef1234567890" ;
+    rksdag:voteDate "2024-11-27"^^xsd:date ;
+    rksdag:onDocument <https://data.riksdagen.se/id/doc/H903FiU1> ;
+    rksdag:pointNumber "1"^^xsd:nonNegativeInteger ;
+    rksdag:yesCount "175"^^xsd:nonNegativeInteger ;
+    rksdag:noCount "174"^^xsd:nonNegativeInteger ;
+    rksdag:abstainCount "0"^^xsd:nonNegativeInteger ;
+    rksdag:absentCount "0"^^xsd:nonNegativeInteger ;
+    rksdag:winningOption "Ja" ;
+    rksdag:hasBallot <https://data.riksdagen.se/id/ballot/anna-fiu1-p1> ,
+                     <https://data.riksdagen.se/id/ballot/erik-fiu1-p1> .
+
+<https://data.riksdagen.se/id/ballot/anna-fiu1-p1>
+    a rksdag:Ballot ;
+    rksdag:voter <https://data.riksdagen.se/id/person/0123456789> ;
+    rksdag:voteOption rksdagv:vote-Ja ;
+    rksdag:inVotingEvent <https://data.riksdagen.se/id/vote/2024-11-27-fiu1-p1> .
+
+<https://data.riksdagen.se/id/ballot/erik-fiu1-p1>
+    a rksdag:Ballot ;
+    rksdag:voter <https://data.riksdagen.se/id/person/9876543210> ;
+    rksdag:voteOption rksdagv:vote-Nej ;
+    rksdag:inVotingEvent <https://data.riksdagen.se/id/vote/2024-11-27-fiu1-p1> .
+
+# --- Procedure (minimal work package) ---
+
+<https://data.riksdagen.se/id/procedure/legislation>
+    a rksdag:Procedure ;
+    rdfs:label "Lagstiftningsproceduren"@sv , "Legislative Procedure"@en .
+
+<https://data.riksdagen.se/id/step/tabling>
+    a rksdag:Tabling ;
+    rdfs:label "Bordläggning"@sv , "Tabling"@en .
+
+<https://data.riksdagen.se/id/step/referral>
+    a rksdag:CommitteeReferral ;
+    rdfs:label "Hänvisning till utskott"@sv , "Committee Referral"@en .
+
+<https://data.riksdagen.se/id/step/decision>
+    a rksdag:ChamberDecision ;
+    rdfs:label "Kammarens beslut"@sv , "Chamber Decision"@en .
+
+<https://data.riksdagen.se/id/workpackage/prop-2024-25-42>
+    a rksdag:WorkPackage ;
+    rksdag:hasProcedure <https://data.riksdagen.se/id/procedure/legislation> ;
+    rksdag:hasSubject <https://data.riksdagen.se/id/doc/H90342> ;
+    rksdag:hasBusinessItem <https://data.riksdagen.se/id/bi/prop42-tabling> ,
+                           <https://data.riksdagen.se/id/bi/prop42-referral> ,
+                           <https://data.riksdagen.se/id/bi/prop42-decision> .
+
+<https://data.riksdagen.se/id/bi/prop42-tabling>
+    a rksdag:BusinessItem ;
+    rksdag:actualisesStep <https://data.riksdagen.se/id/step/tabling> ;
+    rksdag:eventDate "2024-09-19"^^xsd:date ;
+    rksdag:concernsDocument <https://data.riksdagen.se/id/doc/H90342> .
+
+<https://data.riksdagen.se/id/bi/prop42-referral>
+    a rksdag:BusinessItem ;
+    rksdag:actualisesStep <https://data.riksdagen.se/id/step/referral> ;
+    rksdag:eventDate "2024-09-20"^^xsd:date ;
+    rksdag:concernsDocument <https://data.riksdagen.se/id/doc/H90342> .
+
+<https://data.riksdagen.se/id/bi/prop42-decision>
+    a rksdag:BusinessItem ;
+    rksdag:actualisesStep <https://data.riksdagen.se/id/step/decision> ;
+    rksdag:eventDate "2024-11-27"^^xsd:date ;
+    rksdag:concernsDocument <https://data.riksdagen.se/id/doc/H90342> .

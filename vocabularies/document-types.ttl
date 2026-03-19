@@ -1,0 +1,130 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+@prefix rksdag:  <https://ontology.riksdagen.se/def/> .
+
+# =============================================================================
+# SKOS Concept Scheme — Document Types (Dokumenttyper)
+# =============================================================================
+
+rksdagv:DocumentTypeScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "Dokumenttyper"@sv , "Document Types"@en ;
+    dcterms:description
+        "Dokumenttypskoder i riksdagens API (doktyp-fältet)."@sv ,
+        "Document type codes in the Riksdag API (the doktyp field)."@en ;
+    dcterms:created "2026-03-19"^^xsd:date .
+
+rksdagv:doctype-prop
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "prop" ;
+    skos:prefLabel "Proposition"@sv , "Government Bill"@en ;
+    skos:definition "Regeringens lagförslag till riksdagen."@sv ,
+                    "The Government's legislative proposal to the Riksdag."@en ;
+    skos:exactMatch rksdag:GovernmentBill .
+
+rksdagv:doctype-mot
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "mot" ;
+    skos:prefLabel "Motion"@sv , "Motion"@en ;
+    skos:definition "Förslag från en eller flera riksdagsledamöter."@sv ,
+                    "Proposal from one or more members of parliament."@en ;
+    skos:exactMatch rksdag:Motion .
+
+rksdagv:doctype-bet
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "bet" ;
+    skos:prefLabel "Betänkande"@sv , "Committee Report"@en ;
+    skos:definition "Utskottets förslag till riksdagens beslut."@sv ,
+                    "The committee's proposal for the Riksdag's decision."@en ;
+    skos:exactMatch rksdag:CommitteeReport .
+
+rksdagv:doctype-rskr
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "rskr" ;
+    skos:prefLabel "Riksdagsskrivelse"@sv , "Parliamentary Communication"@en ;
+    skos:definition
+        "Formellt meddelande från riksdagen till regeringen."@sv ,
+        "Formal communication from the Riksdag to the Government."@en ;
+    skos:exactMatch rksdag:ParliamentaryCommunication .
+
+rksdagv:doctype-ip
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "ip" ;
+    skos:prefLabel "Interpellation"@sv , "Interpellation"@en ;
+    skos:definition
+        "Skriftlig fråga till statsråd som debatteras i kammaren."@sv ,
+        "Written question to a minister debated in the chamber."@en ;
+    skos:exactMatch rksdag:Interpellation .
+
+rksdagv:doctype-fr
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "fr" ;
+    skos:prefLabel "Skriftlig fråga"@sv , "Written Question"@en ;
+    skos:definition
+        "Kortare skriftlig fråga med skriftligt svar."@sv ,
+        "Shorter written question with a written answer."@en ;
+    skos:exactMatch rksdag:WrittenQuestion .
+
+rksdagv:doctype-sou
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "sou" ;
+    skos:prefLabel "SOU"@sv , "Government Inquiry Report"@en ;
+    skos:definition "Statens offentliga utredningar."@sv ,
+                    "Government official inquiries."@en ;
+    skos:exactMatch rksdag:GovernmentInquiryReport .
+
+rksdagv:doctype-ds
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "ds" ;
+    skos:prefLabel "Ds"@sv , "Ministry Report"@en ;
+    skos:definition "Departementsserien."@sv , "Ministry report series."@en ;
+    skos:exactMatch rksdag:MinistryReport .
+
+rksdagv:doctype-dir
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "dir" ;
+    skos:prefLabel "Kommittédirektiv"@sv , "Terms of Reference"@en ;
+    skos:definition "Regeringens direktiv till en utredning."@sv ,
+                    "The Government's terms of reference for an inquiry."@en ;
+    skos:exactMatch rksdag:TermsOfReference .
+
+rksdagv:doctype-skr
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "skr" ;
+    skos:prefLabel "Skrivelse"@sv , "Government Communication"@en ;
+    skos:definition
+        "Regeringens meddelande till riksdagen utan lagförslag."@sv ,
+        "Government message to the Riksdag without legislative proposals."@en ;
+    skos:exactMatch rksdag:GovernmentCommunication .
+
+rksdagv:doctype-fpm
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "fpm" ;
+    skos:prefLabel "Faktapromemoria"@sv , "EU Affairs Factsheet"@en ;
+    skos:definition
+        "Regeringens faktapromemoria om EU-förslag."@sv ,
+        "Government factsheet on EU proposals."@en ;
+    skos:exactMatch rksdag:EUFactsheet .
+
+rksdagv:doctype-eundok
+    a skos:Concept ;
+    skos:inScheme rksdagv:DocumentTypeScheme ;
+    skos:notation "eundok" ;
+    skos:prefLabel "EU-nämndens dokument"@sv , "EU Committee Document"@en ;
+    skos:definition "Dokument från EU-nämnden."@sv ,
+                    "Documents from the Committee on EU Affairs."@en .

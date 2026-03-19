@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Documents — Riksdag Ontology</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem; }
+h2 { font-size: 1.35rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem;
+     padding-bottom: 0.25rem; border-bottom: 1px solid #e0e0e0; }
+h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.25rem; }
+p { margin-bottom: 0.75rem; }
+a { color: #1a56db; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, .iri { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em;
+             background: #f5f5f5; padding: 0.1em 0.3em; border-radius: 3px; }
+.subtitle { color: #666; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.meta { color: #888; font-size: 0.8rem; margin-bottom: 0.5rem; }
+.badge { display: inline-block; font-size: 0.7rem; font-weight: 600;
+         padding: 0.15em 0.5em; border-radius: 3px; margin-left: 0.3rem;
+         vertical-align: middle; }
+.badge-class { background: #dbeafe; color: #1e40af; }
+.badge-op { background: #dcfce7; color: #166534; }
+.badge-dp { background: #fef3c7; color: #92400e; }
+.badge-vocab { background: #f3e8ff; color: #6b21a8; }
+.toc { margin: 1rem 0 2rem; }
+.toc ol { padding-left: 1.5rem; }
+.toc li { margin: 0.2rem 0; }
+.module-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 1rem 0; }
+.module-card { border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem;
+               transition: border-color 0.15s; }
+.module-card:hover { border-color: #1a56db; }
+.module-card h4 { margin: 0 0 0.25rem; }
+.module-card p { margin: 0; font-size: 0.85rem; color: #666; }
+.definition { margin: 0.5rem 0 1rem; padding-left: 1rem;
+              border-left: 3px solid #e0e0e0; }
+.definition dt { font-weight: 600; font-size: 0.85rem; color: #555; margin-top: 0.5rem; }
+.definition dd { margin-left: 0; font-size: 0.9rem; }
+.back-to-toc { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
+.namespace-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+.namespace-table th, .namespace-table td { text-align: left; padding: 0.4rem 0.75rem;
+                                           border-bottom: 1px solid #eee; }
+.namespace-table th { font-weight: 600; color: #555; }
+.diagram { margin: 1.5rem 0; text-align: center; }
+.diagram img, .diagram svg { max-width: 100%; }
+.stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0; }
+.stat { text-align: center; }
+.stat-value { font-size: 1.5rem; font-weight: 700; color: #1a56db; }
+.stat-label { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
+         font-size: 0.8rem; color: #888; }
+</style>
+</head>
+<body>
+<p class="meta"><a href="index.html">← Riksdag Ontology</a></p>
+<h1>Documents Ontology</h1>
+<p class="subtitle">Dokument — Parliamentary and legislative document types with ELI FRBR layering.</p>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/documents</code></p>
+<p class="meta">
+    Source: <a href="https://github.com/vinvuk/riksdag-ontology/blob/main/ontology/documents.ttl">documents.ttl</a>
+    · License: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+</p>
+
+
+<div class="stats">
+    <div class="stat"><div class="stat-value">49</div><div class="stat-label">Classes</div></div>
+    <div class="stat"><div class="stat-value">28</div><div class="stat-label">Object Properties</div></div>
+    <div class="stat"><div class="stat-value">13</div><div class="stat-label">Datatype Properties</div></div>
+</div>
+
+<nav class="toc"><h2 id="toc">Table of Contents</h2><ol>
+<li><a href="#classes">Classes</a><ol>
+<li><a href="#Act">Act</a></li>
+<li><a href="#AmendmentAct">AmendmentAct</a></li>
+<li><a href="#BudgetBill">BudgetBill</a></li>
+<li><a href="#CommitteeMotion">CommitteeMotion</a></li>
+<li><a href="#CommitteeOpinion">CommitteeOpinion</a></li>
+<li><a href="#CommitteeReport">CommitteeReport</a></li>
+<li><a href="#CommitteeStatement">CommitteeStatement</a></li>
+<li><a href="#ConsolidatedVersion">ConsolidatedVersion</a></li>
+<li><a href="#ConsultationResponse">ConsultationResponse</a></li>
+<li><a href="#ConsultationSummary">ConsultationSummary</a></li>
+<li><a href="#CouncilOpinion">CouncilOpinion</a></li>
+<li><a href="#CouncilReferral">CouncilReferral</a></li>
+<li><a href="#CurrentAffairsDebate">CurrentAffairsDebate</a></li>
+<li><a href="#Debate">Debate</a></li>
+<li><a href="#DocumentExpression">DocumentExpression</a></li>
+<li><a href="#DocumentFormat">DocumentFormat</a></li>
+<li><a href="#EUFactsheet">EUFactsheet</a></li>
+<li><a href="#FollowUpMotion">FollowUpMotion</a></li>
+<li><a href="#GeneralPolicyDebate">GeneralPolicyDebate</a></li>
+<li><a href="#GovernmentBill">GovernmentBill</a></li>
+<li><a href="#GovernmentCommunication">GovernmentCommunication</a></li>
+<li><a href="#GovernmentInquiryReport">GovernmentInquiryReport</a></li>
+<li><a href="#GreenPaper">GreenPaper</a></li>
+<li><a href="#IndividualMotion">IndividualMotion</a></li>
+<li><a href="#Interpellation">Interpellation</a></li>
+<li><a href="#InterpellationDebate">InterpellationDebate</a></li>
+<li><a href="#MinistryReport">MinistryReport</a></li>
+<li><a href="#Motion">Motion</a></li>
+<li><a href="#MultiPartyMotion">MultiPartyMotion</a></li>
+<li><a href="#Ordinance">Ordinance</a></li>
+<li><a href="#ParliamentaryCommunication">ParliamentaryCommunication</a></li>
+<li><a href="#ParliamentaryDocument">ParliamentaryDocument</a></li>
+<li><a href="#PartyLeaderDebate">PartyLeaderDebate</a></li>
+<li><a href="#PartyMotion">PartyMotion</a></li>
+<li><a href="#Pronouncement">Pronouncement</a></li>
+<li><a href="#ProposalPoint">ProposalPoint</a></li>
+<li><a href="#ReplyChain">ReplyChain</a></li>
+<li><a href="#Reservation">Reservation</a></li>
+<li><a href="#SpecialOpinion">SpecialOpinion</a></li>
+<li><a href="#Speech">Speech</a></li>
+<li><a href="#SpringFiscalBill">SpringFiscalBill</a></li>
+<li><a href="#Statute">Statute</a></li>
+<li><a href="#SubjectDebate">SubjectDebate</a></li>
+<li><a href="#SubsidiarityStatement">SubsidiarityStatement</a></li>
+<li><a href="#SupplementaryBudget">SupplementaryBudget</a></li>
+<li><a href="#TermsOfReference">TermsOfReference</a></li>
+<li><a href="#WhitePaper">WhitePaper</a></li>
+<li><a href="#WrittenAnswer">WrittenAnswer</a></li>
+<li><a href="#WrittenQuestion">WrittenQuestion</a></li>
+</ol></li>
+<li><a href="#object-properties">Object Properties</a><ol>
+<li><a href="#prop-addressedTo">addressedTo</a></li>
+<li><a href="#prop-amends">amends</a></li>
+<li><a href="#prop-answeredBy">answeredBy</a></li>
+<li><a href="#prop-answeredIn">answeredIn</a></li>
+<li><a href="#prop-author">author</a></li>
+<li><a href="#prop-baseLaw">baseLaw</a></li>
+<li><a href="#prop-basedOn">basedOn</a></li>
+<li><a href="#prop-consolidatedBy">consolidatedBy</a></li>
+<li><a href="#prop-consultationBody">consultationBody</a></li>
+<li><a href="#prop-debateType">debateType</a></li>
+<li><a href="#prop-followsUp">followsUp</a></li>
+<li><a href="#prop-handledBy">handledBy</a></li>
+<li><a href="#prop-hasExpression">hasExpression</a></li>
+<li><a href="#prop-hasFormat">hasFormat</a></li>
+<li><a href="#prop-hasProposalPoint">hasProposalPoint</a></li>
+<li><a href="#prop-hasReservation">hasReservation</a></li>
+<li><a href="#prop-implementedBy">implementedBy</a></li>
+<li><a href="#prop-inReplyChain">inReplyChain</a></li>
+<li><a href="#prop-inResponseTo">inResponseTo</a></li>
+<li><a href="#prop-includesAmendments">includesAmendments</a></li>
+<li><a href="#prop-partOfDebate">partOfDebate</a></li>
+<li><a href="#prop-partOfSession">partOfSession</a></li>
+<li><a href="#prop-references">references</a></li>
+<li><a href="#prop-repeals">repeals</a></li>
+<li><a href="#prop-replyTo">replyTo</a></li>
+<li><a href="#prop-respondsTo">respondsTo</a></li>
+<li><a href="#prop-resultsIn">resultsIn</a></li>
+<li><a href="#prop-speaker">speaker</a></li>
+</ol></li>
+<li><a href="#datatype-properties">Datatype Properties</a><ol>
+<li><a href="#prop-consolidationDate">consolidationDate</a></li>
+<li><a href="#prop-debateDate">debateDate</a></li>
+<li><a href="#prop-decisionDate">decisionDate</a></li>
+<li><a href="#prop-designation">designation</a></li>
+<li><a href="#prop-documentDate">documentDate</a></li>
+<li><a href="#prop-documentTitle">documentTitle</a></li>
+<li><a href="#prop-dokId">dokId</a></li>
+<li><a href="#prop-entryIntoForceDate">entryIntoForceDate</a></li>
+<li><a href="#prop-sfsNumber">sfsNumber</a></li>
+<li><a href="#prop-speechId">speechId</a></li>
+<li><a href="#prop-speechNumber">speechNumber</a></li>
+<li><a href="#prop-speechText">speechText</a></li>
+<li><a href="#prop-transitionProvision">transitionProvision</a></li>
+</ol></li>
+<li><a href="#namespaces">Namespaces</a></li>
+</ol></nav>
+<h2 id="classes">Classes</h2>
+<h3 id="Act">Act</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Act</code></p>
+<p><strong>Lag</strong> / Act</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An act enacted by the Riksdag.</dd>
+<dt>Definition (sv)</dt><dd>En lag stiftad av riksdagen.</dd>
+<dt>Subclass of</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Has subclasses</dt><dd><a href="#AmendmentAct">AmendmentAct</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="AmendmentAct">AmendmentAct</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/AmendmentAct</code></p>
+<p><strong>Ändringsförfattning</strong> / Amendment Act</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An amendment act — a law that amends an existing law (e.g. &#x27;Act amending ...&#x27;).</dd>
+<dt>Definition (sv)</dt><dd>En ändringsförfattning — en lag som ändrar en befintlig lag (t.ex. &#x27;Lag om ändring i ...&#x27;).</dd>
+<dt>Subclass of</dt><dd><a href="#Act">Act</a> <span class="badge badge-class">c</span></dd>
+<dt>In range of</dt><dd><a href="#prop-includesAmendments">includesAmendments</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="BudgetBill">BudgetBill</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/BudgetBill</code></p>
+<p><strong>Budgetproposition</strong> / Budget Bill</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Budget Bill — the Government&#x27;s annual budget proposal, submitted in September.</dd>
+<dt>Definition (sv)</dt><dd>Budgetpropositionen — regeringens årliga förslag till statsbudget, lämnas i september.</dd>
+<dt>Subclass of</dt><dd><a href="#GovernmentBill">GovernmentBill</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CommitteeMotion">CommitteeMotion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CommitteeMotion</code></p>
+<p><strong>Kommittémotion</strong> / Committee Motion</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Motion jointly submitted by members from the same committee.</dd>
+<dt>Definition (sv)</dt><dd>Motion inlämnad gemensamt av en grupp ledamöter från samma utskott.</dd>
+<dt>Subclass of</dt><dd><a href="#Motion">Motion</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CommitteeOpinion">CommitteeOpinion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CommitteeOpinion</code></p>
+<p><strong>Yttrande</strong> / Committee Opinion</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A committee opinion — one committee&#x27;s views to another committee.</dd>
+<dt>Definition (sv)</dt><dd>Ett yttrande — ett utskotts synpunkter till ett annat utskott.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CommitteeReport">CommitteeReport</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CommitteeReport</code></p>
+<p><strong>Betänkande</strong> / Committee Report</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A committee report (bet.) — the committee&#x27;s proposal for the Riksdag&#x27;s decision.</dd>
+<dt>Definition (sv)</dt><dd>Ett betänkande (bet.) — utskottets förslag till riksdagens beslut.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-hasProposalPoint">hasProposalPoint</a> <span class="badge badge-op">op</span>, <a href="#prop-hasReservation">hasReservation</a> <span class="badge badge-op">op</span>, <a href="#prop-resultsIn">resultsIn</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CommitteeStatement">CommitteeStatement</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CommitteeStatement</code></p>
+<p><strong>Utlåtande</strong> / Committee Statement</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A committee statement — the committee&#x27;s scrutiny of EU proposals.</dd>
+<dt>Definition (sv)</dt><dd>Ett utlåtande — utskottets granskning av EU-förslag.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Has subclasses</dt><dd><a href="#SubsidiarityStatement">SubsidiarityStatement</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ConsolidatedVersion">ConsolidatedVersion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ConsolidatedVersion</code></p>
+<p><strong>Konsoliderad version</strong> / Consolidated Version</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A consolidated version of a statute at a specific point in time, with all amendments incorporated.</dd>
+<dt>Definition (sv)</dt><dd>En konsoliderad version av en författning vid en viss tidpunkt, med alla ändringar inarbetade.</dd>
+<dt>In domain of</dt><dd><a href="#prop-baseLaw">baseLaw</a> <span class="badge badge-op">op</span>, <a href="#prop-consolidationDate">consolidationDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-includesAmendments">includesAmendments</a> <span class="badge badge-op">op</span></dd>
+<dt>In range of</dt><dd><a href="#prop-consolidatedBy">consolidatedBy</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ConsultationResponse">ConsultationResponse</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ConsultationResponse</code></p>
+<p><strong>Remissvar</strong> / Consultation Response</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A formal response from a consultation body on a government inquiry report or ministry memorandum.</dd>
+<dt>Definition (sv)</dt><dd>Ett formellt yttrande från en remissinstans över ett utredningsbetänkande eller departementspromemoria.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-consultationBody">consultationBody</a> <span class="badge badge-op">op</span>, <a href="#prop-inResponseTo">inResponseTo</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ConsultationSummary">ConsultationSummary</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ConsultationSummary</code></p>
+<p><strong>Remissammanställning</strong> / Consultation Summary</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Government&#x27;s summary of all received consultation responses.</dd>
+<dt>Definition (sv)</dt><dd>Regeringens sammanställning av alla inkomna remissvar.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CouncilOpinion">CouncilOpinion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CouncilOpinion</code></p>
+<p><strong>Lagrådets yttrande</strong> / Council on Legislation Opinion</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Council on Legislation&#x27;s opinion on a referral.</dd>
+<dt>Definition (sv)</dt><dd>Lagrådets yttrande över en lagrådsremiss.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CouncilReferral">CouncilReferral</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CouncilReferral</code></p>
+<p><strong>Lagrådsremiss</strong> / Council on Legislation Referral</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Government&#x27;s referral to the Council on Legislation for review.</dd>
+<dt>Definition (sv)</dt><dd>Regeringens remiss till Lagrådet för granskning.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CurrentAffairsDebate">CurrentAffairsDebate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CurrentAffairsDebate</code></p>
+<p><strong>Aktuell debatt</strong> / Current Affairs Debate</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A current affairs debate requested by a party on a topical issue.</dd>
+<dt>Definition (sv)</dt><dd>En aktuell debatt begärd av ett parti om en dagsaktuell fråga.</dd>
+<dt>Subclass of</dt><dd><a href="#Debate">Debate</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Debate">Debate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Debate</code></p>
+<p><strong>Debatt</strong> / Debate</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A full debate session in the Riksdag chamber.</dd>
+<dt>Definition (sv)</dt><dd>En fullständig debatt i riksdagens kammare.</dd>
+<dt>Has subclasses</dt><dd><a href="#CurrentAffairsDebate">CurrentAffairsDebate</a> <span class="badge badge-class">c</span>, <a href="#GeneralPolicyDebate">GeneralPolicyDebate</a> <span class="badge badge-class">c</span>, <a href="#InterpellationDebate">InterpellationDebate</a> <span class="badge badge-class">c</span>, <a href="#PartyLeaderDebate">PartyLeaderDebate</a> <span class="badge badge-class">c</span>, <a href="#SubjectDebate">SubjectDebate</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-debateType">debateType</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="DocumentExpression">DocumentExpression</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/DocumentExpression</code></p>
+<p><strong>Dokumentuttryck</strong> / Document Expression</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A specific version or language variant of a document (e.g. the Swedish text of a government bill).</dd>
+<dt>Definition (sv)</dt><dd>En specifik version eller språkvariant av ett dokument (t.ex. den svenska texten av en proposition).</dd>
+<dt>Subclass of</dt><dd><code>LegalExpression</code></dd>
+<dt>In domain of</dt><dd><a href="#prop-hasFormat">hasFormat</a> <span class="badge badge-op">op</span></dd>
+<dt>In range of</dt><dd><a href="#prop-hasExpression">hasExpression</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="DocumentFormat">DocumentFormat</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/DocumentFormat</code></p>
+<p><strong>Dokumentformat</strong> / Document Format</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A specific digital representation (PDF, HTML, XML).</dd>
+<dt>Definition (sv)</dt><dd>En specifik digital representation (PDF, HTML, XML).</dd>
+<dt>Subclass of</dt><dd><code>Format</code></dd>
+<dt>In range of</dt><dd><a href="#prop-hasFormat">hasFormat</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="EUFactsheet">EUFactsheet</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/EUFactsheet</code></p>
+<p><strong>Faktapromemoria</strong> / EU Factsheet</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An EU factsheet (fpm) — the Government&#x27;s account of an EU proposal to the Riksdag.</dd>
+<dt>Definition (sv)</dt><dd>En faktapromemoria (fpm) — regeringens redogörelse av ett EU-förslag till riksdagen.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="FollowUpMotion">FollowUpMotion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/FollowUpMotion</code></p>
+<p><strong>Följdmotion</strong> / Follow-up Motion</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Motion submitted in response to a government bill, within the 15-day motion period.</dd>
+<dt>Definition (sv)</dt><dd>Motion inlämnad som reaktion på en proposition, inom 15 dagars motionstid.</dd>
+<dt>Subclass of</dt><dd><a href="#Motion">Motion</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-followsUp">followsUp</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="GeneralPolicyDebate">GeneralPolicyDebate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/GeneralPolicyDebate</code></p>
+<p><strong>Allmänpolitisk debatt</strong> / General Policy Debate</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A broad debate on the Government&#x27;s general policy, often in connection with the statement of government policy.</dd>
+<dt>Definition (sv)</dt><dd>En bred debatt om regeringens allmänna politik, ofta i samband med regeringsförklaringen.</dd>
+<dt>Subclass of</dt><dd><a href="#Debate">Debate</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="GovernmentBill">GovernmentBill</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/GovernmentBill</code></p>
+<p><strong>Proposition</strong> / Government Bill</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A government bill (prop.) — the Government&#x27;s legislative proposal to the Riksdag.</dd>
+<dt>Definition (sv)</dt><dd>En proposition (prop.) — regeringens lagförslag till riksdagen.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Has subclasses</dt><dd><a href="#BudgetBill">BudgetBill</a> <span class="badge badge-class">c</span>, <a href="#SpringFiscalBill">SpringFiscalBill</a> <span class="badge badge-class">c</span>, <a href="#SupplementaryBudget">SupplementaryBudget</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-basedOn">basedOn</a> <span class="badge badge-op">op</span></dd>
+<dt>In range of</dt><dd><a href="#prop-followsUp">followsUp</a> <span class="badge badge-op">op</span>, <a href="#prop-respondsTo">respondsTo</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="GovernmentCommunication">GovernmentCommunication</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/GovernmentCommunication</code></p>
+<p><strong>Skrivelse</strong> / Government Communication</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A government communication (skr.) — a message from the Government to the Riksdag that does not contain legislative proposals.</dd>
+<dt>Definition (sv)</dt><dd>En skrivelse (skr.) — regeringens meddelande till riksdagen som inte innehåller lagförslag.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="GovernmentInquiryReport">GovernmentInquiryReport</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/GovernmentInquiryReport</code></p>
+<p><strong>Statens offentliga utredningar (SOU)</strong> / Government Inquiry Report (SOU)</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An SOU — report from a government-appointed commission of inquiry.</dd>
+<dt>Definition (sv)</dt><dd>En SOU — rapport från en statlig utredning tillsatt av regeringen.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="GreenPaper">GreenPaper</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/GreenPaper</code></p>
+<p><strong>Grönbok</strong> / Green Paper</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A Green Paper — an EU Commission discussion document on a policy area.</dd>
+<dt>Definition (sv)</dt><dd>En grönbok — EU-kommissionens diskussionsunderlag för ett policyområde.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="IndividualMotion">IndividualMotion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/IndividualMotion</code></p>
+<p><strong>Enskild motion</strong> / Individual Motion</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Motion signed by a single member.</dd>
+<dt>Definition (sv)</dt><dd>Motion undertecknad av en enskild ledamot.</dd>
+<dt>Subclass of</dt><dd><a href="#Motion">Motion</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Interpellation">Interpellation</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Interpellation</code></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An interpellation (ip.) — a written question to a minister answered in a chamber debate.</dd>
+<dt>Definition (sv)</dt><dd>En interpellation (ip.) — skriftlig fråga till statsråd som besvaras i kammardebatt.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-answeredIn">answeredIn</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="InterpellationDebate">InterpellationDebate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/InterpellationDebate</code></p>
+<p><strong>Interpellationsdebatt</strong> / Interpellation Debate</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A debate in which a minister answers an interpellation.</dd>
+<dt>Definition (sv)</dt><dd>En debatt där ett statsråd besvarar en interpellation.</dd>
+<dt>Subclass of</dt><dd><a href="#Debate">Debate</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="MinistryReport">MinistryReport</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/MinistryReport</code></p>
+<p><strong>Departementsserien (Ds)</strong> / Ministry Report (Ds)</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A Ds report — inquiry conducted within the Government Offices.</dd>
+<dt>Definition (sv)</dt><dd>En Ds-rapport — utredning genomförd inom Regeringskansliet.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Motion">Motion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Motion</code></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A motion (mot.) — a proposal from one or more members.</dd>
+<dt>Definition (sv)</dt><dd>En motion (mot.) — ett förslag från en eller flera ledamöter.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Has subclasses</dt><dd><a href="#CommitteeMotion">CommitteeMotion</a> <span class="badge badge-class">c</span>, <a href="#FollowUpMotion">FollowUpMotion</a> <span class="badge badge-class">c</span>, <a href="#IndividualMotion">IndividualMotion</a> <span class="badge badge-class">c</span>, <a href="#MultiPartyMotion">MultiPartyMotion</a> <span class="badge badge-class">c</span>, <a href="#PartyMotion">PartyMotion</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-respondsTo">respondsTo</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="MultiPartyMotion">MultiPartyMotion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/MultiPartyMotion</code></p>
+<p><strong>Flerpartimotion</strong> / Multi-party Motion</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Motion signed by members from multiple parties.</dd>
+<dt>Definition (sv)</dt><dd>Motion undertecknad av ledamöter från flera partier.</dd>
+<dt>Subclass of</dt><dd><a href="#Motion">Motion</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Ordinance">Ordinance</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Ordinance</code></p>
+<p><strong>Förordning</strong> / Ordinance</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An ordinance issued by the Government.</dd>
+<dt>Definition (sv)</dt><dd>En förordning utfärdad av regeringen.</dd>
+<dt>Subclass of</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ParliamentaryCommunication">ParliamentaryCommunication</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ParliamentaryCommunication</code></p>
+<p><strong>Riksdagsskrivelse</strong> / Parliamentary Communication</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A parliamentary communication (rskr.) — the Riksdag&#x27;s formal notification to the Government of decisions taken.</dd>
+<dt>Definition (sv)</dt><dd>En riksdagsskrivelse (rskr.) — riksdagens formella meddelande till regeringen om fattade beslut.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-implementedBy">implementedBy</a> <span class="badge badge-op">op</span></dd>
+<dt>In range of</dt><dd><a href="#prop-resultsIn">resultsIn</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ParliamentaryDocument">ParliamentaryDocument</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ParliamentaryDocument</code></p>
+<p><strong>Riksdagsdokument</strong> / Parliamentary Document</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Abstract superclass for all documents in Riksdag proceedings. Corresponds to the ELI Work level (the abstract work).</dd>
+<dt>Definition (sv)</dt><dd>Abstrakt överklass för alla dokument i riksdagens verksamhet. Motsvarar ELI:s Work-nivå (det abstrakta verket).</dd>
+<dt>Subclass of</dt><dd><code>LegalResource</code></dd>
+<dt>Has subclasses</dt><dd><a href="#CommitteeOpinion">CommitteeOpinion</a> <span class="badge badge-class">c</span>, <a href="#CommitteeReport">CommitteeReport</a> <span class="badge badge-class">c</span>, <a href="#CommitteeStatement">CommitteeStatement</a> <span class="badge badge-class">c</span>, <a href="#ConsultationResponse">ConsultationResponse</a> <span class="badge badge-class">c</span>, <a href="#ConsultationSummary">ConsultationSummary</a> <span class="badge badge-class">c</span>, <a href="#CouncilOpinion">CouncilOpinion</a> <span class="badge badge-class">c</span>, <a href="#CouncilReferral">CouncilReferral</a> <span class="badge badge-class">c</span>, <a href="#EUFactsheet">EUFactsheet</a> <span class="badge badge-class">c</span>, <a href="#GovernmentBill">GovernmentBill</a> <span class="badge badge-class">c</span>, <a href="#GovernmentCommunication">GovernmentCommunication</a> <span class="badge badge-class">c</span>, <a href="#GovernmentInquiryReport">GovernmentInquiryReport</a> <span class="badge badge-class">c</span>, <a href="#GreenPaper">GreenPaper</a> <span class="badge badge-class">c</span>, <a href="#Interpellation">Interpellation</a> <span class="badge badge-class">c</span>, <a href="#MinistryReport">MinistryReport</a> <span class="badge badge-class">c</span>, <a href="#Motion">Motion</a> <span class="badge badge-class">c</span>, <a href="#ParliamentaryCommunication">ParliamentaryCommunication</a> <span class="badge badge-class">c</span>, <a href="#Pronouncement">Pronouncement</a> <span class="badge badge-class">c</span>, <a href="#TermsOfReference">TermsOfReference</a> <span class="badge badge-class">c</span>, <a href="#WhitePaper">WhitePaper</a> <span class="badge badge-class">c</span>, <a href="#WrittenAnswer">WrittenAnswer</a> <span class="badge badge-class">c</span>, <a href="#WrittenQuestion">WrittenQuestion</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-author">author</a> <span class="badge badge-op">op</span>, <a href="#prop-debateDate">debateDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-decisionDate">decisionDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-designation">designation</a> <span class="badge badge-dp">dp</span>, <a href="#prop-documentDate">documentDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-documentTitle">documentTitle</a> <span class="badge badge-dp">dp</span>, <a href="#prop-dokId">dokId</a> <span class="badge badge-dp">dp</span>, <a href="#prop-handledBy">handledBy</a> <span class="badge badge-op">op</span>, <a href="#prop-hasExpression">hasExpression</a> <span class="badge badge-op">op</span>, <a href="#prop-partOfSession">partOfSession</a> <span class="badge badge-op">op</span>, <a href="#prop-references">references</a> <span class="badge badge-op">op</span></dd>
+<dt>In range of</dt><dd><a href="#prop-basedOn">basedOn</a> <span class="badge badge-op">op</span>, <a href="#prop-inResponseTo">inResponseTo</a> <span class="badge badge-op">op</span>, <a href="#prop-references">references</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="PartyLeaderDebate">PartyLeaderDebate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/PartyLeaderDebate</code></p>
+<p><strong>Partiledardebatt</strong> / Party Leader Debate</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A debate between party leaders, normally held twice per parliamentary session.</dd>
+<dt>Definition (sv)</dt><dd>En debatt mellan partiledarna, hålls normalt två gånger per riksmöte.</dd>
+<dt>Subclass of</dt><dd><a href="#Debate">Debate</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="PartyMotion">PartyMotion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/PartyMotion</code></p>
+<p><strong>Partimotion</strong> / Party Motion</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Motion submitted by a party&#x27;s parliamentary group.</dd>
+<dt>Definition (sv)</dt><dd>Motion inlämnad av ett partis riksdagsgrupp.</dd>
+<dt>Subclass of</dt><dd><a href="#Motion">Motion</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Pronouncement">Pronouncement</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Pronouncement</code></p>
+<p><strong>Tillkännagivande</strong> / Pronouncement</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A pronouncement — the Riksdag&#x27;s non-binding request to the Government.</dd>
+<dt>Definition (sv)</dt><dd>Ett tillkännagivande — riksdagens icke-bindande uppmaning till regeringen.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ProposalPoint">ProposalPoint</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ProposalPoint</code></p>
+<p><strong>Förslagspunkt</strong> / Proposal Point</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A single proposal point in a committee report that may be subject to a vote.</dd>
+<dt>Definition (sv)</dt><dd>En enskild förslagspunkt i ett betänkande som kan bli föremål för omröstning.</dd>
+<dt>In range of</dt><dd><a href="#prop-hasProposalPoint">hasProposalPoint</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ReplyChain">ReplyChain</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ReplyChain</code></p>
+<p><strong>Replikskifte</strong> / Reply Chain</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A sequence of replies between two or more speakers during a debate.</dd>
+<dt>Definition (sv)</dt><dd>En sekvens av repliker mellan två eller flera talare under en debatt.</dd>
+<dt>In range of</dt><dd><a href="#prop-inReplyChain">inReplyChain</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Reservation">Reservation</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Reservation</code></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A reservation — a dissenting opinion by committee members who do not share the majority view.</dd>
+<dt>Definition (sv)</dt><dd>En reservation — avvikande mening av utskottsledamöter som inte delar majoritetens uppfattning.</dd>
+<dt>In range of</dt><dd><a href="#prop-hasReservation">hasReservation</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="SpecialOpinion">SpecialOpinion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/SpecialOpinion</code></p>
+<p><strong>Särskilt yttrande</strong> / Special Opinion</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A special opinion — an addendum by a committee member who supports the decision but wants to explain their position.</dd>
+<dt>Definition (sv)</dt><dd>Ett särskilt yttrande — tillägg av en utskottsledamot som stödjer beslutet men vill motivera sin ståndpunkt.</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Speech">Speech</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Speech</code></p>
+<p><strong>Anförande</strong> / Speech</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A speech in the chamber — a debate contribution by a member or minister.</dd>
+<dt>Definition (sv)</dt><dd>Ett anförande i kammaren — debattinlägg av en ledamot eller statsråd.</dd>
+<dt>In domain of</dt><dd><a href="#prop-inReplyChain">inReplyChain</a> <span class="badge badge-op">op</span>, <a href="#prop-partOfDebate">partOfDebate</a> <span class="badge badge-op">op</span>, <a href="#prop-replyTo">replyTo</a> <span class="badge badge-op">op</span>, <a href="#prop-speaker">speaker</a> <span class="badge badge-op">op</span>, <a href="#prop-speechId">speechId</a> <span class="badge badge-dp">dp</span>, <a href="#prop-speechNumber">speechNumber</a> <span class="badge badge-dp">dp</span>, <a href="#prop-speechText">speechText</a> <span class="badge badge-dp">dp</span></dd>
+<dt>In range of</dt><dd><a href="#prop-answeredIn">answeredIn</a> <span class="badge badge-op">op</span>, <a href="#prop-replyTo">replyTo</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="SpringFiscalBill">SpringFiscalBill</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/SpringFiscalBill</code></p>
+<p><strong>Vårändringsbudget</strong> / Spring Fiscal Policy Bill</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Spring Fiscal Policy Bill — the Government&#x27;s proposed amendments to the current state budget.</dd>
+<dt>Definition (sv)</dt><dd>Den ekonomiska vårpropositionen och vårändringsbudgeten — regeringens förslag till ändringar i gällande statsbudget.</dd>
+<dt>Subclass of</dt><dd><a href="#GovernmentBill">GovernmentBill</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Statute">Statute</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Statute</code></p>
+<p><strong>Författning (SFS)</strong> / Statute (SFS)</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A statute published in the Swedish Code of Statutes (SFS).</dd>
+<dt>Definition (sv)</dt><dd>En författning publicerad i Svensk författningssamling (SFS).</dd>
+<dt>Subclass of</dt><dd><code>LegalResource</code></dd>
+<dt>Has subclasses</dt><dd><a href="#Act">Act</a> <span class="badge badge-class">c</span>, <a href="#Ordinance">Ordinance</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-amends">amends</a> <span class="badge badge-op">op</span>, <a href="#prop-consolidatedBy">consolidatedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-entryIntoForceDate">entryIntoForceDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-repeals">repeals</a> <span class="badge badge-op">op</span>, <a href="#prop-sfsNumber">sfsNumber</a> <span class="badge badge-dp">dp</span>, <a href="#prop-transitionProvision">transitionProvision</a> <span class="badge badge-dp">dp</span></dd>
+<dt>In range of</dt><dd><a href="#prop-amends">amends</a> <span class="badge badge-op">op</span>, <a href="#prop-baseLaw">baseLaw</a> <span class="badge badge-op">op</span>, <a href="#prop-implementedBy">implementedBy</a> <span class="badge badge-op">op</span>, <a href="#prop-repeals">repeals</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="SubjectDebate">SubjectDebate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/SubjectDebate</code></p>
+<p><strong>Ärendedebatt</strong> / Subject Debate</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A debate on a specific matter, e.g. a committee report.</dd>
+<dt>Definition (sv)</dt><dd>En debatt om ett specifikt ärende, t.ex. ett betänkande.</dd>
+<dt>Subclass of</dt><dd><a href="#Debate">Debate</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="SubsidiarityStatement">SubsidiarityStatement</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/SubsidiarityStatement</code></p>
+<p><strong>Subsidiaritetsutlåtande</strong> / Subsidiarity Statement</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A statement with a reasoned opinion on an EU proposal&#x27;s compatibility with the subsidiarity principle. A special case of committee statement (CommitteeStatement).</dd>
+<dt>Definition (sv)</dt><dd>Ett utlåtande med motiverat yttrande om ett EU-förslags förenlighet med subsidiaritetsprincipen. Specialfall av utlåtande (CommitteeStatement).</dd>
+<dt>Subclass of</dt><dd><a href="#CommitteeStatement">CommitteeStatement</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="SupplementaryBudget">SupplementaryBudget</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/SupplementaryBudget</code></p>
+<p><strong>Extra ändringsbudget</strong> / Supplementary Budget</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A supplementary budget — amendment to the state budget outside the regular process, e.g. during crises.</dd>
+<dt>Definition (sv)</dt><dd>En extra ändringsbudget — ändring av statsbudgeten utöver den ordinarie processen, t.ex. vid kriser.</dd>
+<dt>Subclass of</dt><dd><a href="#GovernmentBill">GovernmentBill</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="TermsOfReference">TermsOfReference</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/TermsOfReference</code></p>
+<p><strong>Kommittédirektiv</strong> / Terms of Reference</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Government&#x27;s terms of reference for a commission of inquiry.</dd>
+<dt>Definition (sv)</dt><dd>Regeringens direktiv till en statlig utredning.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="WhitePaper">WhitePaper</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/WhitePaper</code></p>
+<p><strong>Vitbok</strong> / White Paper</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A White Paper — an EU Commission proposal for concrete measures in a policy area.</dd>
+<dt>Definition (sv)</dt><dd>En vitbok — EU-kommissionens förslag till konkreta åtgärder inom ett policyområde.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="WrittenAnswer">WrittenAnswer</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/WrittenAnswer</code></p>
+<p><strong>Skriftligt svar</strong> / Written Answer</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A minister&#x27;s written answer to a written question.</dd>
+<dt>Definition (sv)</dt><dd>Statsrådets skriftliga svar på en skriftlig fråga.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>In range of</dt><dd><a href="#prop-answeredBy">answeredBy</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="WrittenQuestion">WrittenQuestion</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/WrittenQuestion</code></p>
+<p><strong>Skriftlig fråga</strong> / Written Question</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A written question (fr.) — a shorter written question to a minister with a written answer.</dd>
+<dt>Definition (sv)</dt><dd>En skriftlig fråga (fr.) — kortare skriftlig fråga till statsråd med skriftligt svar.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h2 id="object-properties">Object Properties</h2>
+<h3 id="prop-addressedTo">addressedTo</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/addressedTo</code></p>
+<p><strong>ställd till</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The minister to whom an interpellation or written question is addressed.</dd>
+<dt>Definition (sv)</dt><dd>Det statsråd som en interpellation eller skriftlig fråga riktas till.</dd>
+<dt>Range</dt><dd><a href="#Minister">Minister</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-amends">amends</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/amends</code></p>
+<p><strong>ändrar</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Sub-property of</dt><dd><code>amends</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-answeredBy">answeredBy</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/answeredBy</code></p>
+<p><strong>besvarad av</strong></p>
+<dl class="definition">
+<dt>Range</dt><dd><a href="#WrittenAnswer">WrittenAnswer</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-answeredIn">answeredIn</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/answeredIn</code></p>
+<p><strong>besvarad i</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The speech in the chamber where the interpellation is answered by the minister.</dd>
+<dt>Definition (sv)</dt><dd>Det anförande i kammaren där interpellationen besvaras av statsrådet.</dd>
+<dt>Domain</dt><dd><a href="#Interpellation">Interpellation</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-author">author</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/author</code></p>
+<p><strong>författare</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Person who authored or signed the document.</dd>
+<dt>Definition (sv)</dt><dd>Person som författat eller undertecknat dokumentet.</dd>
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>Person</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-baseLaw">baseLaw</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/baseLaw</code></p>
+<p><strong>grundförfattning</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The original statute on which the consolidated version is based.</dd>
+<dt>Definition (sv)</dt><dd>Den ursprungliga författning som den konsoliderade versionen bygger på.</dd>
+<dt>Domain</dt><dd><a href="#ConsolidatedVersion">ConsolidatedVersion</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-basedOn">basedOn</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/basedOn</code></p>
+<p><strong>baserad på</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The government inquiry report (SOU) or ministry report (Ds) the bill is based on.</dd>
+<dt>Definition (sv)</dt><dd>Det utredningsbetänkande (SOU) eller departementspromemoria (Ds) som propositionen grundar sig på.</dd>
+<dt>Domain</dt><dd><a href="#GovernmentBill">GovernmentBill</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-consolidatedBy">consolidatedBy</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/consolidatedBy</code></p>
+<p><strong>konsoliderad genom</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A consolidated version of this statute.</dd>
+<dt>Definition (sv)</dt><dd>En konsoliderad version av denna författning.</dd>
+<dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ConsolidatedVersion">ConsolidatedVersion</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-consultationBody">consultationBody</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/consultationBody</code></p>
+<p><strong>remissinstans</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The agency or organization that submitted the consultation response.</dd>
+<dt>Definition (sv)</dt><dd>Den myndighet eller organisation som lämnat remissvaret.</dd>
+<dt>Domain</dt><dd><a href="#ConsultationResponse">ConsultationResponse</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ConsultationBody">ConsultationBody</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-debateType">debateType</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/debateType</code></p>
+<p><strong>debattyp</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Type of debate, references a SKOS concept in the debate types vocabulary.</dd>
+<dt>Definition (sv)</dt><dd>Typ av debatt, refererar till SKOS-begrepp i debattypsvokabuläret.</dd>
+<dt>Domain</dt><dd><a href="#Debate">Debate</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>Concept</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-followsUp">followsUp</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/followsUp</code></p>
+<p><strong>följer upp</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The government bill a follow-up motion responds to.</dd>
+<dt>Definition (sv)</dt><dd>Den proposition som en följdmotion avser.</dd>
+<dt>Domain</dt><dd><a href="#FollowUpMotion">FollowUpMotion</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#GovernmentBill">GovernmentBill</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-handledBy">handledBy</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/handledBy</code></p>
+<p><strong>hanteras av</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The committee responsible for processing the document.</dd>
+<dt>Definition (sv)</dt><dd>Det utskott som ansvarar för beredningen av dokumentet.</dd>
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Committee">Committee</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasExpression">hasExpression</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasExpression</code></p>
+<p><strong>har uttryck</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#DocumentExpression">DocumentExpression</a> <span class="badge badge-class">c</span></dd>
+<dt>Sub-property of</dt><dd><code>has_expression</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasFormat">hasFormat</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasFormat</code></p>
+<p><strong>har format</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#DocumentExpression">DocumentExpression</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#DocumentFormat">DocumentFormat</a> <span class="badge badge-class">c</span></dd>
+<dt>Sub-property of</dt><dd><code>has_format</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasProposalPoint">hasProposalPoint</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasProposalPoint</code></p>
+<p><strong>har förslagspunkt</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#CommitteeReport">CommitteeReport</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ProposalPoint">ProposalPoint</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasReservation">hasReservation</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasReservation</code></p>
+<p><strong>har reservation</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#CommitteeReport">CommitteeReport</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Reservation">Reservation</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-implementedBy">implementedBy</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/implementedBy</code></p>
+<p><strong>genomförd genom</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The statute (SFS) that implements the parliamentary communication&#x27;s decision.</dd>
+<dt>Definition (sv)</dt><dd>Den författning (SFS) som genomför riksdagsskrivelsens beslut.</dd>
+<dt>Domain</dt><dd><a href="#ParliamentaryCommunication">ParliamentaryCommunication</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-inReplyChain">inReplyChain</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/inReplyChain</code></p>
+<p><strong>i replikskifte</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The reply chain to which the speech belongs.</dd>
+<dt>Definition (sv)</dt><dd>Det replikskifte som anförandet tillhör.</dd>
+<dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ReplyChain">ReplyChain</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-inResponseTo">inResponseTo</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/inResponseTo</code></p>
+<p><strong>som svar på</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The government inquiry report (SOU) or ministry memorandum (Ds) the consultation response concerns.</dd>
+<dt>Definition (sv)</dt><dd>Det utredningsbetänkande (SOU) eller departementspromemoria (Ds) som remissvaret avser.</dd>
+<dt>Domain</dt><dd><a href="#ConsultationResponse">ConsultationResponse</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-includesAmendments">includesAmendments</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/includesAmendments</code></p>
+<p><strong>inkluderar ändringar</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The amendment acts incorporated into this consolidated version.</dd>
+<dt>Definition (sv)</dt><dd>De ändringsförfattningar som är inarbetade i denna konsoliderade version.</dd>
+<dt>Domain</dt><dd><a href="#ConsolidatedVersion">ConsolidatedVersion</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#AmendmentAct">AmendmentAct</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-partOfDebate">partOfDebate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/partOfDebate</code></p>
+<p><strong>del av debatt</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The matter (committee report, interpellation) or debate the speech is part of.</dd>
+<dt>Definition (sv)</dt><dd>Det ärende (betänkande, interpellation) eller den debatt som anförandet ingår i.</dd>
+<dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-partOfSession">partOfSession</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/partOfSession</code></p>
+<p><strong>ingår i riksmöte</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ParliamentarySession">ParliamentarySession</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-references">references</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/references</code></p>
+<p><strong>refererar till</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Cross-reference between documents (e.g. a motion referencing a government bill).</dd>
+<dt>Definition (sv)</dt><dd>Korsreferens mellan dokument (t.ex. motion som refererar till en proposition).</dd>
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-repeals">repeals</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/repeals</code></p>
+<p><strong>upphäver</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Sub-property of</dt><dd><code>repeals</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-replyTo">replyTo</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/replyTo</code></p>
+<p><strong>replik till</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The speech that this speech is a reply to.</dd>
+<dt>Definition (sv)</dt><dd>Det anförande som detta anförande är en replik till.</dd>
+<dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-respondsTo">respondsTo</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/respondsTo</code></p>
+<p><strong>svarar på</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A motion filed in response to a government bill.</dd>
+<dt>Definition (sv)</dt><dd>En motion inlämnad som reaktion på en proposition.</dd>
+<dt>Domain</dt><dd><a href="#Motion">Motion</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#GovernmentBill">GovernmentBill</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-resultsIn">resultsIn</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/resultsIn</code></p>
+<p><strong>resulterar i</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The parliamentary communication resulting from the committee report&#x27;s decision.</dd>
+<dt>Definition (sv)</dt><dd>Den riksdagsskrivelse som betänkandets beslut resulterar i.</dd>
+<dt>Domain</dt><dd><a href="#CommitteeReport">CommitteeReport</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ParliamentaryCommunication">ParliamentaryCommunication</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-speaker">speaker</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/speaker</code></p>
+<p><strong>talare</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>Person</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h2 id="datatype-properties">Datatype Properties</h2>
+<h3 id="prop-consolidationDate">consolidationDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/consolidationDate</code></p>
+<p><strong>konsolideringsdatum</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The date at which the consolidated version is valid.</dd>
+<dt>Definition (sv)</dt><dd>Datumet då den konsoliderade versionen är giltig.</dd>
+<dt>Domain</dt><dd><a href="#ConsolidatedVersion">ConsolidatedVersion</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>date</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-debateDate">debateDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/debateDate</code></p>
+<p><strong>debattdag</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>date</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-decisionDate">decisionDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/decisionDate</code></p>
+<p><strong>beslutsdatum</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>date</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-designation">designation</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/designation</code></p>
+<p><strong>beteckning</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The document&#x27;s formal designation (e.g. &#x27;FiU1&#x27;, &#x27;2024/25:123&#x27;).</dd>
+<dt>Definition (sv)</dt><dd>Dokumentets formella beteckning (t.ex. &#x27;FiU1&#x27;, &#x27;2024/25:123&#x27;).</dd>
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-documentDate">documentDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/documentDate</code></p>
+<p><strong>dokumentdatum</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>date</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-documentTitle">documentTitle</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/documentTitle</code></p>
+<p><strong>dokumenttitel</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>langString</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-dokId">dokId</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/dokId</code></p>
+<p><strong>dokument-ID</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Unique ID from the Riksdag API (dok_id).</dd>
+<dt>Definition (sv)</dt><dd>Unikt ID från riksdagens API (dok_id).</dd>
+<dt>Domain</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-entryIntoForceDate">entryIntoForceDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/entryIntoForceDate</code></p>
+<p><strong>ikraftträdandedatum</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>date</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-sfsNumber">sfsNumber</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/sfsNumber</code></p>
+<p><strong>SFS-nummer</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Statute number in SFS (e.g. &#x27;2024:123&#x27;).</dd>
+<dt>Definition (sv)</dt><dd>Författningsnummer i SFS (t.ex. &#x27;2024:123&#x27;).</dd>
+<dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-speechId">speechId</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/speechId</code></p>
+<p><strong>anförande-ID</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-speechNumber">speechNumber</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/speechNumber</code></p>
+<p><strong>anförandenummer</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-speechText">speechText</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/speechText</code></p>
+<p><strong>anförandetext</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Speech">Speech</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-transitionProvision">transitionProvision</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/transitionProvision</code></p>
+<p><strong>övergångsbestämmelse</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Text of transition provisions associated with a statute.</dd>
+<dt>Definition (sv)</dt><dd>Text för övergångsbestämmelser kopplade till en författning.</dd>
+<dt>Domain</dt><dd><a href="#Statute">Statute</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+
+<h2 id="namespaces">Namespace Declarations</h2>
+<table class="namespace-table">
+<tr><th>Prefix</th><th>URI</th></tr>
+<tr><td><code>rksdag:</code></td><td><code>https://ontology.riksdagen.se/def/</code></td></tr>
+<tr><td><code>rksdagv:</code></td><td><code>https://ontology.riksdagen.se/vocab/</code></td></tr>
+<tr><td><code>eli:</code></td><td><code>http://data.europa.eu/eli/ontology#</code></td></tr>
+<tr><td><code>org:</code></td><td><code>http://www.w3.org/ns/org#</code></td></tr>
+<tr><td><code>foaf:</code></td><td><code>http://xmlns.com/foaf/0.1/</code></td></tr>
+<tr><td><code>schema:</code></td><td><code>https://schema.org/</code></td></tr>
+<tr><td><code>skos:</code></td><td><code>http://www.w3.org/2004/02/skos/core#</code></td></tr>
+<tr><td><code>dcterms:</code></td><td><code>http://purl.org/dc/terms/</code></td></tr>
+<tr><td><code>owl:</code></td><td><code>http://www.w3.org/2002/07/owl#</code></td></tr>
+<tr><td><code>rdfs:</code></td><td><code>http://www.w3.org/2000/01/rdf-schema#</code></td></tr>
+<tr><td><code>xsd:</code></td><td><code>http://www.w3.org/2001/XMLSchema#</code></td></tr>
+</table>
+
+
+<footer>
+    <p>Riksdag Ontology v0.1.0 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+    · <a href="index.html">Back to index</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,161 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix foaf:   <http://xmlns.com/foaf/0.1/> .
+@prefix org:    <http://www.w3.org/ns/org#> .
+@prefix skos:   <http://www.w3.org/2004/02/skos/core#> .
+@prefix rksdag: <https://ontology.riksdagen.se/def/> .
+
+# =============================================================================
+# SHACL Shapes — Agency Module Validation
+# =============================================================================
+
+rksdag:MemberOfParliamentShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:MemberOfParliament ;
+    sh:property [
+        sh:path rksdag:intressentId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "intressent-ID"@sv , "stakeholder ID"@en ;
+        sh:message "Varje ledamot måste ha exakt ett intressent-ID."@sv ;
+    ] ;
+    sh:property [
+        sh:path foaf:givenName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:name "förnamn"@sv , "given name"@en ;
+    ] ;
+    sh:property [
+        sh:path foaf:familyName ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:name "efternamn"@sv , "family name"@en ;
+    ] ;
+    sh:property [
+        sh:path rksdag:birthYear ;
+        sh:datatype xsd:gYear ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rksdag:gender ;
+        sh:datatype xsd:string ;
+        sh:maxCount 1 ;
+        sh:in ( "man" "kvinna" ) ;
+    ] .
+
+rksdag:PoliticalPartyShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:PoliticalParty ;
+    sh:property [
+        sh:path rksdag:partyAbbreviation ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "partiförkortning"@sv ;
+    ] ;
+    sh:property [
+        sh:path rdfs:label ;
+        sh:minCount 1 ;
+        sh:name "namn"@sv , "name"@en ;
+    ] .
+
+rksdag:CommitteeShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:Committee ;
+    sh:property [
+        sh:path rksdag:organCode ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "organkod"@sv ;
+    ] .
+
+rksdag:PartyMembershipShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:PartyMembership ;
+    sh:property [
+        sh:path rksdag:inOrganization ;
+        sh:class rksdag:PoliticalParty ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rksdag:startDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rksdag:endDate ;
+        sh:datatype xsd:date ;
+        sh:maxCount 1 ;
+    ] .
+
+rksdag:CommitteeMembershipShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:CommitteeMembership ;
+    sh:property [
+        sh:path rksdag:inOrganization ;
+        sh:class rksdag:Committee ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rksdag:hasRole ;
+        sh:class skos:Concept ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rksdag:startDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+    ] .
+
+rksdag:ElectionShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:Election ;
+    sh:property [
+        sh:path rksdag:electionDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "valdatum"@sv , "election date"@en ;
+        sh:message "Varje val måste ha exakt ett valdatum."@sv ;
+    ] .
+
+rksdag:ElectionResultShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:ElectionResult ;
+    sh:property [
+        sh:path rksdag:inElection ;
+        sh:class rksdag:Election ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "i val"@sv , "in election"@en ;
+        sh:message "Varje valresultat måste tillhöra exakt ett val."@sv ;
+    ] ;
+    sh:property [
+        sh:path rksdag:forParty ;
+        sh:class rksdag:PoliticalParty ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "för parti"@sv , "for party"@en ;
+    ] ;
+    sh:property [
+        sh:path rksdag:inDistrict ;
+        sh:class rksdag:ElectoralDistrict ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "i valkrets"@sv , "in district"@en ;
+    ] ;
+    sh:property [
+        sh:path rksdag:mandateCount ;
+        sh:datatype xsd:nonNegativeInteger ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "mandatantal"@sv , "mandate count"@en ;
+    ] .

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Procedure — Riksdag Ontology</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem; }
+h2 { font-size: 1.35rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem;
+     padding-bottom: 0.25rem; border-bottom: 1px solid #e0e0e0; }
+h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.25rem; }
+p { margin-bottom: 0.75rem; }
+a { color: #1a56db; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, .iri { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em;
+             background: #f5f5f5; padding: 0.1em 0.3em; border-radius: 3px; }
+.subtitle { color: #666; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.meta { color: #888; font-size: 0.8rem; margin-bottom: 0.5rem; }
+.badge { display: inline-block; font-size: 0.7rem; font-weight: 600;
+         padding: 0.15em 0.5em; border-radius: 3px; margin-left: 0.3rem;
+         vertical-align: middle; }
+.badge-class { background: #dbeafe; color: #1e40af; }
+.badge-op { background: #dcfce7; color: #166534; }
+.badge-dp { background: #fef3c7; color: #92400e; }
+.badge-vocab { background: #f3e8ff; color: #6b21a8; }
+.toc { margin: 1rem 0 2rem; }
+.toc ol { padding-left: 1.5rem; }
+.toc li { margin: 0.2rem 0; }
+.module-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 1rem 0; }
+.module-card { border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem;
+               transition: border-color 0.15s; }
+.module-card:hover { border-color: #1a56db; }
+.module-card h4 { margin: 0 0 0.25rem; }
+.module-card p { margin: 0; font-size: 0.85rem; color: #666; }
+.definition { margin: 0.5rem 0 1rem; padding-left: 1rem;
+              border-left: 3px solid #e0e0e0; }
+.definition dt { font-weight: 600; font-size: 0.85rem; color: #555; margin-top: 0.5rem; }
+.definition dd { margin-left: 0; font-size: 0.9rem; }
+.back-to-toc { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
+.namespace-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+.namespace-table th, .namespace-table td { text-align: left; padding: 0.4rem 0.75rem;
+                                           border-bottom: 1px solid #eee; }
+.namespace-table th { font-weight: 600; color: #555; }
+.diagram { margin: 1.5rem 0; text-align: center; }
+.diagram img, .diagram svg { max-width: 100%; }
+.stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0; }
+.stat { text-align: center; }
+.stat-value { font-size: 1.5rem; font-weight: 700; color: #1a56db; }
+.stat-label { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
+         font-size: 0.8rem; color: #888; }
+</style>
+</head>
+<body>
+<p class="meta"><a href="index.html">← Riksdag Ontology</a></p>
+<h1>Procedure Ontology</h1>
+<p class="subtitle">Process — The legislative process modeled as a directed graph of steps and routes.</p>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/procedure</code></p>
+<p class="meta">
+    Source: <a href="https://github.com/vinvuk/riksdag-ontology/blob/main/ontology/procedure.ttl">procedure.ttl</a>
+    · License: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+</p>
+
+
+<div class="stats">
+    <div class="stat"><div class="stat-value">28</div><div class="stat-label">Classes</div></div>
+    <div class="stat"><div class="stat-value">10</div><div class="stat-label">Object Properties</div></div>
+    <div class="stat"><div class="stat-value">3</div><div class="stat-label">Datatype Properties</div></div>
+</div>
+
+<nav class="toc"><h2 id="toc">Table of Contents</h2><ol>
+<li><a href="#classes">Classes</a><ol>
+<li><a href="#BudgetProcedure">BudgetProcedure</a></li>
+<li><a href="#BusinessItem">BusinessItem</a></li>
+<li><a href="#ChamberDebate">ChamberDebate</a></li>
+<li><a href="#ChamberDecision">ChamberDecision</a></li>
+<li><a href="#CommitteeDeliberation">CommitteeDeliberation</a></li>
+<li><a href="#CommitteeReferral">CommitteeReferral</a></li>
+<li><a href="#ConsultationBody">ConsultationBody</a></li>
+<li><a href="#ConsultationProcess">ConsultationProcess</a></li>
+<li><a href="#ConsultationStage">ConsultationStage</a></li>
+<li><a href="#CouncilReviewStage">CouncilReviewStage</a></li>
+<li><a href="#Deferral">Deferral</a></li>
+<li><a href="#EUSubsidiarityProcedure">EUSubsidiarityProcedure</a></li>
+<li><a href="#ExpenditureAreaDecision">ExpenditureAreaDecision</a></li>
+<li><a href="#FrameworkDecision">FrameworkDecision</a></li>
+<li><a href="#InquiryStage">InquiryStage</a></li>
+<li><a href="#MandatePeriod">MandatePeriod</a></li>
+<li><a href="#MotionPeriod">MotionPeriod</a></li>
+<li><a href="#ParliamentarySession">ParliamentarySession</a></li>
+<li><a href="#ProceduralStage">ProceduralStage</a></li>
+<li><a href="#Procedure">Procedure</a></li>
+<li><a href="#Promulgation">Promulgation</a></li>
+<li><a href="#Recommittal">Recommittal</a></li>
+<li><a href="#Route">Route</a></li>
+<li><a href="#Step">Step</a></li>
+<li><a href="#SubsidiarityCheck">SubsidiarityCheck</a></li>
+<li><a href="#Tabling">Tabling</a></li>
+<li><a href="#Withdrawal">Withdrawal</a></li>
+<li><a href="#WorkPackage">WorkPackage</a></li>
+</ol></li>
+<li><a href="#object-properties">Object Properties</a><ol>
+<li><a href="#prop-actualisesStep">actualisesStep</a></li>
+<li><a href="#prop-concernsDocument">concernsDocument</a></li>
+<li><a href="#prop-fromStep">fromStep</a></li>
+<li><a href="#prop-hasBusinessItem">hasBusinessItem</a></li>
+<li><a href="#prop-hasProcedure">hasProcedure</a></li>
+<li><a href="#prop-hasStep">hasStep</a></li>
+<li><a href="#prop-hasSubject">hasSubject</a></li>
+<li><a href="#prop-partOfMandatePeriod">partOfMandatePeriod</a></li>
+<li><a href="#prop-routeLogic">routeLogic</a></li>
+<li><a href="#prop-toStep">toStep</a></li>
+</ol></li>
+<li><a href="#datatype-properties">Datatype Properties</a><ol>
+<li><a href="#prop-activityCode">activityCode</a></li>
+<li><a href="#prop-eventDate">eventDate</a></li>
+<li><a href="#prop-sessionId">sessionId</a></li>
+</ol></li>
+<li><a href="#namespaces">Namespaces</a></li>
+</ol></nav>
+<h2 id="classes">Classes</h2>
+<h3 id="BudgetProcedure">BudgetProcedure</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/BudgetProcedure</code></p>
+<p><strong>Budgetprocess</strong> / Budget Procedure</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The framework decision model — the Riksdag&#x27;s two-step budget process with expenditure ceilings followed by appropriation decisions per expenditure area.</dd>
+<dt>Definition (sv)</dt><dd>Rambeslutsmodellen — riksdagens tvåstegsprocess för budgetbeslut med utgiftsramar följt av anslagsbeslut per utgiftsområde.</dd>
+<dt>Subclass of</dt><dd><a href="#Procedure">Procedure</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="BusinessItem">BusinessItem</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/BusinessItem</code></p>
+<p><strong>Händelse</strong> / Business Item</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An actual event in the processing of a matter — e.g. &#x27;bill 2024/25:42 was referred to FiU on 15 Jan&#x27;.</dd>
+<dt>Definition (sv)</dt><dd>En faktisk händelse i behandlingen av ett ärende — t.ex. &#x27;proposition 2024/25:42 hänvisades till FiU den 15 jan&#x27;.</dd>
+<dt>In domain of</dt><dd><a href="#prop-activityCode">activityCode</a> <span class="badge badge-dp">dp</span>, <a href="#prop-actualisesStep">actualisesStep</a> <span class="badge badge-op">op</span>, <a href="#prop-concernsDocument">concernsDocument</a> <span class="badge badge-op">op</span>, <a href="#prop-eventDate">eventDate</a> <span class="badge badge-dp">dp</span></dd>
+<dt>In range of</dt><dd><a href="#prop-hasBusinessItem">hasBusinessItem</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ChamberDebate">ChamberDebate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ChamberDebate</code></p>
+<p><strong>Ärendedebatt</strong> / Chamber Debate</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Debate in the chamber on a committee report.</dd>
+<dt>Definition (sv)</dt><dd>Debatt i kammaren om ett betänkande.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ChamberDecision">ChamberDecision</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ChamberDecision</code></p>
+<p><strong>Kammarens beslut</strong> / Chamber Decision</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Riksdag&#x27;s decision in the chamber — by acclamation or division.</dd>
+<dt>Definition (sv)</dt><dd>Riksdagens beslut i kammaren — genom acklamation eller omröstning.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CommitteeDeliberation">CommitteeDeliberation</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CommitteeDeliberation</code></p>
+<p><strong>Utskottsbehandling</strong> / Committee Deliberation</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The committee&#x27;s deliberation on the matter.</dd>
+<dt>Definition (sv)</dt><dd>Utskottets beredning av ärendet.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CommitteeReferral">CommitteeReferral</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CommitteeReferral</code></p>
+<p><strong>Hänvisning</strong> / Committee Referral</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Referral of a document to a committee for processing.</dd>
+<dt>Definition (sv)</dt><dd>Hänvisning av ett dokument till ett utskott för beredning.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ConsultationBody">ConsultationBody</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ConsultationBody</code></p>
+<p><strong>Remissinstans</strong> / Consultation Body</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An agency, municipality, court, or organization invited to submit a consultation response.</dd>
+<dt>Definition (sv)</dt><dd>En myndighet, kommun, domstol eller organisation som inbjuds att lämna remissvar.</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ConsultationProcess">ConsultationProcess</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ConsultationProcess</code></p>
+<p><strong>Remissförfarande</strong> / Consultation Process</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The formal consultation process where an inquiry report or ministry memorandum is sent to consultation bodies for comment.</dd>
+<dt>Definition (sv)</dt><dd>Det formella remissförfarandet där ett utredningsbetänkande eller departementspromemoria skickas till remissinstanser för synpunkter.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ConsultationStage">ConsultationStage</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ConsultationStage</code></p>
+<p><strong>Remissfas</strong> / Consultation Stage</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The consultation procedure — inquiry report sent to consultation bodies.</dd>
+<dt>Definition (sv)</dt><dd>Remissförfarandet — utredningsbetänkande skickas till remissinstanser.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CouncilReviewStage">CouncilReviewStage</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CouncilReviewStage</code></p>
+<p><strong>Lagrådsgranskningsfas</strong> / Council Review Stage</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Council on Legislation reviews the bill.</dd>
+<dt>Definition (sv)</dt><dd>Lagrådet granskar lagförslaget.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Deferral">Deferral</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Deferral</code></p>
+<p><strong>Uppskov</strong> / Deferral</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Deferral of consideration to a later occasion.</dd>
+<dt>Definition (sv)</dt><dd>Uppskov med behandling till ett senare tillfälle.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="EUSubsidiarityProcedure">EUSubsidiarityProcedure</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/EUSubsidiarityProcedure</code></p>
+<p><strong>EU-subsidiaritetsprövning</strong> / EU Subsidiarity Procedure</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Riksdag&#x27;s assessment of whether an EU legislative proposal violates the subsidiarity principle.</dd>
+<dt>Definition (sv)</dt><dd>Riksdagens prövning av om ett EU-lagförslag strider mot subsidiaritetsprincipen.</dd>
+<dt>Subclass of</dt><dd><a href="#Procedure">Procedure</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ExpenditureAreaDecision">ExpenditureAreaDecision</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ExpenditureAreaDecision</code></p>
+<p><strong>Beslut per utgiftsområde</strong> / Expenditure Area Decision</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Riksdag&#x27;s second budget step — appropriation decisions within each expenditure area, based on the framework decision.</dd>
+<dt>Definition (sv)</dt><dd>Riksdagens andra budgetsteg — beslut om anslag inom varje utgiftsområde, baserat på rambeslutets ramar.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="FrameworkDecision">FrameworkDecision</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/FrameworkDecision</code></p>
+<p><strong>Rambeslut</strong> / Framework Decision</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Riksdag&#x27;s first budget vote that sets the expenditure ceiling and frameworks for the 27 expenditure areas.</dd>
+<dt>Definition (sv)</dt><dd>Riksdagens första budgetomröstning som fastställer utgiftstak och ramar för de 27 utgiftsområdena.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="InquiryStage">InquiryStage</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/InquiryStage</code></p>
+<p><strong>Utredningsfas</strong> / Inquiry Stage</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Stage where a government inquiry is appointed and conducted.</dd>
+<dt>Definition (sv)</dt><dd>Fas där en statlig utredning tillsätts och genomförs.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="MandatePeriod">MandatePeriod</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/MandatePeriod</code></p>
+<p><strong>Mandatperiod</strong> / Mandate Period</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A four-year mandate period (electoral term).</dd>
+<dt>Definition (sv)</dt><dd>En fyraårig mandatperiod (valperiod).</dd>
+<dt>In range of</dt><dd><a href="#prop-partOfMandatePeriod">partOfMandatePeriod</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="MotionPeriod">MotionPeriod</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/MotionPeriod</code></p>
+<p><strong>Motionstid</strong> / Motion Period</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The 15-day period during which follow-up motions may be submitted to a government bill.</dd>
+<dt>Definition (sv)</dt><dd>Den 15-dagarsperiod under vilken följdmotioner kan lämnas till en proposition.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ParliamentarySession">ParliamentarySession</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ParliamentarySession</code></p>
+<p><strong>Riksmöte</strong> / Parliamentary Session</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A parliamentary session — the annual session (e.g. 2024/25).</dd>
+<dt>Definition (sv)</dt><dd>Ett riksmöte — den årliga sessionen (t.ex. 2024/25).</dd>
+<dt>In domain of</dt><dd><a href="#prop-partOfMandatePeriod">partOfMandatePeriod</a> <span class="badge badge-op">op</span>, <a href="#prop-sessionId">sessionId</a> <span class="badge badge-dp">dp</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ProceduralStage">ProceduralStage</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ProceduralStage</code></p>
+<p><strong>Procedursteg</strong> / Procedural Stage</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Abstract superclass for defined stages in the Swedish legislative process.</dd>
+<dt>Definition (sv)</dt><dd>Abstrakt överklass för definierade steg i den svenska lagstiftningsprocessen.</dd>
+<dt>Subclass of</dt><dd><a href="#Step">Step</a> <span class="badge badge-class">c</span></dd>
+<dt>Has subclasses</dt><dd><a href="#ChamberDebate">ChamberDebate</a> <span class="badge badge-class">c</span>, <a href="#ChamberDecision">ChamberDecision</a> <span class="badge badge-class">c</span>, <a href="#CommitteeDeliberation">CommitteeDeliberation</a> <span class="badge badge-class">c</span>, <a href="#CommitteeReferral">CommitteeReferral</a> <span class="badge badge-class">c</span>, <a href="#ConsultationProcess">ConsultationProcess</a> <span class="badge badge-class">c</span>, <a href="#ConsultationStage">ConsultationStage</a> <span class="badge badge-class">c</span>, <a href="#CouncilReviewStage">CouncilReviewStage</a> <span class="badge badge-class">c</span>, <a href="#Deferral">Deferral</a> <span class="badge badge-class">c</span>, <a href="#ExpenditureAreaDecision">ExpenditureAreaDecision</a> <span class="badge badge-class">c</span>, <a href="#FrameworkDecision">FrameworkDecision</a> <span class="badge badge-class">c</span>, <a href="#InquiryStage">InquiryStage</a> <span class="badge badge-class">c</span>, <a href="#MotionPeriod">MotionPeriod</a> <span class="badge badge-class">c</span>, <a href="#Promulgation">Promulgation</a> <span class="badge badge-class">c</span>, <a href="#Recommittal">Recommittal</a> <span class="badge badge-class">c</span>, <a href="#SubsidiarityCheck">SubsidiarityCheck</a> <span class="badge badge-class">c</span>, <a href="#Tabling">Tabling</a> <span class="badge badge-class">c</span>, <a href="#Withdrawal">Withdrawal</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Procedure">Procedure</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Procedure</code></p>
+<p><strong>Procedur</strong> / Procedure</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A formal Riksdag procedure, e.g. the legislative process, the interpellation process, or the budget process.</dd>
+<dt>Definition (sv)</dt><dd>En formell riksdagsprocedur, t.ex. lagstiftningsprocessen, interpellationsprocessen, eller budgetprocessen.</dd>
+<dt>Has subclasses</dt><dd><a href="#BudgetProcedure">BudgetProcedure</a> <span class="badge badge-class">c</span>, <a href="#EUSubsidiarityProcedure">EUSubsidiarityProcedure</a> <span class="badge badge-class">c</span></dd>
+<dt>In domain of</dt><dd><a href="#prop-hasStep">hasStep</a> <span class="badge badge-op">op</span></dd>
+<dt>In range of</dt><dd><a href="#prop-hasProcedure">hasProcedure</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Promulgation">Promulgation</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Promulgation</code></p>
+<p><strong>Utfärdande</strong> / Promulgation</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Promulgation and publication of a statute in SFS.</dd>
+<dt>Definition (sv)</dt><dd>Utfärdande och publicering av en författning i SFS.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Recommittal">Recommittal</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Recommittal</code></p>
+<p><strong>Återförvisning</strong> / Recommittal</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Recommittal to the committee (requires 1/3 of members).</dd>
+<dt>Definition (sv)</dt><dd>Återförvisning till utskottet (kräver 1/3 av ledamöterna).</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Route">Route</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Route</code></p>
+<p><strong>Rutt</strong> / Route</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A connection between two steps in a procedure. Routes may have logical constraints (AND/OR/NOT) governing which paths a matter can take.</dd>
+<dt>Definition (sv)</dt><dd>En koppling mellan två steg i en procedur. Rutter kan ha logiska villkor (AND/OR/NOT) som styr vilka vägar ett ärende kan ta.</dd>
+<dt>In domain of</dt><dd><a href="#prop-fromStep">fromStep</a> <span class="badge badge-op">op</span>, <a href="#prop-routeLogic">routeLogic</a> <span class="badge badge-op">op</span>, <a href="#prop-toStep">toStep</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Step">Step</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Step</code></p>
+<p><strong>Steg</strong> / Step</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A possible step in a procedure. Steps can be of various types (action, decision, document) and are connected via routes.</dd>
+<dt>Definition (sv)</dt><dd>Ett möjligt steg i en procedur. Steg kan vara av olika typer (handling, beslut, dokument) och kopplas samman via rutter.</dd>
+<dt>Has subclasses</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+<dt>In range of</dt><dd><a href="#prop-actualisesStep">actualisesStep</a> <span class="badge badge-op">op</span>, <a href="#prop-fromStep">fromStep</a> <span class="badge badge-op">op</span>, <a href="#prop-hasStep">hasStep</a> <span class="badge badge-op">op</span>, <a href="#prop-toStep">toStep</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="SubsidiarityCheck">SubsidiarityCheck</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/SubsidiarityCheck</code></p>
+<p><strong>Subsidiaritetsprövning</strong> / Subsidiarity Check</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The procedural step where a committee examines an EU proposal&#x27;s compatibility with the subsidiarity principle within the eight-week deadline.</dd>
+<dt>Definition (sv)</dt><dd>Det procedursteg där ett utskott granskar ett EU-förslags förenlighet med subsidiaritetsprincipen inom åttaveckorsfristen.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Tabling">Tabling</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Tabling</code></p>
+<p><strong>Bordläggning</strong> / Tabling</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Formal tabling of a document in the chamber.</dd>
+<dt>Definition (sv)</dt><dd>Formell bordläggning av ett dokument i kammaren.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Withdrawal">Withdrawal</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Withdrawal</code></p>
+<p><strong>Återkallelse</strong> / Withdrawal</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Withdrawal of a government bill or motion.</dd>
+<dt>Definition (sv)</dt><dd>Återkallelse av en proposition eller motion.</dd>
+<dt>Subclass of</dt><dd><a href="#ProceduralStage">ProceduralStage</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="WorkPackage">WorkPackage</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/WorkPackage</code></p>
+<p><strong>Ärendepaket</strong> / Work Package</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A matter&#x27;s journey through a procedure — collects all events (BusinessItems) relating to a specific matter (e.g. a government bill&#x27;s passage through the Riksdag).</dd>
+<dt>Definition (sv)</dt><dd>Ett ärendes resa genom en procedur — samlar alla händelser (BusinessItems) som berör ett specifikt ärende (t.ex. en propositions väg genom riksdagen).</dd>
+<dt>In domain of</dt><dd><a href="#prop-hasBusinessItem">hasBusinessItem</a> <span class="badge badge-op">op</span>, <a href="#prop-hasProcedure">hasProcedure</a> <span class="badge badge-op">op</span>, <a href="#prop-hasSubject">hasSubject</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h2 id="object-properties">Object Properties</h2>
+<h3 id="prop-actualisesStep">actualisesStep</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/actualisesStep</code></p>
+<p><strong>aktualiserar steg</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Links an actual event to the procedural step it realises.</dd>
+<dt>Definition (sv)</dt><dd>Kopplar en faktisk händelse till det procedursteg den realiserar.</dd>
+<dt>Domain</dt><dd><a href="#BusinessItem">BusinessItem</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Step">Step</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-concernsDocument">concernsDocument</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/concernsDocument</code></p>
+<p><strong>avser dokument</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#BusinessItem">BusinessItem</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-fromStep">fromStep</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/fromStep</code></p>
+<p><strong>från steg</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Route">Route</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Step">Step</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasBusinessItem">hasBusinessItem</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasBusinessItem</code></p>
+<p><strong>har händelse</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#WorkPackage">WorkPackage</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#BusinessItem">BusinessItem</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasProcedure">hasProcedure</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasProcedure</code></p>
+<p><strong>har procedur</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#WorkPackage">WorkPackage</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Procedure">Procedure</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasStep">hasStep</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasStep</code></p>
+<p><strong>har steg</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Procedure">Procedure</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Step">Step</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasSubject">hasSubject</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasSubject</code></p>
+<p><strong>har ämne</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Links a work package to its principal document.</dd>
+<dt>Definition (sv)</dt><dd>Kopplar ett ärendepaket till dess huvuddokument.</dd>
+<dt>Domain</dt><dd><a href="#WorkPackage">WorkPackage</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ParliamentaryDocument">ParliamentaryDocument</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-partOfMandatePeriod">partOfMandatePeriod</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/partOfMandatePeriod</code></p>
+<p><strong>ingår i mandatperiod</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#ParliamentarySession">ParliamentarySession</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#MandatePeriod">MandatePeriod</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-routeLogic">routeLogic</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/routeLogic</code></p>
+<p><strong>ruttlogik</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Logical operator for the route: AND, OR, NOT.</dd>
+<dt>Definition (sv)</dt><dd>Logisk operator för rutten: AND, OR, NOT.</dd>
+<dt>Domain</dt><dd><a href="#Route">Route</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>Concept</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-toStep">toStep</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/toStep</code></p>
+<p><strong>till steg</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Route">Route</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Step">Step</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h2 id="datatype-properties">Datatype Properties</h2>
+<h3 id="prop-activityCode">activityCode</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/activityCode</code></p>
+<p><strong>aktivitetskod</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Activity code from the Riksdag API (dokaktivitet.kod), e.g. UBE, JUS, TRY, B, BEH, BES.</dd>
+<dt>Definition (sv)</dt><dd>Aktivitetskod från riksdagens API (dokaktivitet.kod), t.ex. UBE, JUS, TRY, B, BEH, BES.</dd>
+<dt>Domain</dt><dd><a href="#BusinessItem">BusinessItem</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-eventDate">eventDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/eventDate</code></p>
+<p><strong>händelsedatum</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#BusinessItem">BusinessItem</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>date</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-sessionId">sessionId</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/sessionId</code></p>
+<p><strong>riksmötes-ID</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The session designation (e.g. &#x27;2024/25&#x27;).</dd>
+<dt>Definition (sv)</dt><dd>Riksmötets beteckning (t.ex. &#x27;2024/25&#x27;).</dd>
+<dt>Domain</dt><dd><a href="#ParliamentarySession">ParliamentarySession</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+
+<h2 id="namespaces">Namespace Declarations</h2>
+<table class="namespace-table">
+<tr><th>Prefix</th><th>URI</th></tr>
+<tr><td><code>rksdag:</code></td><td><code>https://ontology.riksdagen.se/def/</code></td></tr>
+<tr><td><code>rksdagv:</code></td><td><code>https://ontology.riksdagen.se/vocab/</code></td></tr>
+<tr><td><code>eli:</code></td><td><code>http://data.europa.eu/eli/ontology#</code></td></tr>
+<tr><td><code>org:</code></td><td><code>http://www.w3.org/ns/org#</code></td></tr>
+<tr><td><code>foaf:</code></td><td><code>http://xmlns.com/foaf/0.1/</code></td></tr>
+<tr><td><code>schema:</code></td><td><code>https://schema.org/</code></td></tr>
+<tr><td><code>skos:</code></td><td><code>http://www.w3.org/2004/02/skos/core#</code></td></tr>
+<tr><td><code>dcterms:</code></td><td><code>http://purl.org/dc/terms/</code></td></tr>
+<tr><td><code>owl:</code></td><td><code>http://www.w3.org/2002/07/owl#</code></td></tr>
+<tr><td><code>rdfs:</code></td><td><code>http://www.w3.org/2000/01/rdf-schema#</code></td></tr>
+<tr><td><code>xsd:</code></td><td><code>http://www.w3.org/2001/XMLSchema#</code></td></tr>
+</table>
+
+
+<footer>
+    <p>Riksdag Ontology v0.1.0 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+    · <a href="index.html">Back to index</a></p>
+</footer>
+</body>
+</html>

@@ -1,0 +1,14 @@
+# Overview: Current party sizes in the Riksdag
+PREFIX rksdag: <https://ontology.riksdagen.se/def/>
+
+SELECT ?party (COUNT(DISTINCT ?person) AS ?members)
+WHERE {
+    ?person a rksdag:MemberOfParliament ;
+            rksdag:hasMembership ?membership .
+    ?membership a rksdag:PartyMembership ;
+                rksdag:inOrganization ?partyOrg .
+    ?partyOrg rksdag:partyAbbreviation ?party .
+    FILTER NOT EXISTS { ?membership rksdag:endDate ?end }
+}
+GROUP BY ?party
+ORDER BY DESC(?members)

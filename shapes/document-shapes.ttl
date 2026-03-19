@@ -1,0 +1,154 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix rksdag: <https://ontology.riksdagen.se/def/> .
+
+# =============================================================================
+# SHACL Shapes — Documents Module Validation
+# =============================================================================
+
+rksdag:ParliamentaryDocumentShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:ParliamentaryDocument ;
+    sh:property [
+        sh:path rksdag:dokId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "dokument-ID"@sv ;
+        sh:message "Varje dokument måste ha exakt ett dok-ID."@sv ;
+    ] ;
+    sh:property [
+        sh:path rksdag:designation ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "beteckning"@sv ;
+    ] ;
+    sh:property [
+        sh:path rksdag:documentDate ;
+        sh:datatype xsd:date ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rksdag:partOfSession ;
+        sh:class rksdag:ParliamentarySession ;
+        sh:maxCount 1 ;
+    ] .
+
+rksdag:CommitteeReportShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:CommitteeReport ;
+    sh:property [
+        sh:path rksdag:handledBy ;
+        sh:class rksdag:Committee ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "utskott"@sv ;
+        sh:message "Varje betänkande måste tillhöra exakt ett utskott."@sv ;
+    ] .
+
+rksdag:MotionShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:Motion ;
+    sh:property [
+        sh:path rksdag:author ;
+        sh:class rksdag:MemberOfParliament ;
+        sh:minCount 1 ;
+        sh:name "författare"@sv ;
+        sh:message "Varje motion måste ha minst en författare."@sv ;
+    ] .
+
+rksdag:InterpellationShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:Interpellation ;
+    sh:property [
+        sh:path rksdag:author ;
+        sh:class rksdag:MemberOfParliament ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rksdag:addressedTo ;
+        sh:class rksdag:Minister ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+rksdag:StatuteShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:Statute ;
+    sh:property [
+        sh:path rksdag:sfsNumber ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^\\d{4}:\\d+$" ;
+        sh:name "SFS-nummer"@sv ;
+        sh:message "SFS-nummer måste ha formatet ÅÅÅÅ:NNN."@sv ;
+    ] .
+
+rksdag:ConsultationResponseShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:ConsultationResponse ;
+    sh:property [
+        sh:path rksdag:inResponseTo ;
+        sh:minCount 1 ;
+        sh:name "som svar på"@sv , "in response to"@en ;
+        sh:message "Varje remissvar måste ange minst ett ärende det svarar på."@sv ;
+    ] ;
+    sh:property [
+        sh:path rksdag:consultationBody ;
+        sh:minCount 1 ;
+        sh:name "remissinstans"@sv , "consultation body"@en ;
+        sh:message "Varje remissvar måste ha minst en remissinstans."@sv ;
+    ] .
+
+rksdag:ConsolidatedVersionShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:ConsolidatedVersion ;
+    sh:property [
+        sh:path rksdag:baseLaw ;
+        sh:class rksdag:Statute ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "grundlag"@sv , "base law"@en ;
+        sh:message "Varje konsoliderad version måste ha exakt en grundförfattning."@sv ;
+    ] ;
+    sh:property [
+        sh:path rksdag:consolidationDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "konsolideringsdatum"@sv , "consolidation date"@en ;
+    ] .
+
+rksdag:DebateShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:Debate ;
+    sh:property [
+        sh:path rksdag:documentDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:name "dokumentdatum"@sv , "document date"@en ;
+        sh:message "Varje debatt måste ha minst ett dokumentdatum."@sv ;
+    ] .
+
+rksdag:SpeechShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:Speech ;
+    sh:property [
+        sh:path rksdag:speaker ;
+        sh:minCount 1 ;
+        sh:name "talare"@sv , "speaker"@en ;
+        sh:message "Varje anförande måste ha minst en talare."@sv ;
+    ] ;
+    sh:property [
+        sh:path rksdag:speechId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "anförande-ID"@sv , "speech ID"@en ;
+        sh:message "Varje anförande måste ha exakt ett anförande-ID."@sv ;
+    ] .

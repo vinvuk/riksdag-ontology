@@ -1,0 +1,26 @@
+# Overview: Count instances of each major class
+PREFIX rksdag: <https://ontology.riksdagen.se/def/>
+
+SELECT ?class (COUNT(?instance) AS ?count)
+WHERE {
+    VALUES ?class {
+        rksdag:MemberOfParliament
+        rksdag:PoliticalParty
+        rksdag:Committee
+        rksdag:GovernmentBill
+        rksdag:Motion
+        rksdag:CommitteeReport
+        rksdag:Interpellation
+        rksdag:WrittenQuestion
+        rksdag:VotingEvent
+        rksdag:Ballot
+        rksdag:Speech
+        rksdag:ParliamentarySession
+        rksdag:ElectoralDistrict
+        rksdag:PartyMembership
+        rksdag:CommitteeMembership
+    }
+    ?instance a ?class .
+}
+GROUP BY ?class
+ORDER BY DESC(?count)

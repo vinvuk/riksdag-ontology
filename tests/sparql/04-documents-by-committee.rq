@@ -1,0 +1,18 @@
+# Competency Q7: Documents handled by a specific committee in a session
+PREFIX rksdag: <https://ontology.riksdagen.se/def/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+
+SELECT ?designation ?title ?type ?date
+WHERE {
+    ?doc a rksdag:ParliamentaryDocument ;
+         rksdag:handledBy ?committee ;
+         rksdag:designation ?designation ;
+         rksdag:documentTitle ?title .
+    ?committee rksdag:organCode "FiU" .
+    ?doc rksdag:partOfSession ?session .
+    ?session rksdag:sessionId "2024/25" .
+    OPTIONAL { ?doc rksdag:documentDate ?date }
+    BIND(REPLACE(STR(?doc), ".*def/", "") AS ?type)
+}
+ORDER BY ?date
+LIMIT 20

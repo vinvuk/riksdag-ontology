@@ -1,0 +1,967 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix eli:     <http://data.europa.eu/eli/ontology#> .
+@prefix schema:  <https://schema.org/> .
+@prefix rksdag:  <https://ontology.riksdagen.se/def/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# Documents Module — Parliamentary and Legislative Document Types
+# =============================================================================
+
+<https://ontology.riksdagen.se/def/documents>
+    a owl:Ontology ;
+    dcterms:title "Riksdagsontologin — Dokumentmodul"@sv ,
+                  "Riksdag Ontology — Documents Module"@en ;
+    dcterms:description
+        """Modellerar riksdagens dokumenttyper med ELI FRBR-lager och svenska lagstiftningsdokumenttyper."""@sv ,
+        """Models Riksdag document types with ELI FRBR layering and Swedish legislative document types."""@en ;
+    owl:versionInfo "0.1.0" .
+
+# -----------------------------------------------------------------------------
+# External class declarations (for OWL completeness)
+# -----------------------------------------------------------------------------
+
+eli:LegalResource a owl:Class ;
+    rdfs:label "Juridisk resurs"@sv , "Legal Resource"@en .
+eli:LegalExpression a owl:Class ;
+    rdfs:label "Juridiskt uttryck"@sv , "Legal Expression"@en .
+eli:Format a owl:Class ;
+    rdfs:label "Format"@sv , "Format"@en .
+
+# -----------------------------------------------------------------------------
+# External property declarations (for OWL completeness)
+# -----------------------------------------------------------------------------
+
+eli:amends a owl:ObjectProperty .
+eli:repeals a owl:ObjectProperty .
+eli:has_expression a owl:ObjectProperty .
+eli:has_format a owl:ObjectProperty .
+eli:date_document a owl:DatatypeProperty .
+eli:date_entry_into_force a owl:DatatypeProperty .
+dcterms:date a owl:DatatypeProperty .
+dcterms:identifier a owl:DatatypeProperty .
+dcterms:title a owl:DatatypeProperty .
+dcterms:creator a owl:ObjectProperty .
+
+# -----------------------------------------------------------------------------
+# Classes — Abstract Document Hierarchy (FRBR-aligned via ELI)
+# -----------------------------------------------------------------------------
+
+rksdag:ParliamentaryDocument
+    a owl:Class ;
+    rdfs:subClassOf eli:LegalResource ;
+    rdfs:label "Riksdagsdokument"@sv , "Parliamentary Document"@en ;
+    rdfs:comment
+        """Abstrakt överklass för alla dokument i riksdagens verksamhet. Motsvarar ELI:s Work-nivå (det abstrakta verket)."""@sv ,
+        """Abstract superclass for all documents in Riksdag proceedings. Corresponds to the ELI Work level (the abstract work)."""@en .
+
+rksdag:DocumentExpression
+    a owl:Class ;
+    rdfs:subClassOf eli:LegalExpression ;
+    rdfs:label "Dokumentuttryck"@sv , "Document Expression"@en ;
+    rdfs:comment
+        """En specifik version eller språkvariant av ett dokument (t.ex. den svenska texten av en proposition)."""@sv ,
+        """A specific version or language variant of a document (e.g. the Swedish text of a government bill)."""@en .
+
+rksdag:DocumentFormat
+    a owl:Class ;
+    rdfs:subClassOf eli:Format ;
+    rdfs:label "Dokumentformat"@sv , "Document Format"@en ;
+    rdfs:comment
+        "En specifik digital representation (PDF, HTML, XML)."@sv ,
+        "A specific digital representation (PDF, HTML, XML)."@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Government Bills and Proposals
+# -----------------------------------------------------------------------------
+
+rksdag:GovernmentBill
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Proposition"@sv , "Government Bill"@en ;
+    rdfs:comment
+        "En proposition (prop.) — regeringens lagförslag till riksdagen."@sv ,
+        """A government bill (prop.) — the Government's legislative proposal to the Riksdag."""@en ;
+    skos:notation "prop" .
+
+rksdag:GovernmentCommunication
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Skrivelse"@sv , "Government Communication"@en ;
+    rdfs:comment
+        """En skrivelse (skr.) — regeringens meddelande till riksdagen som inte innehåller lagförslag."""@sv ,
+        """A government communication (skr.) — a message from the Government to the Riksdag that does not contain legislative proposals."""@en ;
+    skos:notation "skr" .
+
+# -----------------------------------------------------------------------------
+# Classes — Motions
+# -----------------------------------------------------------------------------
+
+rksdag:Motion
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Motion"@sv , "Motion"@en ;
+    rdfs:comment
+        "En motion (mot.) — ett förslag från en eller flera ledamöter."@sv ,
+        "A motion (mot.) — a proposal from one or more members."@en ;
+    skos:notation "mot" .
+
+rksdag:IndividualMotion
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Motion ;
+    rdfs:label "Enskild motion"@sv , "Individual Motion"@en ;
+    rdfs:comment
+        "Motion undertecknad av en enskild ledamot."@sv ,
+        "Motion signed by a single member."@en .
+
+rksdag:PartyMotion
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Motion ;
+    rdfs:label "Partimotion"@sv , "Party Motion"@en ;
+    rdfs:comment
+        "Motion inlämnad av ett partis riksdagsgrupp."@sv ,
+        "Motion submitted by a party's parliamentary group."@en .
+
+rksdag:CommitteeMotion
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Motion ;
+    rdfs:label "Kommittémotion"@sv , "Committee Motion"@en ;
+    rdfs:comment
+        "Motion inlämnad gemensamt av en grupp ledamöter från samma utskott."@sv ,
+        "Motion jointly submitted by members from the same committee."@en .
+
+rksdag:FollowUpMotion
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Motion ;
+    rdfs:label "Följdmotion"@sv , "Follow-up Motion"@en ;
+    rdfs:comment
+        """Motion inlämnad som reaktion på en proposition, inom 15 dagars motionstid."""@sv ,
+        """Motion submitted in response to a government bill, within the 15-day motion period."""@en .
+
+rksdag:MultiPartyMotion
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Motion ;
+    rdfs:label "Flerpartimotion"@sv , "Multi-party Motion"@en ;
+    rdfs:comment
+        "Motion undertecknad av ledamöter från flera partier."@sv ,
+        "Motion signed by members from multiple parties."@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Committee Output
+# -----------------------------------------------------------------------------
+
+rksdag:CommitteeReport
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Betänkande"@sv , "Committee Report"@en ;
+    rdfs:comment
+        "Ett betänkande (bet.) — utskottets förslag till riksdagens beslut."@sv ,
+        """A committee report (bet.) — the committee's proposal for the Riksdag's decision."""@en ;
+    skos:notation "bet" .
+
+rksdag:CommitteeOpinion
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Yttrande"@sv , "Committee Opinion"@en ;
+    rdfs:comment
+        "Ett yttrande — ett utskotts synpunkter till ett annat utskott."@sv ,
+        "A committee opinion — one committee's views to another committee."@en .
+
+rksdag:CommitteeStatement
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Utlåtande"@sv , "Committee Statement"@en ;
+    rdfs:comment
+        "Ett utlåtande — utskottets granskning av EU-förslag."@sv ,
+        "A committee statement — the committee's scrutiny of EU proposals."@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Decisions and Communications
+# -----------------------------------------------------------------------------
+
+rksdag:ParliamentaryCommunication
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Riksdagsskrivelse"@sv , "Parliamentary Communication"@en ;
+    rdfs:comment
+        """En riksdagsskrivelse (rskr.) — riksdagens formella meddelande till regeringen om fattade beslut."""@sv ,
+        """A parliamentary communication (rskr.) — the Riksdag's formal notification to the Government of decisions taken."""@en ;
+    skos:notation "rskr" .
+
+rksdag:Pronouncement
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Tillkännagivande"@sv , "Pronouncement"@en ;
+    rdfs:comment
+        """Ett tillkännagivande — riksdagens icke-bindande uppmaning till regeringen."""@sv ,
+        """A pronouncement — the Riksdag's non-binding request to the Government."""@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Oversight Instruments
+# -----------------------------------------------------------------------------
+
+rksdag:Interpellation
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Interpellation"@sv , "Interpellation"@en ;
+    rdfs:comment
+        """En interpellation (ip.) — skriftlig fråga till statsråd som besvaras i kammardebatt."""@sv ,
+        """An interpellation (ip.) — a written question to a minister answered in a chamber debate."""@en ;
+    skos:notation "ip" .
+
+rksdag:WrittenQuestion
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Skriftlig fråga"@sv , "Written Question"@en ;
+    rdfs:comment
+        """En skriftlig fråga (fr.) — kortare skriftlig fråga till statsråd med skriftligt svar."""@sv ,
+        """A written question (fr.) — a shorter written question to a minister with a written answer."""@en ;
+    skos:notation "fr" .
+
+rksdag:WrittenAnswer
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Skriftligt svar"@sv , "Written Answer"@en ;
+    rdfs:comment
+        "Statsrådets skriftliga svar på en skriftlig fråga."@sv ,
+        "A minister's written answer to a written question."@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Pre-legislative Documents
+# -----------------------------------------------------------------------------
+
+rksdag:GovernmentInquiryReport
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Statens offentliga utredningar (SOU)"@sv ,
+               "Government Inquiry Report (SOU)"@en ;
+    rdfs:comment
+        """En SOU — rapport från en statlig utredning tillsatt av regeringen."""@sv ,
+        """An SOU — report from a government-appointed commission of inquiry."""@en ;
+    skos:notation "sou" .
+
+rksdag:MinistryReport
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Departementsserien (Ds)"@sv ,
+               "Ministry Report (Ds)"@en ;
+    rdfs:comment
+        "En Ds-rapport — utredning genomförd inom Regeringskansliet."@sv ,
+        "A Ds report — inquiry conducted within the Government Offices."@en ;
+    skos:notation "ds" .
+
+rksdag:TermsOfReference
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Kommittédirektiv"@sv , "Terms of Reference"@en ;
+    rdfs:comment
+        "Regeringens direktiv till en statlig utredning."@sv ,
+        "The Government's terms of reference for a commission of inquiry."@en ;
+    skos:notation "dir" .
+
+rksdag:CouncilReferral
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Lagrådsremiss"@sv , "Council on Legislation Referral"@en ;
+    rdfs:comment
+        "Regeringens remiss till Lagrådet för granskning."@sv ,
+        "The Government's referral to the Council on Legislation for review."@en .
+
+rksdag:CouncilOpinion
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Lagrådets yttrande"@sv ,
+               "Council on Legislation Opinion"@en ;
+    rdfs:comment
+        "Lagrådets yttrande över en lagrådsremiss."@sv ,
+        "The Council on Legislation's opinion on a referral."@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Legal Publications
+# -----------------------------------------------------------------------------
+
+rksdag:Statute
+    a owl:Class ;
+    rdfs:subClassOf eli:LegalResource ;
+    rdfs:label "Författning (SFS)"@sv , "Statute (SFS)"@en ;
+    rdfs:comment
+        "En författning publicerad i Svensk författningssamling (SFS)."@sv ,
+        "A statute published in the Swedish Code of Statutes (SFS)."@en .
+
+rksdag:Act
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Statute ;
+    rdfs:label "Lag"@sv , "Act"@en ;
+    rdfs:comment "En lag stiftad av riksdagen."@sv ,
+                 "An act enacted by the Riksdag."@en .
+
+rksdag:Ordinance
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Statute ;
+    rdfs:label "Förordning"@sv , "Ordinance"@en ;
+    rdfs:comment "En förordning utfärdad av regeringen."@sv ,
+                 "An ordinance issued by the Government."@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Document Parts
+# -----------------------------------------------------------------------------
+
+rksdag:ProposalPoint
+    a owl:Class ;
+    rdfs:label "Förslagspunkt"@sv , "Proposal Point"@en ;
+    rdfs:comment
+        """En enskild förslagspunkt i ett betänkande som kan bli föremål för omröstning."""@sv ,
+        """A single proposal point in a committee report that may be subject to a vote."""@en .
+
+rksdag:Reservation
+    a owl:Class ;
+    rdfs:label "Reservation"@sv , "Reservation"@en ;
+    rdfs:comment
+        """En reservation — avvikande mening av utskottsledamöter som inte delar majoritetens uppfattning."""@sv ,
+        """A reservation — a dissenting opinion by committee members who do not share the majority view."""@en .
+
+rksdag:SpecialOpinion
+    a owl:Class ;
+    rdfs:label "Särskilt yttrande"@sv , "Special Opinion"@en ;
+    rdfs:comment
+        """Ett särskilt yttrande — tillägg av en utskottsledamot som stödjer beslutet men vill motivera sin ståndpunkt."""@sv ,
+        """A special opinion — an addendum by a committee member who supports the decision but wants to explain their position."""@en .
+
+rksdag:Speech
+    a owl:Class ;
+    rdfs:label "Anförande"@sv , "Speech"@en ;
+    rdfs:comment
+        """Ett anförande i kammaren — debattinlägg av en ledamot eller statsråd."""@sv ,
+        """A speech in the chamber — a debate contribution by a member or minister."""@en .
+
+# -----------------------------------------------------------------------------
+# Object Properties
+# -----------------------------------------------------------------------------
+
+rksdag:author
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range foaf:Person ;
+    rdfs:label "författare"@sv , "author"@en ;
+    rdfs:comment
+        "Person som författat eller undertecknat dokumentet."@sv ,
+        "Person who authored or signed the document."@en ;
+    owl:inverseOf rksdag:authorOf .
+
+rksdag:authorOf
+    a owl:ObjectProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range rksdag:ParliamentaryDocument ;
+    rdfs:label "författare till"@sv , "author of"@en ;
+    rdfs:comment
+        "Dokument som personen har författat eller undertecknat."@sv ,
+        "Document that the person authored or signed."@en ;
+    owl:inverseOf rksdag:author .
+
+rksdag:handledBy
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range rksdag:Committee ;
+    rdfs:label "hanteras av"@sv , "handled by"@en ;
+    rdfs:comment
+        "Det utskott som ansvarar för beredningen av dokumentet."@sv ,
+        "The committee responsible for processing the document."@en .
+
+rksdag:addressedTo
+    a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+                  owl:unionOf ( rksdag:Interpellation rksdag:WrittenQuestion ) ] ;
+    rdfs:range rksdag:Minister ;
+    rdfs:label "ställd till"@sv , "addressed to"@en ;
+    rdfs:comment
+        """Det statsråd som en interpellation eller skriftlig fråga riktas till."""@sv ,
+        """The minister to whom an interpellation or written question is addressed."""@en .
+
+rksdag:answeredBy
+    a owl:ObjectProperty ;
+    rdfs:domain [ a owl:Class ;
+                  owl:unionOf ( rksdag:Interpellation rksdag:WrittenQuestion ) ] ;
+    rdfs:range rksdag:WrittenAnswer ;
+    rdfs:label "besvarad av"@sv , "answered by"@en ;
+    rdfs:comment
+        "Det skriftliga svar som besvarar interpellationen eller frågan."@sv ,
+        "The written answer that responds to the interpellation or question."@en .
+
+rksdag:references
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range rksdag:ParliamentaryDocument ;
+    rdfs:label "refererar till"@sv , "references"@en ;
+    rdfs:comment
+        """Korsreferens mellan dokument (t.ex. motion som refererar till en proposition)."""@sv ,
+        """Cross-reference between documents (e.g. a motion referencing a government bill)."""@en ;
+    owl:inverseOf rksdag:referencedBy .
+
+rksdag:referencedBy
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range rksdag:ParliamentaryDocument ;
+    rdfs:label "refererad av"@sv , "referenced by"@en ;
+    rdfs:comment
+        """Dokument som refererar till detta dokument."""@sv ,
+        """Document that references this document."""@en ;
+    owl:inverseOf rksdag:references .
+
+rksdag:hasExpression
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf eli:has_expression ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range rksdag:DocumentExpression ;
+    rdfs:label "har uttryck"@sv , "has expression"@en ;
+    rdfs:comment
+        "Kopplar ett dokument (Work) till ett specifikt uttryck (Expression) enligt ELI/FRBR."@sv ,
+        "Links a document (Work) to a specific expression (Expression) per ELI/FRBR."@en .
+
+rksdag:hasFormat
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf eli:has_format ;
+    rdfs:domain rksdag:DocumentExpression ;
+    rdfs:range rksdag:DocumentFormat ;
+    rdfs:label "har format"@sv , "has format"@en ;
+    rdfs:comment
+        "Kopplar ett dokumentuttryck till en specifik digital representation (PDF, HTML, XML)."@sv ,
+        "Links a document expression to a specific digital representation (PDF, HTML, XML)."@en .
+
+rksdag:partOfSession
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range rksdag:ParliamentarySession ;
+    rdfs:label "ingår i riksmöte"@sv , "part of session"@en ;
+    rdfs:comment
+        "Det riksmöte som dokumentet tillhör."@sv ,
+        "The parliamentary session the document belongs to."@en .
+
+rksdag:hasProposalPoint
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:CommitteeReport ;
+    rdfs:range rksdag:ProposalPoint ;
+    rdfs:label "har förslagspunkt"@sv , "has proposal point"@en ;
+    rdfs:comment
+        "En förslagspunkt som ingår i betänkandet."@sv ,
+        "A proposal point contained in the committee report."@en .
+
+rksdag:hasReservation
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:CommitteeReport ;
+    rdfs:range rksdag:Reservation ;
+    rdfs:label "har reservation"@sv , "has reservation"@en ;
+    rdfs:comment
+        "En reservation (avvikande mening) bifogad till betänkandet."@sv ,
+        "A reservation (dissenting opinion) appended to the committee report."@en .
+
+rksdag:hasSpecialOpinion
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:CommitteeReport ;
+    rdfs:range rksdag:SpecialOpinion ;
+    rdfs:label "har särskilt yttrande"@sv , "has special opinion"@en ;
+    rdfs:comment
+        "Ett särskilt yttrande bifogat till betänkandet."@sv ,
+        "A special opinion appended to the committee report."@en .
+
+rksdag:followsUp
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:FollowUpMotion ;
+    rdfs:range rksdag:GovernmentBill ;
+    rdfs:label "följer upp"@sv , "follows up"@en ;
+    rdfs:comment
+        "Den proposition som en följdmotion avser."@sv ,
+        "The government bill a follow-up motion responds to."@en .
+
+rksdag:speaker
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Speech ;
+    rdfs:range foaf:Person ;
+    rdfs:label "talare"@sv , "speaker"@en ;
+    rdfs:comment
+        "Den person som håller anförandet."@sv ,
+        "The person delivering the speech."@en .
+
+rksdag:partOfDebate
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Speech ;
+    rdfs:range [ a owl:Class ;
+                 owl:unionOf ( rksdag:ParliamentaryDocument rksdag:Debate ) ] ;
+    rdfs:label "del av debatt"@sv , "part of debate"@en ;
+    rdfs:comment
+        """Det ärende (betänkande, interpellation) eller den debatt som anförandet ingår i."""@sv ,
+        """The matter (committee report, interpellation) or debate the speech is part of."""@en .
+
+# -----------------------------------------------------------------------------
+# ELI Amendment Properties (reused from ELI vocabulary)
+# -----------------------------------------------------------------------------
+
+rksdag:amends
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf eli:amends ;
+    rdfs:domain rksdag:Statute ;
+    rdfs:range rksdag:Statute ;
+    rdfs:label "ändrar"@sv , "amends"@en ;
+    rdfs:comment
+        "Den författning som denna författning ändrar."@sv ,
+        "The statute that this statute amends."@en ;
+    owl:inverseOf rksdag:amendedBy .
+
+rksdag:amendedBy
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Statute ;
+    rdfs:range rksdag:Statute ;
+    rdfs:label "ändrad av"@sv , "amended by"@en ;
+    rdfs:comment
+        "Den författning som ändrar denna författning."@sv ,
+        "The statute that amends this statute."@en ;
+    owl:inverseOf rksdag:amends .
+
+rksdag:repeals
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf eli:repeals ;
+    rdfs:domain rksdag:Statute ;
+    rdfs:range rksdag:Statute ;
+    rdfs:label "upphäver"@sv , "repeals"@en ;
+    rdfs:comment
+        "Den författning som denna författning upphäver."@sv ,
+        "The statute that this statute repeals."@en ;
+    owl:inverseOf rksdag:repealedBy .
+
+rksdag:repealedBy
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Statute ;
+    rdfs:range rksdag:Statute ;
+    rdfs:label "upphävd av"@sv , "repealed by"@en ;
+    rdfs:comment
+        "Den författning som upphäver denna författning."@sv ,
+        "The statute that repeals this statute."@en ;
+    owl:inverseOf rksdag:repeals .
+
+# -----------------------------------------------------------------------------
+# Datatype Properties
+# -----------------------------------------------------------------------------
+
+rksdag:dokId
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "dokument-ID"@sv , "document ID"@en ;
+    rdfs:comment "Unikt ID från riksdagens API (dok_id)."@sv ,
+                 "Unique ID from the Riksdag API (dok_id)."@en .
+
+rksdag:designation
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:subPropertyOf dcterms:identifier ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range xsd:string ;
+    rdfs:label "beteckning"@sv , "designation"@en ;
+    rdfs:comment
+        "Dokumentets formella beteckning (t.ex. 'FiU1', '2024/25:123')."@sv ,
+        "The document's formal designation (e.g. 'FiU1', '2024/25:123')."@en .
+
+rksdag:documentTitle
+    a owl:DatatypeProperty ;
+    rdfs:subPropertyOf dcterms:title ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range rdf:langString ;
+    rdfs:label "dokumenttitel"@sv , "document title"@en ;
+    rdfs:comment
+        "Dokumentets officiella titel."@sv ,
+        "The document's official title."@en .
+
+rksdag:documentDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:subPropertyOf dcterms:date ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range xsd:date ;
+    rdfs:label "dokumentdatum"@sv , "document date"@en ;
+    rdfs:comment
+        "Datum då dokumentet upprättades eller publicerades."@sv ,
+        "Date when the document was created or published."@en .
+
+rksdag:decisionDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range xsd:date ;
+    rdfs:label "beslutsdatum"@sv , "decision date"@en ;
+    rdfs:comment
+        "Datum då beslut fattades om dokumentet."@sv ,
+        "Date when the decision on the document was taken."@en .
+
+rksdag:debateDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:ParliamentaryDocument ;
+    rdfs:range xsd:date ;
+    rdfs:label "debattdag"@sv , "debate date"@en ;
+    rdfs:comment
+        "Datum då debatten om dokumentet ägde rum i kammaren."@sv ,
+        "Date when the debate on the document took place in the chamber."@en .
+
+rksdag:sfsNumber
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:Statute ;
+    rdfs:range xsd:string ;
+    rdfs:label "SFS-nummer"@sv , "SFS number"@en ;
+    rdfs:comment "Författningsnummer i SFS (t.ex. '2024:123')."@sv ,
+                 "Statute number in SFS (e.g. '2024:123')."@en .
+
+rksdag:entryIntoForceDate
+    a owl:DatatypeProperty ;
+    rdfs:domain rksdag:Statute ;
+    rdfs:range xsd:date ;
+    rdfs:label "ikraftträdandedatum"@sv , "entry into force date"@en ;
+    rdfs:comment
+        "Datum då författningen träder i kraft."@sv ,
+        "Date when the statute enters into force."@en .
+
+rksdag:speechId
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:Speech ;
+    rdfs:range xsd:string ;
+    rdfs:label "anförande-ID"@sv , "speech ID"@en ;
+    rdfs:comment
+        "Unikt identifieringsnummer för anförandet från riksdagens API."@sv ,
+        "Unique identifier for the speech from the Riksdag API."@en .
+
+rksdag:speechNumber
+    a owl:DatatypeProperty ;
+    rdfs:domain rksdag:Speech ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "anförandenummer"@sv , "speech number"@en ;
+    rdfs:comment
+        "Anförandets ordningsnummer i debatten."@sv ,
+        "The speech's sequential number within the debate."@en .
+
+rksdag:speechText
+    a owl:DatatypeProperty ;
+    rdfs:domain rksdag:Speech ;
+    rdfs:range xsd:string ;
+    rdfs:label "anförandetext"@sv , "speech text"@en ;
+    rdfs:comment
+        "Den fullständiga texten av anförandet."@sv ,
+        "The full text of the speech."@en .
+
+# =============================================================================
+# Gap 1: Consultation Documents (Remissvar, Remissammanställning)
+# =============================================================================
+
+rksdag:ConsultationResponse
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Remissvar"@sv , "Consultation Response"@en ;
+    rdfs:comment
+        """Ett formellt yttrande från en remissinstans över ett utredningsbetänkande eller departementspromemoria."""@sv ,
+        """A formal response from a consultation body on a government inquiry report or ministry memorandum."""@en .
+
+rksdag:ConsultationSummary
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Remissammanställning"@sv , "Consultation Summary"@en ;
+    rdfs:comment
+        """Regeringens sammanställning av alla inkomna remissvar."""@sv ,
+        """The Government's summary of all received consultation responses."""@en .
+
+rksdag:consultationBody
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ConsultationResponse ;
+    rdfs:range rksdag:ConsultationBody ;
+    rdfs:label "remissinstans"@sv , "consultation body"@en ;
+    rdfs:comment
+        """Den myndighet eller organisation som lämnat remissvaret."""@sv ,
+        """The agency or organization that submitted the consultation response."""@en .
+
+rksdag:inResponseTo
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ConsultationResponse ;
+    rdfs:range rksdag:ParliamentaryDocument ;
+    rdfs:label "som svar på"@sv , "in response to"@en ;
+    rdfs:comment
+        """Det utredningsbetänkande (SOU) eller departementspromemoria (Ds) som remissvaret avser."""@sv ,
+        """The government inquiry report (SOU) or ministry memorandum (Ds) the consultation response concerns."""@en .
+
+# =============================================================================
+# Gap 3: Budget Document Types
+# =============================================================================
+
+rksdag:BudgetBill
+    a owl:Class ;
+    rdfs:subClassOf rksdag:GovernmentBill ;
+    rdfs:label "Budgetproposition"@sv , "Budget Bill"@en ;
+    rdfs:comment
+        """Budgetpropositionen — regeringens årliga förslag till statsbudget, lämnas i september."""@sv ,
+        """The Budget Bill — the Government's annual budget proposal, submitted in September."""@en .
+
+rksdag:SpringFiscalBill
+    a owl:Class ;
+    rdfs:subClassOf rksdag:GovernmentBill ;
+    rdfs:label "Vårändringsbudget"@sv , "Spring Fiscal Policy Bill"@en ;
+    rdfs:comment
+        """Den ekonomiska vårpropositionen och vårändringsbudgeten — regeringens förslag till ändringar i gällande statsbudget."""@sv ,
+        """The Spring Fiscal Policy Bill — the Government's proposed amendments to the current state budget."""@en .
+
+rksdag:SupplementaryBudget
+    a owl:Class ;
+    rdfs:subClassOf rksdag:GovernmentBill ;
+    rdfs:label "Extra ändringsbudget"@sv , "Supplementary Budget"@en ;
+    rdfs:comment
+        """En extra ändringsbudget — ändring av statsbudgeten utöver den ordinarie processen, t.ex. vid kriser."""@sv ,
+        """A supplementary budget — amendment to the state budget outside the regular process, e.g. during crises."""@en .
+
+# =============================================================================
+# Gap 4: EU Document Types
+# =============================================================================
+
+rksdag:GreenPaper
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Grönbok"@sv , "Green Paper"@en ;
+    rdfs:comment
+        """En grönbok — EU-kommissionens diskussionsunderlag för ett policyområde."""@sv ,
+        """A Green Paper — an EU Commission discussion document on a policy area."""@en .
+
+rksdag:WhitePaper
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Vitbok"@sv , "White Paper"@en ;
+    rdfs:comment
+        """En vitbok — EU-kommissionens förslag till konkreta åtgärder inom ett policyområde."""@sv ,
+        """A White Paper — an EU Commission proposal for concrete measures in a policy area."""@en .
+
+rksdag:EUFactsheet
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryDocument ;
+    rdfs:label "Faktapromemoria"@sv , "EU Factsheet"@en ;
+    rdfs:comment
+        """En faktapromemoria (fpm) — regeringens redogörelse av ett EU-förslag till riksdagen."""@sv ,
+        """An EU factsheet (fpm) — the Government's account of an EU proposal to the Riksdag."""@en ;
+    rdfs:seeAlso rksdagv:doctype-fpm .
+
+rksdag:SubsidiarityStatement
+    a owl:Class ;
+    rdfs:subClassOf rksdag:CommitteeStatement ;
+    rdfs:label "Subsidiaritetsutlåtande"@sv , "Subsidiarity Statement"@en ;
+    rdfs:comment
+        """Ett utlåtande med motiverat yttrande om ett EU-förslags förenlighet med subsidiaritetsprincipen. Specialfall av utlåtande (CommitteeStatement)."""@sv ,
+        """A statement with a reasoned opinion on an EU proposal's compatibility with the subsidiarity principle. A special case of committee statement (CommitteeStatement)."""@en ;
+    rdfs:seeAlso rksdag:CommitteeStatement .
+
+# =============================================================================
+# Gap 6: Amendment Chains / SFS Consolidation
+# =============================================================================
+
+rksdag:AmendmentAct
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Act ;
+    rdfs:label "Ändringsförfattning"@sv , "Amendment Act"@en ;
+    rdfs:comment
+        """En ändringsförfattning — en lag som ändrar en befintlig lag (t.ex. 'Lag om ändring i ...')."""@sv ,
+        """An amendment act — a law that amends an existing law (e.g. 'Act amending ...')."""@en .
+
+rksdag:ConsolidatedVersion
+    a owl:Class ;
+    rdfs:label "Konsoliderad version"@sv , "Consolidated Version"@en ;
+    rdfs:comment
+        """En konsoliderad version av en författning vid en viss tidpunkt, med alla ändringar inarbetade."""@sv ,
+        """A consolidated version of a statute at a specific point in time, with all amendments incorporated."""@en .
+
+rksdag:consolidationDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:ConsolidatedVersion ;
+    rdfs:range xsd:date ;
+    rdfs:label "konsolideringsdatum"@sv , "consolidation date"@en ;
+    rdfs:comment
+        """Datumet då den konsoliderade versionen är giltig."""@sv ,
+        """The date at which the consolidated version is valid."""@en .
+
+rksdag:baseLaw
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ConsolidatedVersion ;
+    rdfs:range rksdag:Statute ;
+    rdfs:label "grundförfattning"@sv , "base law"@en ;
+    rdfs:comment
+        """Den ursprungliga författning som den konsoliderade versionen bygger på."""@sv ,
+        """The original statute on which the consolidated version is based."""@en .
+
+rksdag:includesAmendments
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ConsolidatedVersion ;
+    rdfs:range rksdag:AmendmentAct ;
+    rdfs:label "inkluderar ändringar"@sv , "includes amendments"@en ;
+    rdfs:comment
+        """De ändringsförfattningar som är inarbetade i denna konsoliderade version."""@sv ,
+        """The amendment acts incorporated into this consolidated version."""@en .
+
+rksdag:transitionProvision
+    a owl:DatatypeProperty ;
+    rdfs:domain rksdag:Statute ;
+    rdfs:range xsd:string ;
+    rdfs:label "övergångsbestämmelse"@sv , "transition provision"@en ;
+    rdfs:comment
+        """Text för övergångsbestämmelser kopplade till en författning."""@sv ,
+        """Text of transition provisions associated with a statute."""@en .
+
+# =============================================================================
+# Gap 7: Debate Structure
+# =============================================================================
+
+rksdag:Debate
+    a owl:Class ;
+    rdfs:label "Debatt"@sv , "Debate"@en ;
+    rdfs:comment
+        """En fullständig debatt i riksdagens kammare."""@sv ,
+        """A full debate session in the Riksdag chamber."""@en .
+
+rksdag:SubjectDebate
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Debate ;
+    rdfs:label "Ärendedebatt"@sv , "Subject Debate"@en ;
+    rdfs:comment
+        """En debatt om ett specifikt ärende, t.ex. ett betänkande."""@sv ,
+        """A debate on a specific matter, e.g. a committee report."""@en .
+
+rksdag:InterpellationDebate
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Debate ;
+    rdfs:label "Interpellationsdebatt"@sv , "Interpellation Debate"@en ;
+    rdfs:comment
+        """En debatt där ett statsråd besvarar en interpellation."""@sv ,
+        """A debate in which a minister answers an interpellation."""@en .
+
+rksdag:CurrentAffairsDebate
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Debate ;
+    rdfs:label "Aktuell debatt"@sv , "Current Affairs Debate"@en ;
+    rdfs:comment
+        """En aktuell debatt begärd av ett parti om en dagsaktuell fråga."""@sv ,
+        """A current affairs debate requested by a party on a topical issue."""@en .
+
+rksdag:PartyLeaderDebate
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Debate ;
+    rdfs:label "Partiledardebatt"@sv , "Party Leader Debate"@en ;
+    rdfs:comment
+        """En debatt mellan partiledarna, hålls normalt två gånger per riksmöte."""@sv ,
+        """A debate between party leaders, normally held twice per parliamentary session."""@en .
+
+rksdag:GeneralPolicyDebate
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Debate ;
+    rdfs:label "Allmänpolitisk debatt"@sv , "General Policy Debate"@en ;
+    rdfs:comment
+        """En bred debatt om regeringens allmänna politik, ofta i samband med regeringsförklaringen."""@sv ,
+        """A broad debate on the Government's general policy, often in connection with the statement of government policy."""@en .
+
+rksdag:ReplyChain
+    a owl:Class ;
+    rdfs:label "Replikskifte"@sv , "Reply Chain"@en ;
+    rdfs:comment
+        """En sekvens av repliker mellan två eller flera talare under en debatt."""@sv ,
+        """A sequence of replies between two or more speakers during a debate."""@en .
+
+rksdag:replyTo
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Speech ;
+    rdfs:range rksdag:Speech ;
+    rdfs:label "replik till"@sv , "reply to"@en ;
+    rdfs:comment
+        """Det anförande som detta anförande är en replik till."""@sv ,
+        """The speech that this speech is a reply to."""@en .
+
+rksdag:inReplyChain
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Speech ;
+    rdfs:range rksdag:ReplyChain ;
+    rdfs:label "i replikskifte"@sv , "in reply chain"@en ;
+    rdfs:comment
+        """Det replikskifte som anförandet tillhör."""@sv ,
+        """The reply chain to which the speech belongs."""@en .
+
+rksdag:debateType
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Debate ;
+    rdfs:range skos:Concept ;
+    rdfs:label "debattyp"@sv , "debate type"@en ;
+    rdfs:comment
+        """Typ av debatt, refererar till SKOS-begrepp i debattypsvokabuläret."""@sv ,
+        """Type of debate, references a SKOS concept in the debate types vocabulary."""@en .
+
+# =============================================================================
+# Gap 8: Cross-document Relationships
+# =============================================================================
+
+rksdag:respondsTo
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Motion ;
+    rdfs:range rksdag:GovernmentBill ;
+    rdfs:label "svarar på"@sv , "responds to"@en ;
+    rdfs:comment
+        """En motion inlämnad som reaktion på en proposition."""@sv ,
+        """A motion filed in response to a government bill."""@en .
+
+rksdag:implementedBy
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ParliamentaryCommunication ;
+    rdfs:range rksdag:Statute ;
+    rdfs:label "genomförd genom"@sv , "implemented by"@en ;
+    rdfs:comment
+        """Den författning (SFS) som genomför riksdagsskrivelsens beslut."""@sv ,
+        """The statute (SFS) that implements the parliamentary communication's decision."""@en .
+
+rksdag:basedOn
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:GovernmentBill ;
+    rdfs:range rksdag:ParliamentaryDocument ;
+    rdfs:label "baserad på"@sv , "based on"@en ;
+    rdfs:comment
+        """Det utredningsbetänkande (SOU) eller departementspromemoria (Ds) som propositionen grundar sig på."""@sv ,
+        """The government inquiry report (SOU) or ministry report (Ds) the bill is based on."""@en .
+
+rksdag:resultsIn
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:CommitteeReport ;
+    rdfs:range rksdag:ParliamentaryCommunication ;
+    rdfs:label "resulterar i"@sv , "results in"@en ;
+    rdfs:comment
+        """Den riksdagsskrivelse som betänkandets beslut resulterar i."""@sv ,
+        """The parliamentary communication resulting from the committee report's decision."""@en .
+
+rksdag:answeredIn
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Interpellation ;
+    rdfs:range rksdag:Speech ;
+    rdfs:label "besvarad i"@sv , "answered in"@en ;
+    rdfs:comment
+        """Det anförande i kammaren där interpellationen besvaras av statsrådet."""@sv ,
+        """The speech in the chamber where the interpellation is answered by the minister."""@en .
+
+rksdag:consolidatedBy
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Statute ;
+    rdfs:range rksdag:ConsolidatedVersion ;
+    rdfs:label "konsoliderad genom"@sv , "consolidated by"@en ;
+    rdfs:comment
+        """En konsoliderad version av denna författning."""@sv ,
+        """A consolidated version of this statute."""@en .
+
+# -----------------------------------------------------------------------------
+# Disjointness Axioms
+# -----------------------------------------------------------------------------
+
+# Document types vs non-documents
+rksdag:ParliamentaryDocument owl:disjointWith rksdag:Speech .
+rksdag:ParliamentaryDocument owl:disjointWith rksdag:Debate .
+rksdag:ParliamentaryDocument owl:disjointWith rksdag:ReplyChain .
+rksdag:ParliamentaryDocument owl:disjointWith rksdag:ProposalPoint .
+rksdag:ParliamentaryDocument owl:disjointWith rksdag:Reservation .
+rksdag:Speech owl:disjointWith rksdag:Debate .
+rksdag:Speech owl:disjointWith rksdag:ProposalPoint .
+rksdag:Debate owl:disjointWith rksdag:ProposalPoint .
+rksdag:Statute owl:disjointWith rksdag:Motion .
+rksdag:Statute owl:disjointWith rksdag:CommitteeReport .
+rksdag:ConsolidatedVersion owl:disjointWith rksdag:ParliamentaryDocument .

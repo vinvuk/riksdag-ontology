@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Voting — Riksdag Ontology</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem; }
+h2 { font-size: 1.35rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem;
+     padding-bottom: 0.25rem; border-bottom: 1px solid #e0e0e0; }
+h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.25rem; }
+p { margin-bottom: 0.75rem; }
+a { color: #1a56db; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, .iri { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em;
+             background: #f5f5f5; padding: 0.1em 0.3em; border-radius: 3px; }
+.subtitle { color: #666; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.meta { color: #888; font-size: 0.8rem; margin-bottom: 0.5rem; }
+.badge { display: inline-block; font-size: 0.7rem; font-weight: 600;
+         padding: 0.15em 0.5em; border-radius: 3px; margin-left: 0.3rem;
+         vertical-align: middle; }
+.badge-class { background: #dbeafe; color: #1e40af; }
+.badge-op { background: #dcfce7; color: #166534; }
+.badge-dp { background: #fef3c7; color: #92400e; }
+.badge-vocab { background: #f3e8ff; color: #6b21a8; }
+.toc { margin: 1rem 0 2rem; }
+.toc ol { padding-left: 1.5rem; }
+.toc li { margin: 0.2rem 0; }
+.module-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 1rem 0; }
+.module-card { border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem;
+               transition: border-color 0.15s; }
+.module-card:hover { border-color: #1a56db; }
+.module-card h4 { margin: 0 0 0.25rem; }
+.module-card p { margin: 0; font-size: 0.85rem; color: #666; }
+.definition { margin: 0.5rem 0 1rem; padding-left: 1rem;
+              border-left: 3px solid #e0e0e0; }
+.definition dt { font-weight: 600; font-size: 0.85rem; color: #555; margin-top: 0.5rem; }
+.definition dd { margin-left: 0; font-size: 0.9rem; }
+.back-to-toc { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
+.namespace-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+.namespace-table th, .namespace-table td { text-align: left; padding: 0.4rem 0.75rem;
+                                           border-bottom: 1px solid #eee; }
+.namespace-table th { font-weight: 600; color: #555; }
+.diagram { margin: 1.5rem 0; text-align: center; }
+.diagram img, .diagram svg { max-width: 100%; }
+.stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0; }
+.stat { text-align: center; }
+.stat-value { font-size: 1.5rem; font-weight: 700; color: #1a56db; }
+.stat-label { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
+         font-size: 0.8rem; color: #888; }
+</style>
+</head>
+<body>
+<p class="meta"><a href="index.html">← Riksdag Ontology</a></p>
+<h1>Voting Ontology</h1>
+<p class="subtitle">Votering — Vote events, individual ballots, outcomes, and voting methods.</p>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/voting</code></p>
+<p class="meta">
+    Source: <a href="https://github.com/vinvuk/riksdag-ontology/blob/main/ontology/voting.ttl">voting.ttl</a>
+    · License: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+</p>
+
+
+<div class="stats">
+    <div class="stat"><div class="stat-value">4</div><div class="stat-label">Classes</div></div>
+    <div class="stat"><div class="stat-value">8</div><div class="stat-label">Object Properties</div></div>
+    <div class="stat"><div class="stat-value">8</div><div class="stat-label">Datatype Properties</div></div>
+</div>
+
+<nav class="toc"><h2 id="toc">Table of Contents</h2><ol>
+<li><a href="#classes">Classes</a><ol>
+<li><a href="#Ballot">Ballot</a></li>
+<li><a href="#VoteOutcome">VoteOutcome</a></li>
+<li><a href="#VotingEvent">VotingEvent</a></li>
+<li><a href="#VotingMethod">VotingMethod</a></li>
+</ol></li>
+<li><a href="#object-properties">Object Properties</a><ol>
+<li><a href="#prop-hasBallot">hasBallot</a></li>
+<li><a href="#prop-hasMethod">hasMethod</a></li>
+<li><a href="#prop-hasOutcome">hasOutcome</a></li>
+<li><a href="#prop-inVotingEvent">inVotingEvent</a></li>
+<li><a href="#prop-onDocument">onDocument</a></li>
+<li><a href="#prop-onProposal">onProposal</a></li>
+<li><a href="#prop-voteOption">voteOption</a></li>
+<li><a href="#prop-voter">voter</a></li>
+</ol></li>
+<li><a href="#datatype-properties">Datatype Properties</a><ol>
+<li><a href="#prop-absentCount">absentCount</a></li>
+<li><a href="#prop-abstainCount">abstainCount</a></li>
+<li><a href="#prop-noCount">noCount</a></li>
+<li><a href="#prop-pointNumber">pointNumber</a></li>
+<li><a href="#prop-voteDate">voteDate</a></li>
+<li><a href="#prop-voteringId">voteringId</a></li>
+<li><a href="#prop-winningOption">winningOption</a></li>
+<li><a href="#prop-yesCount">yesCount</a></li>
+</ol></li>
+<li><a href="#namespaces">Namespaces</a></li>
+</ol></nav>
+<h2 id="classes">Classes</h2>
+<h3 id="Ballot">Ballot</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Ballot</code></p>
+<p><strong>Röst</strong> / Ballot</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An individual member&#x27;s vote in a division.</dd>
+<dt>Definition (sv)</dt><dd>En enskild ledamots röst i en votering.</dd>
+<dt>In domain of</dt><dd><a href="#prop-inVotingEvent">inVotingEvent</a> <span class="badge badge-op">op</span>, <a href="#prop-voteOption">voteOption</a> <span class="badge badge-op">op</span>, <a href="#prop-voter">voter</a> <span class="badge badge-op">op</span></dd>
+<dt>In range of</dt><dd><a href="#prop-hasBallot">hasBallot</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="VoteOutcome">VoteOutcome</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/VoteOutcome</code></p>
+<p><strong>Röstningsutfall</strong> / Vote Outcome</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The outcome of a vote (approved, rejected).</dd>
+<dt>Definition (sv)</dt><dd>Utfallet av en votering (bifall, avslag).</dd>
+<dt>In range of</dt><dd><a href="#prop-hasOutcome">hasOutcome</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="VotingEvent">VotingEvent</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/VotingEvent</code></p>
+<p><strong>Votering</strong> / Voting Event</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A single division in the chamber, identified by votering_id. May concern a proposal point in a committee report.</dd>
+<dt>Definition (sv)</dt><dd>En enskild omröstning i kammaren, identifierad av votering_id. Kan gälla en förslagspunkt i ett betänkande.</dd>
+<dt>In domain of</dt><dd><a href="#prop-absentCount">absentCount</a> <span class="badge badge-dp">dp</span>, <a href="#prop-abstainCount">abstainCount</a> <span class="badge badge-dp">dp</span>, <a href="#prop-hasBallot">hasBallot</a> <span class="badge badge-op">op</span>, <a href="#prop-hasMethod">hasMethod</a> <span class="badge badge-op">op</span>, <a href="#prop-hasOutcome">hasOutcome</a> <span class="badge badge-op">op</span>, <a href="#prop-noCount">noCount</a> <span class="badge badge-dp">dp</span>, <a href="#prop-onDocument">onDocument</a> <span class="badge badge-op">op</span>, <a href="#prop-onProposal">onProposal</a> <span class="badge badge-op">op</span>, <a href="#prop-pointNumber">pointNumber</a> <span class="badge badge-dp">dp</span>, <a href="#prop-voteDate">voteDate</a> <span class="badge badge-dp">dp</span>, <a href="#prop-voteringId">voteringId</a> <span class="badge badge-dp">dp</span>, <a href="#prop-winningOption">winningOption</a> <span class="badge badge-dp">dp</span>, <a href="#prop-yesCount">yesCount</a> <span class="badge badge-dp">dp</span></dd>
+<dt>In range of</dt><dd><a href="#prop-inVotingEvent">inVotingEvent</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="VotingMethod">VotingMethod</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/VotingMethod</code></p>
+<p><strong>Omröstningsmetod</strong> / Voting Method</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Method of voting: acclamation, standing, electronic, roll call, or drawing of lots.</dd>
+<dt>Definition (sv)</dt><dd>Metod för omröstning: acklamation, uppresning, elektronisk, namnupprop, eller lottning.</dd>
+<dt>In range of</dt><dd><a href="#prop-hasMethod">hasMethod</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h2 id="object-properties">Object Properties</h2>
+<h3 id="prop-hasBallot">hasBallot</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasBallot</code></p>
+<p><strong>har röst</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Ballot">Ballot</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasMethod">hasMethod</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasMethod</code></p>
+<p><strong>har metod</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#VotingMethod">VotingMethod</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasOutcome">hasOutcome</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasOutcome</code></p>
+<p><strong>har utfall</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#VoteOutcome">VoteOutcome</a> <span class="badge badge-class">c</span></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-inVotingEvent">inVotingEvent</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/inVotingEvent</code></p>
+<p><strong>i votering</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Ballot">Ballot</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-onDocument">onDocument</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/onDocument</code></p>
+<p><strong>gäller betänkande</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The committee report the voting event originates from.</dd>
+<dt>Definition (sv)</dt><dd>Det betänkande som voteringen härrör från.</dd>
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#CommitteeReport">CommitteeReport</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-onProposal">onProposal</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/onProposal</code></p>
+<p><strong>gäller förslagspunkt</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The proposal point the voting event concerns.</dd>
+<dt>Definition (sv)</dt><dd>Den förslagspunkt som voteringen gäller.</dd>
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ProposalPoint">ProposalPoint</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-voteOption">voteOption</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/voteOption</code></p>
+<p><strong>röstar</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Vote choice: Yes, No, Abstain, Absent — references SKOS concepts in the vote options vocabulary.</dd>
+<dt>Definition (sv)</dt><dd>Röstval: Ja, Nej, Avstår, Frånvarande — refererar till SKOS-begrepp i voteringsvokabuläret.</dd>
+<dt>Domain</dt><dd><a href="#Ballot">Ballot</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>Concept</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-voter">voter</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/voter</code></p>
+<p><strong>röstande</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Ballot">Ballot</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#MemberOfParliament">MemberOfParliament</a> <span class="badge badge-class">c</span></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h2 id="datatype-properties">Datatype Properties</h2>
+<h3 id="prop-absentCount">absentCount</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/absentCount</code></p>
+<p><strong>frånvarande</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-abstainCount">abstainCount</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/abstainCount</code></p>
+<p><strong>avstår-röster</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-noCount">noCount</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/noCount</code></p>
+<p><strong>nej-röster</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-pointNumber">pointNumber</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/pointNumber</code></p>
+<p><strong>punkt</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The proposal point number in the committee report.</dd>
+<dt>Definition (sv)</dt><dd>Förslagspunktens nummer i betänkandet.</dd>
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-voteDate">voteDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/voteDate</code></p>
+<p><strong>voteringsdatum</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>date</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-voteringId">voteringId</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/voteringId</code></p>
+<p><strong>voterings-ID</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>UUID identifier for the voting event.</dd>
+<dt>Definition (sv)</dt><dd>UUID-identifierare för voteringen.</dd>
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-winningOption">winningOption</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/winningOption</code></p>
+<p><strong>vinnande förslag</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Indicates whether Yes or No won the division.</dd>
+<dt>Definition (sv)</dt><dd>Markerar om Ja eller Nej vann voteringen.</dd>
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-yesCount">yesCount</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/yesCount</code></p>
+<p><strong>ja-röster</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#VotingEvent">VotingEvent</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+
+<h2 id="namespaces">Namespace Declarations</h2>
+<table class="namespace-table">
+<tr><th>Prefix</th><th>URI</th></tr>
+<tr><td><code>rksdag:</code></td><td><code>https://ontology.riksdagen.se/def/</code></td></tr>
+<tr><td><code>rksdagv:</code></td><td><code>https://ontology.riksdagen.se/vocab/</code></td></tr>
+<tr><td><code>eli:</code></td><td><code>http://data.europa.eu/eli/ontology#</code></td></tr>
+<tr><td><code>org:</code></td><td><code>http://www.w3.org/ns/org#</code></td></tr>
+<tr><td><code>foaf:</code></td><td><code>http://xmlns.com/foaf/0.1/</code></td></tr>
+<tr><td><code>schema:</code></td><td><code>https://schema.org/</code></td></tr>
+<tr><td><code>skos:</code></td><td><code>http://www.w3.org/2004/02/skos/core#</code></td></tr>
+<tr><td><code>dcterms:</code></td><td><code>http://purl.org/dc/terms/</code></td></tr>
+<tr><td><code>owl:</code></td><td><code>http://www.w3.org/2002/07/owl#</code></td></tr>
+<tr><td><code>rdfs:</code></td><td><code>http://www.w3.org/2000/01/rdf-schema#</code></td></tr>
+<tr><td><code>xsd:</code></td><td><code>http://www.w3.org/2001/XMLSchema#</code></td></tr>
+</table>
+
+
+<footer>
+    <p>Riksdag Ontology v0.1.0 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+    · <a href="index.html">Back to index</a></p>
+</footer>
+</body>
+</html>

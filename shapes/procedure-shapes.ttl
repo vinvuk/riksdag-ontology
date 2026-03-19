@@ -1,0 +1,83 @@
+@prefix rdf:    <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:   <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh:     <http://www.w3.org/ns/shacl#> .
+@prefix xsd:    <http://www.w3.org/2001/XMLSchema#> .
+@prefix rksdag: <https://ontology.riksdagen.se/def/> .
+
+# =============================================================================
+# SHACL Shapes — Procedure Module Validation
+# =============================================================================
+
+rksdag:WorkPackageShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:WorkPackage ;
+    sh:property [
+        sh:path rksdag:hasProcedure ;
+        sh:class rksdag:Procedure ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:name "procedur"@sv ;
+    ] ;
+    sh:property [
+        sh:path rksdag:hasBusinessItem ;
+        sh:class rksdag:BusinessItem ;
+        sh:minCount 1 ;
+        sh:name "händelser"@sv ;
+        sh:message "Ett ärendepaket måste ha minst en händelse."@sv ;
+    ] .
+
+rksdag:BusinessItemShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:BusinessItem ;
+    sh:property [
+        sh:path rksdag:actualisesStep ;
+        sh:class rksdag:Step ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rksdag:eventDate ;
+        sh:datatype xsd:date ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+rksdag:ParliamentarySessionShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:ParliamentarySession ;
+    sh:property [
+        sh:path rksdag:sessionId ;
+        sh:datatype xsd:string ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+        sh:pattern "^\\d{4}/\\d{2}$" ;
+        sh:name "riksmötes-ID"@sv ;
+        sh:message "Riksmötes-ID måste ha formatet ÅÅÅÅ/ÅÅ."@sv ;
+    ] .
+
+rksdag:RouteShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:Route ;
+    sh:property [
+        sh:path rksdag:fromStep ;
+        sh:class rksdag:Step ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] ;
+    sh:property [
+        sh:path rksdag:toStep ;
+        sh:class rksdag:Step ;
+        sh:minCount 1 ;
+        sh:maxCount 1 ;
+    ] .
+
+rksdag:BudgetProcedureShape
+    a sh:NodeShape ;
+    sh:targetClass rksdag:BudgetProcedure ;
+    sh:property [
+        sh:path rksdag:hasStep ;
+        sh:class rksdag:Step ;
+        sh:minCount 1 ;
+        sh:name "har steg"@sv , "has step"@en ;
+        sh:message "Varje budgetprocess måste ha minst ett steg."@sv ;
+    ] .

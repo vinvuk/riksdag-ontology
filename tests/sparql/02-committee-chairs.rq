@@ -1,0 +1,29 @@
+# Competency Q5: Who chairs each committee?
+PREFIX rksdag: <https://ontology.riksdagen.se/def/>
+PREFIX rksdagv: <https://ontology.riksdagen.se/vocab/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+
+SELECT ?committeeName ?chairName ?party
+WHERE {
+    ?membership a rksdag:CommitteeMembership ;
+                rksdag:inOrganization ?committee ;
+                rksdag:hasRole rksdagv:role-Ordforande ;
+                rksdag:endDate ?end .
+    # Current = end date is in the future
+    FILTER (?end >= "2026-03-19"^^xsd:date)
+    ?person rksdag:hasMembership ?membership ;
+            foaf:givenName ?fname ;
+            foaf:familyName ?lname .
+    ?committee rksdag:organCode ?code .
+    OPTIONAL {
+        ?person rksdag:hasMembership ?partyMembership .
+        ?partyMembership a rksdag:PartyMembership ;
+                         rksdag:inOrganization ?partyOrg .
+        ?partyOrg rksdag:partyAbbreviation ?party .
+    }
+    BIND(CONCAT(?fname, " ", ?lname) AS ?chairName)
+    BIND(?code AS ?committeeName)
+}
+ORDER BY ?committeeName

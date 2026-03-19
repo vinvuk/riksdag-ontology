@@ -1,0 +1,69 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+@prefix rksdag:  <https://ontology.riksdagen.se/def/> .
+
+# =============================================================================
+# SKOS Concept Scheme — Debate Types (Debattyper)
+# =============================================================================
+
+rksdagv:DebateTypeScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "Debattyper"@sv , "Debate Types"@en ;
+    dcterms:description
+        """Typer av debatter i riksdagens kammare."""@sv ,
+        """Types of debates in the Riksdag chamber."""@en ;
+    dcterms:created "2026-03-19"^^xsd:date .
+
+rksdagv:debate-arendedebatt
+    a skos:Concept ;
+    skos:inScheme rksdagv:DebateTypeScheme ;
+    skos:notation "ärendedebatt" ;
+    skos:prefLabel "Ärendedebatt"@sv , "Subject Debate"@en ;
+    skos:definition
+        """Debatt om ett specifikt ärende, vanligtvis ett betänkande."""@sv ,
+        """Debate on a specific matter, usually a committee report."""@en ;
+    skos:exactMatch rksdag:SubjectDebate .
+
+rksdagv:debate-interpellationsdebatt
+    a skos:Concept ;
+    skos:inScheme rksdagv:DebateTypeScheme ;
+    skos:notation "interpellationsdebatt" ;
+    skos:prefLabel "Interpellationsdebatt"@sv , "Interpellation Debate"@en ;
+    skos:definition
+        """Debatt där ett statsråd besvarar en interpellation."""@sv ,
+        """Debate in which a minister answers an interpellation."""@en ;
+    skos:exactMatch rksdag:InterpellationDebate .
+
+rksdagv:debate-aktuell-debatt
+    a skos:Concept ;
+    skos:inScheme rksdagv:DebateTypeScheme ;
+    skos:notation "aktuell debatt" ;
+    skos:prefLabel "Aktuell debatt"@sv , "Current Affairs Debate"@en ;
+    skos:definition
+        """Debatt begärd av ett parti om en dagsaktuell fråga."""@sv ,
+        """Debate requested by a party on a topical issue."""@en ;
+    skos:exactMatch rksdag:CurrentAffairsDebate .
+
+rksdagv:debate-partiledardebatt
+    a skos:Concept ;
+    skos:inScheme rksdagv:DebateTypeScheme ;
+    skos:notation "partiledardebatt" ;
+    skos:prefLabel "Partiledardebatt"@sv , "Party Leader Debate"@en ;
+    skos:definition
+        """Debatt mellan partiledarna, hålls normalt två gånger per riksmöte."""@sv ,
+        """Debate between party leaders, normally held twice per session."""@en ;
+    skos:exactMatch rksdag:PartyLeaderDebate .
+
+rksdagv:debate-allmanpolitisk-debatt
+    a skos:Concept ;
+    skos:inScheme rksdagv:DebateTypeScheme ;
+    skos:notation "allmänpolitisk debatt" ;
+    skos:prefLabel "Allmänpolitisk debatt"@sv , "General Policy Debate"@en ;
+    skos:definition
+        """Bred debatt om regeringens allmänna politik."""@sv ,
+        """Broad debate on the Government's general policy."""@en ;
+    skos:exactMatch rksdag:GeneralPolicyDebate .

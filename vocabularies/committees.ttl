@@ -1,0 +1,133 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# SKOS Concept Scheme — Riksdag Committees (Utskott)
+# =============================================================================
+
+rksdagv:CommitteeScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "Riksdagsutskott"@sv , "Riksdag Committees"@en ;
+    dcterms:description
+        "De 15 fasta utskotten i Sveriges riksdag samt EU-nämnden."@sv ,
+        """The 15 standing committees of the Swedish Riksdag and the Committee on EU Affairs."""@en ;
+    dcterms:created "2026-03-19"^^xsd:date .
+
+rksdagv:committee-AU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "AU" ;
+    skos:prefLabel "Arbetsmarknadsutskottet"@sv ,
+                   "Committee on the Labour Market"@en .
+
+rksdagv:committee-CU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "CU" ;
+    skos:prefLabel "Civilutskottet"@sv ,
+                   "Committee on Civil Affairs"@en .
+
+rksdagv:committee-FiU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "FiU" ;
+    skos:prefLabel "Finansutskottet"@sv ,
+                   "Committee on Finance"@en .
+
+rksdagv:committee-FoU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "FöU" ;
+    skos:prefLabel "Försvarsutskottet"@sv ,
+                   "Committee on Defence"@en .
+
+rksdagv:committee-JuU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "JuU" ;
+    skos:prefLabel "Justitieutskottet"@sv ,
+                   "Committee on Justice"@en .
+
+rksdagv:committee-KrU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "KrU" ;
+    skos:prefLabel "Kulturutskottet"@sv ,
+                   "Committee on Cultural Affairs"@en .
+
+rksdagv:committee-KU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "KU" ;
+    skos:prefLabel "Konstitutionsutskottet"@sv ,
+                   "Committee on the Constitution"@en .
+
+rksdagv:committee-MJU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "MJU" ;
+    skos:prefLabel "Miljö- och jordbruksutskottet"@sv ,
+                   "Committee on Environment and Agriculture"@en .
+
+rksdagv:committee-NU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "NU" ;
+    skos:prefLabel "Näringsutskottet"@sv ,
+                   "Committee on Industry and Trade"@en .
+
+rksdagv:committee-SkU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "SkU" ;
+    skos:prefLabel "Skatteutskottet"@sv ,
+                   "Committee on Taxation"@en .
+
+rksdagv:committee-SfU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "SfU" ;
+    skos:prefLabel "Socialförsäkringsutskottet"@sv ,
+                   "Committee on Social Insurance"@en .
+
+rksdagv:committee-SoU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "SoU" ;
+    skos:prefLabel "Socialutskottet"@sv ,
+                   "Committee on Health and Welfare"@en .
+
+rksdagv:committee-TU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "TU" ;
+    skos:prefLabel "Trafikutskottet"@sv ,
+                   "Committee on Transport and Communications"@en .
+
+rksdagv:committee-UbU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "UbU" ;
+    skos:prefLabel "Utbildningsutskottet"@sv ,
+                   "Committee on Education"@en .
+
+rksdagv:committee-UU
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "UU" ;
+    skos:prefLabel "Utrikesutskottet"@sv ,
+                   "Committee on Foreign Affairs"@en .
+
+rksdagv:committee-EUN
+    a skos:Concept ;
+    skos:inScheme rksdagv:CommitteeScheme ;
+    skos:notation "EUN" ;
+    skos:prefLabel "EU-nämnden"@sv ,
+                   "Committee on EU Affairs"@en ;
+    skos:scopeNote
+        """EU-nämnden är inte ett utskott i formell mening utan ett särskilt riksdagsorgan för samråd med regeringen i EU-frågor."""@sv ,
+        """The EU Affairs Committee is not formally a committee but a special Riksdag body for consultation with the Government on EU matters."""@en .

@@ -1,0 +1,15 @@
+.venv/
+__pycache__/
+*.pyc
+dist/
+tools/robot.jar
+tools/graphdb-free/
+tools/fuseki/
+run/
+*.db
+.env
+.DS_Store
+*.egg-info/
+node_modules/
+data/*.json
+data/*.ttl

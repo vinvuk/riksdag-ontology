@@ -1,0 +1,42 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix org:     <http://www.w3.org/ns/org#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix schema:  <https://schema.org/> .
+@prefix eli:     <http://data.europa.eu/eli/ontology#> .
+@prefix prov:    <http://www.w3.org/ns/prov#> .
+@prefix rksdag:  <https://ontology.riksdagen.se/def/> .
+@prefix rksdagd: <https://data.riksdagen.se/id/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# Swedish Riksdag Ontology — Master Module
+# =============================================================================
+
+<https://ontology.riksdagen.se/def/>
+    a owl:Ontology ;
+    owl:versionIRI <https://ontology.riksdagen.se/def/0.1.0/> ;
+    owl:versionInfo "0.1.0" ;
+    dcterms:title "Riksdagens ontologi"@sv ,
+                  "Swedish Riksdag Ontology"@en ;
+    dcterms:description
+        """En formell OWL 2 DL-ontologi för Sveriges riksdag som modellerar ledamöter, dokument, lagstiftningsprocesser, voteringar och organisationsstruktur. Anpassad till ELI (European Legislation Identifier) och W3C-standarder."""@sv ,
+        """A formal OWL 2 DL ontology for the Swedish Riksdag (parliament), modeling members, documents, legislative processes, votes, and organizational structure. Aligned with ELI (European Legislation Identifier) and W3C standards."""@en ;
+    dcterms:created "2026-03-19"^^xsd:date ;
+    dcterms:creator "Vincent Vukovic" ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    dcterms:source <https://data.riksdagen.se/> ;
+    rdfs:seeAlso <https://data.europa.eu/eli/ontology> ,
+                 <http://rinfo.lagrummet.se/ns/2008/11/rinfo/publ> ;
+
+    # Module imports (tools like ROBOT resolve these from local files)
+    owl:imports <https://ontology.riksdagen.se/def/agency> ,
+                <https://ontology.riksdagen.se/def/documents> ,
+                <https://ontology.riksdagen.se/def/procedure> ,
+                <https://ontology.riksdagen.se/def/voting> ,
+                <https://ontology.riksdagen.se/def/interface> .

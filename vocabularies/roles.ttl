@@ -1,0 +1,81 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# SKOS Concept Scheme — Parliamentary Roles (Riksdagsroller)
+# =============================================================================
+
+rksdagv:RoleScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "Riksdagsroller"@sv , "Parliamentary Roles"@en ;
+    dcterms:description
+        "Roller inom riksdagen och dess organ."@sv ,
+        "Roles within the Riksdag and its bodies."@en ;
+    dcterms:created "2026-03-19"^^xsd:date .
+
+rksdagv:role-Ledamot
+    a skos:Concept ;
+    skos:inScheme rksdagv:RoleScheme ;
+    skos:notation "Ledamot" ;
+    skos:prefLabel "Ledamot"@sv , "Member"@en ;
+    skos:definition "Ordinarie ledamot i utskott eller riksdagen."@sv ,
+                    "Full member of a committee or the Riksdag."@en .
+
+rksdagv:role-Suppleant
+    a skos:Concept ;
+    skos:inScheme rksdagv:RoleScheme ;
+    skos:notation "Suppleant" ;
+    skos:prefLabel "Suppleant"@sv , "Alternate"@en ;
+    skos:definition "Suppleant (ersättare) i ett utskott."@sv ,
+                    "Alternate (substitute) in a committee."@en .
+
+rksdagv:role-Ordforande
+    a skos:Concept ;
+    skos:inScheme rksdagv:RoleScheme ;
+    skos:notation "Ordförande" ;
+    skos:prefLabel "Ordförande"@sv , "Chair"@en ;
+    skos:definition "Ordförande i ett utskott eller organ."@sv ,
+                    "Chair of a committee or body."@en .
+
+rksdagv:role-ViceOrdforande
+    a skos:Concept ;
+    skos:inScheme rksdagv:RoleScheme ;
+    skos:notation "Vice ordförande" ;
+    skos:prefLabel "Vice ordförande"@sv , "Vice Chair"@en .
+
+rksdagv:role-Talman
+    a skos:Concept ;
+    skos:inScheme rksdagv:RoleScheme ;
+    skos:notation "Talman" ;
+    skos:prefLabel "Talman"@sv , "Speaker"@en ;
+    skos:definition "Riksdagens talman."@sv , "The Speaker of the Riksdag."@en .
+
+rksdagv:role-ForstViceTalman
+    a skos:Concept ;
+    skos:inScheme rksdagv:RoleScheme ;
+    skos:notation "Förste vice talman" ;
+    skos:prefLabel "Förste vice talman"@sv , "First Deputy Speaker"@en .
+
+rksdagv:role-AndreViceTalman
+    a skos:Concept ;
+    skos:inScheme rksdagv:RoleScheme ;
+    skos:notation "Andre vice talman" ;
+    skos:prefLabel "Andre vice talman"@sv , "Second Deputy Speaker"@en .
+
+rksdagv:role-TredjeViceTalman
+    a skos:Concept ;
+    skos:inScheme rksdagv:RoleScheme ;
+    skos:notation "Tredje vice talman" ;
+    skos:prefLabel "Tredje vice talman"@sv , "Third Deputy Speaker"@en .
+
+rksdagv:role-Gruppledare
+    a skos:Concept ;
+    skos:inScheme rksdagv:RoleScheme ;
+    skos:notation "Gruppledare" ;
+    skos:prefLabel "Gruppledare"@sv , "Group Leader"@en ;
+    skos:definition "Partigruppens ledare i riksdagen."@sv ,
+                    "Leader of a party group in the Riksdag."@en .

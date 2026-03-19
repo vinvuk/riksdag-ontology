@@ -1,0 +1,454 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix foaf:    <http://xmlns.com/foaf/0.1/> .
+@prefix org:     <http://www.w3.org/ns/org#> .
+@prefix time:    <http://www.w3.org/2006/time#> .
+@prefix schema:  <https://schema.org/> .
+@prefix rksdag:  <https://ontology.riksdagen.se/def/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# Agency Module — Organizations, People, Roles, Memberships
+# =============================================================================
+
+<https://ontology.riksdagen.se/def/agency>
+    a owl:Ontology ;
+    dcterms:title "Riksdagsontologin — Aktörsmodul"@sv ,
+                  "Riksdag Ontology — Agency Module"@en ;
+    dcterms:description
+        """Modellerar riksdagens organisationsstruktur, ledamöter, partier, utskott och tidsavgränsade medlemskap."""@sv ,
+        """Models the Riksdag's organizational structure, members, parties, committees, and time-bounded memberships."""@en ;
+    owl:versionInfo "0.1.0" .
+
+# -----------------------------------------------------------------------------
+# External class declarations (for OWL completeness)
+# -----------------------------------------------------------------------------
+
+foaf:Person a owl:Class ;
+    rdfs:label "Person (FOAF)"@sv , "Person (FOAF)"@en .
+schema:Person a owl:Class ;
+    rdfs:label "Person (Schema.org)"@sv , "Person (Schema.org)"@en .
+org:FormalOrganization a owl:Class ;
+    rdfs:label "Formell organisation"@sv , "Formal Organization"@en .
+org:OrganizationalUnit a owl:Class ;
+    rdfs:label "Organisationsenhet"@sv , "Organizational Unit"@en .
+org:Membership a owl:Class ;
+    rdfs:label "Medlemskap"@sv , "Membership"@en .
+skos:Concept a owl:Class ;
+    rdfs:label "Begrepp"@sv , "Concept"@en .
+
+# -----------------------------------------------------------------------------
+# External property declarations (for OWL completeness)
+# -----------------------------------------------------------------------------
+
+org:subOrganizationOf a owl:ObjectProperty .
+org:organization a owl:ObjectProperty .
+org:hasMembership a owl:ObjectProperty .
+org:role a owl:ObjectProperty .
+org:identifier a owl:DatatypeProperty .
+
+# -----------------------------------------------------------------------------
+# Classes — Organizations
+# -----------------------------------------------------------------------------
+
+rksdag:ParliamentaryBody
+    a owl:Class ;
+    rdfs:subClassOf org:FormalOrganization ;
+    rdfs:label "Parlamentariskt organ"@sv , "Parliamentary Body"@en ;
+    rdfs:comment
+        """En formell organisation inom riksdagen, t.ex. riksdagen själv, riksdagsstyrelsen eller riksdagsförvaltningen."""@sv ,
+        """A formal organization within the Riksdag, e.g. the Riksdag itself, the Riksdag Board, or the Riksdag Administration."""@en .
+
+rksdag:PoliticalParty
+    a owl:Class ;
+    rdfs:subClassOf org:FormalOrganization ;
+    rdfs:label "Politiskt parti"@sv , "Political Party"@en ;
+    rdfs:comment
+        "Ett politiskt parti representerat i riksdagen."@sv ,
+        "A political party represented in the Riksdag."@en .
+
+rksdag:Committee
+    a owl:Class ;
+    rdfs:subClassOf org:FormalOrganization ;
+    rdfs:label "Utskott"@sv , "Committee"@en ;
+    rdfs:comment
+        """Ett riksdagsutskott, t.ex. finansutskottet (FiU) eller konstitutionsutskottet (KU)."""@sv ,
+        """A Riksdag committee, e.g. the Committee on Finance (FiU) or the Committee on the Constitution (KU)."""@en .
+
+rksdag:EUCommittee
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Committee ;
+    rdfs:label "EU-nämnden"@sv , "Committee on EU Affairs"@en ;
+    rdfs:comment
+        "EU-nämnden — det särskilda organet för samråd om EU-frågor."@sv ,
+        "The EU Affairs Committee — the special body for EU consultations."@en .
+
+rksdag:Government
+    a owl:Class ;
+    rdfs:subClassOf org:FormalOrganization ;
+    rdfs:label "Regeringen"@sv , "The Government"@en ;
+    rdfs:comment
+        "Sveriges regering som kollektivt organ."@sv ,
+        "The Swedish Government as a collective body."@en .
+
+rksdag:Ministry
+    a owl:Class ;
+    rdfs:subClassOf org:OrganizationalUnit ;
+    rdfs:label "Departement"@sv , "Ministry"@en ;
+    rdfs:comment
+        "Ett departement inom Regeringskansliet."@sv ,
+        "A ministry within the Government Offices."@en .
+
+rksdag:ElectoralDistrict
+    a owl:Class ;
+    rdfs:label "Valkrets"@sv , "Electoral District"@en ;
+    rdfs:comment
+        "En av de 29 valkretsarna för val till riksdagen."@sv ,
+        "One of the 29 electoral districts for Riksdag elections."@en .
+
+# -----------------------------------------------------------------------------
+# Classes — People
+# -----------------------------------------------------------------------------
+
+rksdag:MemberOfParliament
+    a owl:Class ;
+    rdfs:subClassOf foaf:Person , schema:Person ;
+    rdfs:label "Riksdagsledamot"@sv , "Member of Parliament"@en ;
+    rdfs:comment
+        "En ledamot av Sveriges riksdag."@sv ,
+        "A member of the Swedish Riksdag."@en .
+
+rksdag:AlternateMember
+    a owl:Class ;
+    rdfs:subClassOf foaf:Person ;
+    rdfs:label "Ersättare"@sv , "Alternate Member"@en ;
+    rdfs:comment
+        "En ersättare (suppleant) för en riksdagsledamot."@sv ,
+        "An alternate (substitute) for a member of parliament."@en .
+
+rksdag:Minister
+    a owl:Class ;
+    rdfs:subClassOf foaf:Person ;
+    rdfs:label "Statsråd"@sv , "Minister"@en ;
+    rdfs:comment
+        "Ett statsråd i Sveriges regering."@sv ,
+        "A minister in the Swedish Government."@en .
+
+rksdag:Speaker
+    a owl:Class ;
+    rdfs:subClassOf rksdag:MemberOfParliament ;
+    rdfs:label "Talman"@sv , "Speaker"@en ;
+    rdfs:comment
+        "Riksdagens talman eller vice talman."@sv ,
+        "The Speaker or Deputy Speaker of the Riksdag."@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Memberships (N-ary temporal pattern)
+# -----------------------------------------------------------------------------
+
+rksdag:PartyMembership
+    a owl:Class ;
+    rdfs:subClassOf org:Membership ;
+    rdfs:label "Partimedlemskap"@sv , "Party Membership"@en ;
+    rdfs:comment
+        """Tidsavgränsat medlemskap som kopplar en person till ett politiskt parti under en viss period."""@sv ,
+        """Time-bounded membership linking a person to a political party during a specific period."""@en .
+
+rksdag:CommitteeMembership
+    a owl:Class ;
+    rdfs:subClassOf org:Membership ;
+    rdfs:label "Utskottsmedlemskap"@sv , "Committee Membership"@en ;
+    rdfs:comment
+        """Tidsavgränsat medlemskap som kopplar en person till ett utskott med en viss roll (ledamot, suppleant, ordförande)."""@sv ,
+        """Time-bounded membership linking a person to a committee with a specific role (member, alternate, chair)."""@en .
+
+rksdag:ParliamentaryTenure
+    a owl:Class ;
+    rdfs:subClassOf org:Membership ;
+    rdfs:label "Riksdagsmandat"@sv , "Parliamentary Tenure"@en ;
+    rdfs:comment
+        """Tidsavgränsat mandat som riksdagsledamot, kopplat till en valkrets och mandatperiod."""@sv ,
+        """Time-bounded tenure as a member of parliament, linked to an electoral district and mandate period."""@en .
+
+# -----------------------------------------------------------------------------
+# Object Properties
+# -----------------------------------------------------------------------------
+
+rksdag:hasMembership
+    a owl:ObjectProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range org:Membership ;
+    rdfs:label "har medlemskap"@sv , "has membership"@en ;
+    rdfs:comment
+        "Kopplar en person till ett tidsavgränsat medlemskap."@sv ,
+        "Links a person to a time-bounded membership."@en ;
+    owl:inverseOf rksdag:memberOf .
+
+rksdag:memberOf
+    a owl:ObjectProperty ;
+    rdfs:domain org:Membership ;
+    rdfs:range foaf:Person ;
+    rdfs:label "medlem"@sv , "member of"@en ;
+    rdfs:comment
+        "Kopplar ett medlemskap tillbaka till den person det avser."@sv ,
+        "Links a membership back to the person it pertains to."@en ;
+    owl:inverseOf rksdag:hasMembership .
+
+rksdag:inOrganization
+    a owl:ObjectProperty ;
+    rdfs:subPropertyOf org:organization ;
+    rdfs:domain org:Membership ;
+    rdfs:range org:FormalOrganization ;
+    rdfs:label "i organisation"@sv , "in organization"@en ;
+    rdfs:comment
+        "Den organisation som ett medlemskap avser."@sv ,
+        "The organization a membership pertains to."@en .
+
+rksdag:hasRole
+    a owl:ObjectProperty ;
+    rdfs:domain org:Membership ;
+    rdfs:range skos:Concept ;
+    rdfs:label "har roll"@sv , "has role"@en ;
+    rdfs:comment
+        """Den roll en person har inom ett medlemskap (t.ex. ordförande, ledamot, suppleant)."""@sv ,
+        """The role a person holds within a membership (e.g. chair, member, alternate)."""@en .
+
+rksdag:representsDistrict
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ParliamentaryTenure ;
+    rdfs:range rksdag:ElectoralDistrict ;
+    rdfs:label "representerar valkrets"@sv , "represents district"@en ;
+    rdfs:comment
+        "Den valkrets som en ledamot representerar."@sv ,
+        "The electoral district a member represents."@en .
+
+rksdag:partOf
+    a owl:ObjectProperty , owl:TransitiveProperty ;
+    rdfs:subPropertyOf org:subOrganizationOf ;
+    rdfs:domain org:FormalOrganization ;
+    rdfs:range org:FormalOrganization ;
+    rdfs:label "del av"@sv , "part of"@en ;
+    rdfs:comment
+        "Hierarkisk organisationsrelation."@sv ,
+        "Hierarchical organizational relationship."@en .
+
+# -----------------------------------------------------------------------------
+# Datatype Properties
+# -----------------------------------------------------------------------------
+
+rksdag:intressentId
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "intressent-ID"@sv , "stakeholder ID"@en ;
+    rdfs:comment
+        "Unikt identifieringsnummer från riksdagens API (intressent_id)."@sv ,
+        "Unique identifier from the Riksdag API (intressent_id)."@en .
+
+rksdag:birthYear
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:gYear ;
+    rdfs:label "födelseår"@sv , "birth year"@en ;
+    rdfs:comment
+        "Personens födelseår."@sv ,
+        "The person's year of birth."@en .
+
+rksdag:gender
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:string ;
+    rdfs:label "kön"@sv , "gender"@en ;
+    rdfs:comment
+        "Personens kön enligt riksdagens register."@sv ,
+        "The person's gender as recorded in the Riksdag register."@en .
+
+rksdag:imageUrl
+    a owl:DatatypeProperty ;
+    rdfs:domain foaf:Person ;
+    rdfs:range xsd:anyURI ;
+    rdfs:label "bild-URL"@sv , "image URL"@en ;
+    rdfs:comment
+        "URL till personens officiella porträttbild."@sv ,
+        "URL to the person's official portrait image."@en .
+
+rksdag:organCode
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain org:FormalOrganization ;
+    rdfs:range xsd:string ;
+    rdfs:label "organkod"@sv , "organ code"@en ;
+    rdfs:comment
+        "Förkortningskod för ett riksdagsorgan (t.ex. FiU, KU, AU)."@sv ,
+        "Abbreviation code for a Riksdag body (e.g. FiU, KU, AU)."@en .
+
+rksdag:partyAbbreviation
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:PoliticalParty ;
+    rdfs:range xsd:string ;
+    rdfs:label "partiförkortning"@sv , "party abbreviation"@en ;
+    rdfs:comment
+        "Partiets officiella förkortning (t.ex. S, M, SD)."@sv ,
+        "The party's official abbreviation (e.g. S, M, SD)."@en .
+
+rksdag:startDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain org:Membership ;
+    rdfs:range xsd:date ;
+    rdfs:label "startdatum"@sv , "start date"@en ;
+    rdfs:comment
+        "Datum då medlemskapet eller uppdraget börjar."@sv ,
+        "Date when the membership or assignment begins."@en .
+
+rksdag:endDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain org:Membership ;
+    rdfs:range xsd:date ;
+    rdfs:label "slutdatum"@sv , "end date"@en ;
+    rdfs:comment
+        "Datum då medlemskapet eller uppdraget upphör."@sv ,
+        "Date when the membership or assignment ends."@en .
+
+# =============================================================================
+# Gap 2: Lagrådet Detail
+# =============================================================================
+
+rksdag:CouncilOnLegislation
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ParliamentaryBody ;
+    rdfs:label "Lagrådet"@sv , "Council on Legislation"@en ;
+    rdfs:comment
+        """Lagrådet — det organ som granskar lagförslag ur juridisk-teknisk synpunkt, bemannat av justitieråd från Högsta domstolen och Högsta förvaltningsdomstolen."""@sv ,
+        """The Council on Legislation — the body that reviews legislative proposals from a legal-technical perspective, staffed by justices from the Supreme Court and the Supreme Administrative Court."""@en .
+
+rksdag:JusticeOfSupremeCourt
+    a owl:Class ;
+    rdfs:subClassOf foaf:Person ;
+    rdfs:label "Justitieråd"@sv , "Justice of the Supreme Court"@en ;
+    rdfs:comment
+        """Ett justitieråd som tjänstgör i Lagrådet, hämtat från Högsta domstolen eller Högsta förvaltningsdomstolen."""@sv ,
+        """A justice serving on the Council on Legislation, drawn from the Supreme Court or the Supreme Administrative Court."""@en .
+
+# =============================================================================
+# Gap 5: Election and Mandate Modeling
+# =============================================================================
+
+rksdag:Election
+    a owl:Class ;
+    rdfs:label "Riksdagsval"@sv , "General Election"@en ;
+    rdfs:comment
+        """Ett riksdagsval — ordinarie val (vart fjärde år) eller extra val."""@sv ,
+        """A general election to the Riksdag — ordinary (every four years) or snap election."""@en .
+
+rksdag:ElectionResult
+    a owl:Class ;
+    rdfs:label "Valresultat"@sv , "Election Result"@en ;
+    rdfs:comment
+        """Valresultat per parti och valkrets i ett riksdagsval."""@sv ,
+        """Election result per party and electoral district in a general election."""@en .
+
+rksdag:SeatType
+    a owl:Class ;
+    rdfs:label "Mandattyp"@sv , "Seat Type"@en ;
+    rdfs:comment
+        """Typ av riksdagsmandat — fast mandat eller utjämningsmandat."""@sv ,
+        """Type of parliamentary seat — fixed seat or adjustment seat."""@en .
+
+rksdag:FixedSeat
+    a owl:Class ;
+    rdfs:subClassOf rksdag:SeatType ;
+    rdfs:label "Fast mandat"@sv , "Fixed Seat"@en ;
+    rdfs:comment
+        """Ett fast mandat — ett av de 310 mandaten som fördelas i valkretsarna."""@sv ,
+        """A fixed seat — one of the 310 seats distributed among the electoral districts."""@en .
+
+rksdag:AdjustmentSeat
+    a owl:Class ;
+    rdfs:subClassOf rksdag:SeatType ;
+    rdfs:label "Utjämningsmandat"@sv , "Adjustment Seat"@en ;
+    rdfs:comment
+        """Ett utjämningsmandat — ett av de 39 mandaten som fördelas nationellt för att utjämna proportionaliteten."""@sv ,
+        """An adjustment seat — one of the 39 seats distributed nationally to equalize proportionality."""@en .
+
+rksdag:electionDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:Election ;
+    rdfs:range xsd:date ;
+    rdfs:label "valdag"@sv , "election date"@en ;
+    rdfs:comment
+        "Datum då riksdagsvalet hålls."@sv ,
+        "Date on which the general election is held."@en .
+
+rksdag:mandateCount
+    a owl:DatatypeProperty ;
+    rdfs:domain rksdag:ElectionResult ;
+    rdfs:range xsd:nonNegativeInteger ;
+    rdfs:label "mandatantal"@sv , "mandate count"@en ;
+    rdfs:comment
+        """Antalet mandat ett parti erhållit i ett visst valresultat."""@sv ,
+        """The number of seats a party received in a given election result."""@en .
+
+rksdag:inElection
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ElectionResult ;
+    rdfs:range rksdag:Election ;
+    rdfs:label "i val"@sv , "in election"@en ;
+    rdfs:comment
+        """Det riksdagsval som valresultatet hör till."""@sv ,
+        """The general election the result belongs to."""@en .
+
+rksdag:forParty
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ElectionResult ;
+    rdfs:range rksdag:PoliticalParty ;
+    rdfs:label "för parti"@sv , "for party"@en ;
+    rdfs:comment
+        """Det parti som valresultatet avser."""@sv ,
+        """The party the election result pertains to."""@en .
+
+rksdag:inDistrict
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ElectionResult ;
+    rdfs:range rksdag:ElectoralDistrict ;
+    rdfs:label "i valkrets"@sv , "in district"@en ;
+    rdfs:comment
+        """Den valkrets som valresultatet avser."""@sv ,
+        """The electoral district the election result pertains to."""@en .
+
+rksdag:seatType
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ElectionResult ;
+    rdfs:range rksdag:SeatType ;
+    rdfs:label "mandattyp"@sv , "seat type"@en ;
+    rdfs:comment
+        "Typ av mandat i valresultatet (fast mandat eller utjämningsmandat)."@sv ,
+        "Type of seat in the election result (fixed seat or adjustment seat)."@en .
+
+# -----------------------------------------------------------------------------
+# Disjointness Axioms
+# -----------------------------------------------------------------------------
+
+# People vs Organizations
+rksdag:MemberOfParliament owl:disjointWith rksdag:PoliticalParty .
+rksdag:MemberOfParliament owl:disjointWith rksdag:Committee .
+rksdag:MemberOfParliament owl:disjointWith rksdag:ParliamentaryBody .
+rksdag:MemberOfParliament owl:disjointWith rksdag:Government .
+rksdag:MemberOfParliament owl:disjointWith rksdag:ElectoralDistrict .
+rksdag:Minister owl:disjointWith rksdag:PoliticalParty .
+rksdag:Minister owl:disjointWith rksdag:Committee .
+rksdag:PoliticalParty owl:disjointWith rksdag:Committee .
+rksdag:PoliticalParty owl:disjointWith rksdag:ElectoralDistrict .
+rksdag:Committee owl:disjointWith rksdag:ElectoralDistrict .
+rksdag:PartyMembership owl:disjointWith rksdag:CommitteeMembership .
+rksdag:PartyMembership owl:disjointWith rksdag:ParliamentaryTenure .
+rksdag:CommitteeMembership owl:disjointWith rksdag:ParliamentaryTenure .
+rksdag:Election owl:disjointWith rksdag:ElectionResult .
+rksdag:FixedSeat owl:disjointWith rksdag:AdjustmentSeat .
+
+# Cross-module disjointness (Person vs other modules)
+rksdag:MemberOfParliament owl:disjointWith rksdag:ParliamentaryDocument .
+rksdag:MemberOfParliament owl:disjointWith rksdag:VotingEvent .
+rksdag:MemberOfParliament owl:disjointWith rksdag:Procedure .

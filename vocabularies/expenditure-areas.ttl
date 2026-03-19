@@ -1,0 +1,199 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# SKOS Concept Scheme — Expenditure Areas (Utgiftsområden)
+# =============================================================================
+
+rksdagv:ExpenditureAreaScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "Utgiftsområden"@sv , "Expenditure Areas"@en ;
+    dcterms:description
+        """Sveriges 27 utgiftsområden i statsbudgeten enligt rambeslutsmodellen."""@sv ,
+        """Sweden's 27 expenditure areas in the state budget under the framework decision model."""@en ;
+    dcterms:created "2026-03-19"^^xsd:date .
+
+rksdagv:uo-1
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "1" ;
+    skos:prefLabel "Rikets styrelse"@sv , "Central Government"@en .
+
+rksdagv:uo-2
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "2" ;
+    skos:prefLabel "Samhällsekonomi och finansförvaltning"@sv ,
+                   "National Economy and Financial Management"@en .
+
+rksdagv:uo-3
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "3" ;
+    skos:prefLabel "Skatt, tull och exekution"@sv ,
+                   "Tax, Customs and Enforcement"@en .
+
+rksdagv:uo-4
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "4" ;
+    skos:prefLabel "Rättsväsendet"@sv , "The Judiciary"@en .
+
+rksdagv:uo-5
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "5" ;
+    skos:prefLabel "Internationell samverkan"@sv ,
+                   "International Cooperation"@en .
+
+rksdagv:uo-6
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "6" ;
+    skos:prefLabel "Försvar och samhällets krisberedskap"@sv ,
+                   "Defence and Society's Emergency Preparedness"@en .
+
+rksdagv:uo-7
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "7" ;
+    skos:prefLabel "Internationellt bistånd"@sv ,
+                   "International Development Cooperation"@en .
+
+rksdagv:uo-8
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "8" ;
+    skos:prefLabel "Migration"@sv , "Migration"@en .
+
+rksdagv:uo-9
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "9" ;
+    skos:prefLabel "Hälsovård, sjukvård och social omsorg"@sv ,
+                   "Health Care, Medical Care and Social Services"@en .
+
+rksdagv:uo-10
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "10" ;
+    skos:prefLabel "Ekonomisk trygghet vid sjukdom och funktionsnedsättning"@sv ,
+                   "Financial Security in the Event of Illness and Disability"@en .
+
+rksdagv:uo-11
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "11" ;
+    skos:prefLabel "Ekonomisk trygghet vid ålderdom"@sv ,
+                   "Financial Security in Old Age"@en .
+
+rksdagv:uo-12
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "12" ;
+    skos:prefLabel "Ekonomisk trygghet för familjer och barn"@sv ,
+                   "Financial Security for Families and Children"@en .
+
+rksdagv:uo-13
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "13" ;
+    skos:prefLabel "Jämställdhet och nyanlända invandrares etablering"@sv ,
+                   "Gender Equality and Newly Arrived Immigrants' Establishment"@en .
+
+rksdagv:uo-14
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "14" ;
+    skos:prefLabel "Arbetsmarknad och arbetsliv"@sv ,
+                   "Labour Market and Working Life"@en .
+
+rksdagv:uo-15
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "15" ;
+    skos:prefLabel "Studiestöd"@sv , "Financial Support for Students"@en .
+
+rksdagv:uo-16
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "16" ;
+    skos:prefLabel "Utbildning och universitetsforskning"@sv ,
+                   "Education and University Research"@en .
+
+rksdagv:uo-17
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "17" ;
+    skos:prefLabel "Kultur, medier, trossamfund och fritid"@sv ,
+                   "Culture, Media, Religious Communities and Leisure"@en .
+
+rksdagv:uo-18
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "18" ;
+    skos:prefLabel "Samhällsplanering, bostadsförsörjning och byggande samt konsumentpolitik"@sv ,
+                   "Community Planning, Housing Supply, Construction and Consumer Policy"@en .
+
+rksdagv:uo-19
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "19" ;
+    skos:prefLabel "Regional utveckling"@sv , "Regional Development"@en .
+
+rksdagv:uo-20
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "20" ;
+    skos:prefLabel "Allmän miljö- och naturvård"@sv ,
+                   "General Environmental Protection and Nature Conservation"@en .
+
+rksdagv:uo-21
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "21" ;
+    skos:prefLabel "Energi"@sv , "Energy"@en .
+
+rksdagv:uo-22
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "22" ;
+    skos:prefLabel "Kommunikationer"@sv , "Transport and Communications"@en .
+
+rksdagv:uo-23
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "23" ;
+    skos:prefLabel "Areella näringar, landsbygd och livsmedel"@sv ,
+                   "Land-based Industries, Rural Affairs and Food"@en .
+
+rksdagv:uo-24
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "24" ;
+    skos:prefLabel "Näringsliv"@sv , "Enterprise"@en .
+
+rksdagv:uo-25
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "25" ;
+    skos:prefLabel "Allmänna bidrag till kommuner"@sv ,
+                   "General Grants to Local Government"@en .
+
+rksdagv:uo-26
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "26" ;
+    skos:prefLabel "Statsskuldsräntor m.m."@sv ,
+                   "Interest on Central Government Debt etc."@en .
+
+rksdagv:uo-27
+    a skos:Concept ;
+    skos:inScheme rksdagv:ExpenditureAreaScheme ;
+    skos:notation "27" ;
+    skos:prefLabel "Avgiften till Europeiska unionen"@sv ,
+                   "Contribution to the European Union"@en .

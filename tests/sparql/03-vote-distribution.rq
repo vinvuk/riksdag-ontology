@@ -1,0 +1,20 @@
+# Competency Q11: Vote distribution per party on a voting event
+PREFIX rksdag: <https://ontology.riksdagen.se/def/>
+PREFIX rksdagv: <https://ontology.riksdagen.se/vocab/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?party ?voteChoice (COUNT(?ballot) AS ?count)
+WHERE {
+    ?event a rksdag:VotingEvent .
+    ?ballot rksdag:inVotingEvent ?event ;
+            rksdag:voter ?person ;
+            rksdag:voteOption ?option .
+    ?option skos:notation ?voteChoice .
+    ?person rksdag:hasMembership ?partyMembership .
+    ?partyMembership a rksdag:PartyMembership ;
+                     rksdag:inOrganization ?partyOrg .
+    ?partyOrg rksdag:partyAbbreviation ?party .
+    FILTER NOT EXISTS { ?partyMembership rksdag:endDate ?end }
+}
+GROUP BY ?party ?voteChoice
+ORDER BY ?party ?voteChoice

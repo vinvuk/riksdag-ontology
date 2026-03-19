@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Agency — Riksdag Ontology</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem; }
+h2 { font-size: 1.35rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem;
+     padding-bottom: 0.25rem; border-bottom: 1px solid #e0e0e0; }
+h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.25rem; }
+p { margin-bottom: 0.75rem; }
+a { color: #1a56db; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, .iri { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em;
+             background: #f5f5f5; padding: 0.1em 0.3em; border-radius: 3px; }
+.subtitle { color: #666; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.meta { color: #888; font-size: 0.8rem; margin-bottom: 0.5rem; }
+.badge { display: inline-block; font-size: 0.7rem; font-weight: 600;
+         padding: 0.15em 0.5em; border-radius: 3px; margin-left: 0.3rem;
+         vertical-align: middle; }
+.badge-class { background: #dbeafe; color: #1e40af; }
+.badge-op { background: #dcfce7; color: #166534; }
+.badge-dp { background: #fef3c7; color: #92400e; }
+.badge-vocab { background: #f3e8ff; color: #6b21a8; }
+.toc { margin: 1rem 0 2rem; }
+.toc ol { padding-left: 1.5rem; }
+.toc li { margin: 0.2rem 0; }
+.module-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 1rem 0; }
+.module-card { border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem;
+               transition: border-color 0.15s; }
+.module-card:hover { border-color: #1a56db; }
+.module-card h4 { margin: 0 0 0.25rem; }
+.module-card p { margin: 0; font-size: 0.85rem; color: #666; }
+.definition { margin: 0.5rem 0 1rem; padding-left: 1rem;
+              border-left: 3px solid #e0e0e0; }
+.definition dt { font-weight: 600; font-size: 0.85rem; color: #555; margin-top: 0.5rem; }
+.definition dd { margin-left: 0; font-size: 0.9rem; }
+.back-to-toc { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
+.namespace-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+.namespace-table th, .namespace-table td { text-align: left; padding: 0.4rem 0.75rem;
+                                           border-bottom: 1px solid #eee; }
+.namespace-table th { font-weight: 600; color: #555; }
+.diagram { margin: 1.5rem 0; text-align: center; }
+.diagram img, .diagram svg { max-width: 100%; }
+.stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0; }
+.stat { text-align: center; }
+.stat-value { font-size: 1.5rem; font-weight: 700; color: #1a56db; }
+.stat-label { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
+         font-size: 0.8rem; color: #888; }
+</style>
+</head>
+<body>
+<p class="meta"><a href="index.html">← Riksdag Ontology</a></p>
+<h1>Agency Ontology</h1>
+<p class="subtitle">Aktörer — Organizations, people, roles, and time-bounded memberships in the Riksdag.</p>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/agency</code></p>
+<p class="meta">
+    Source: <a href="https://github.com/vinvuk/riksdag-ontology/blob/main/ontology/agency.ttl">agency.ttl</a>
+    · License: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+</p>
+
+
+<div class="stats">
+    <div class="stat"><div class="stat-value">20</div><div class="stat-label">Classes</div></div>
+    <div class="stat"><div class="stat-value">8</div><div class="stat-label">Object Properties</div></div>
+    <div class="stat"><div class="stat-value">10</div><div class="stat-label">Datatype Properties</div></div>
+</div>
+
+<nav class="toc"><h2 id="toc">Table of Contents</h2><ol>
+<li><a href="#classes">Classes</a><ol>
+<li><a href="#AdjustmentSeat">AdjustmentSeat</a></li>
+<li><a href="#AlternateMember">AlternateMember</a></li>
+<li><a href="#Committee">Committee</a></li>
+<li><a href="#CommitteeMembership">CommitteeMembership</a></li>
+<li><a href="#CouncilOnLegislation">CouncilOnLegislation</a></li>
+<li><a href="#EUCommittee">EUCommittee</a></li>
+<li><a href="#Election">Election</a></li>
+<li><a href="#ElectionResult">ElectionResult</a></li>
+<li><a href="#ElectoralDistrict">ElectoralDistrict</a></li>
+<li><a href="#FixedSeat">FixedSeat</a></li>
+<li><a href="#Government">Government</a></li>
+<li><a href="#JusticeOfSupremeCourt">JusticeOfSupremeCourt</a></li>
+<li><a href="#MemberOfParliament">MemberOfParliament</a></li>
+<li><a href="#Minister">Minister</a></li>
+<li><a href="#Ministry">Ministry</a></li>
+<li><a href="#ParliamentaryBody">ParliamentaryBody</a></li>
+<li><a href="#ParliamentaryTenure">ParliamentaryTenure</a></li>
+<li><a href="#PartyMembership">PartyMembership</a></li>
+<li><a href="#PoliticalParty">PoliticalParty</a></li>
+<li><a href="#Speaker">Speaker</a></li>
+</ol></li>
+<li><a href="#object-properties">Object Properties</a><ol>
+<li><a href="#prop-forParty">forParty</a></li>
+<li><a href="#prop-hasMembership">hasMembership</a></li>
+<li><a href="#prop-hasRole">hasRole</a></li>
+<li><a href="#prop-inDistrict">inDistrict</a></li>
+<li><a href="#prop-inElection">inElection</a></li>
+<li><a href="#prop-inOrganization">inOrganization</a></li>
+<li><a href="#prop-partOf">partOf</a></li>
+<li><a href="#prop-representsDistrict">representsDistrict</a></li>
+</ol></li>
+<li><a href="#datatype-properties">Datatype Properties</a><ol>
+<li><a href="#prop-birthYear">birthYear</a></li>
+<li><a href="#prop-electionDate">electionDate</a></li>
+<li><a href="#prop-endDate">endDate</a></li>
+<li><a href="#prop-gender">gender</a></li>
+<li><a href="#prop-imageUrl">imageUrl</a></li>
+<li><a href="#prop-intressentId">intressentId</a></li>
+<li><a href="#prop-mandateCount">mandateCount</a></li>
+<li><a href="#prop-organCode">organCode</a></li>
+<li><a href="#prop-partyAbbreviation">partyAbbreviation</a></li>
+<li><a href="#prop-startDate">startDate</a></li>
+</ol></li>
+<li><a href="#namespaces">Namespaces</a></li>
+</ol></nav>
+<h2 id="classes">Classes</h2>
+<h3 id="AdjustmentSeat">AdjustmentSeat</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/AdjustmentSeat</code></p>
+<p><strong>Utjämningsmandat</strong> / Adjustment Seat</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An adjustment seat — one of the 39 seats distributed nationally to equalize proportionality.</dd>
+<dt>Definition (sv)</dt><dd>Ett utjämningsmandat — ett av de 39 mandaten som fördelas nationellt för att utjämna proportionaliteten.</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="AlternateMember">AlternateMember</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/AlternateMember</code></p>
+<p><strong>Ersättare</strong> / Alternate Member</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>An alternate (substitute) for a member of parliament.</dd>
+<dt>Definition (sv)</dt><dd>En ersättare (suppleant) för en riksdagsledamot.</dd>
+<dt>Subclass of</dt><dd><code>Person</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Committee">Committee</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Committee</code></p>
+<p><strong>Utskott</strong> / Committee</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A Riksdag committee, e.g. the Committee on Finance (FiU) or the Committee on the Constitution (KU).</dd>
+<dt>Definition (sv)</dt><dd>Ett riksdagsutskott, t.ex. finansutskottet (FiU) eller konstitutionsutskottet (KU).</dd>
+<dt>Subclass of</dt><dd><code>FormalOrganization</code></dd>
+<dt>Has subclasses</dt><dd><a href="#EUCommittee">EUCommittee</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CommitteeMembership">CommitteeMembership</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CommitteeMembership</code></p>
+<p><strong>Utskottsmedlemskap</strong> / Committee Membership</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Time-bounded membership linking a person to a committee with a specific role (member, alternate, chair).</dd>
+<dt>Definition (sv)</dt><dd>Tidsavgränsat medlemskap som kopplar en person till ett utskott med en viss roll (ledamot, suppleant, ordförande).</dd>
+<dt>Subclass of</dt><dd><code>Membership</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="CouncilOnLegislation">CouncilOnLegislation</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/CouncilOnLegislation</code></p>
+<p><strong>Lagrådet</strong> / Council on Legislation</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Council on Legislation — the body that reviews legislative proposals from a legal-technical perspective, staffed by justices from the Supreme Court and the Supreme Administrative Court.</dd>
+<dt>Definition (sv)</dt><dd>Lagrådet — det organ som granskar lagförslag ur juridisk-teknisk synpunkt, bemannat av justitieråd från Högsta domstolen och Högsta förvaltningsdomstolen.</dd>
+<dt>Subclass of</dt><dd><a href="#ParliamentaryBody">ParliamentaryBody</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="EUCommittee">EUCommittee</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/EUCommittee</code></p>
+<p><strong>EU-nämnden</strong> / Committee on EU Affairs</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The EU Affairs Committee — the special body for EU consultations.</dd>
+<dt>Definition (sv)</dt><dd>EU-nämnden — det särskilda organet för samråd om EU-frågor.</dd>
+<dt>Subclass of</dt><dd><a href="#Committee">Committee</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Election">Election</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Election</code></p>
+<p><strong>Riksdagsval</strong> / General Election</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A general election to the Riksdag — ordinary (every four years) or snap election.</dd>
+<dt>Definition (sv)</dt><dd>Ett riksdagsval — ordinarie val (vart fjärde år) eller extra val.</dd>
+<dt>In domain of</dt><dd><a href="#prop-electionDate">electionDate</a> <span class="badge badge-dp">dp</span></dd>
+<dt>In range of</dt><dd><a href="#prop-inElection">inElection</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ElectionResult">ElectionResult</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ElectionResult</code></p>
+<p><strong>Valresultat</strong> / Election Result</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Election result per party and electoral district in a general election.</dd>
+<dt>Definition (sv)</dt><dd>Valresultat per parti och valkrets i ett riksdagsval.</dd>
+<dt>In domain of</dt><dd><a href="#prop-forParty">forParty</a> <span class="badge badge-op">op</span>, <a href="#prop-inDistrict">inDistrict</a> <span class="badge badge-op">op</span>, <a href="#prop-inElection">inElection</a> <span class="badge badge-op">op</span>, <a href="#prop-mandateCount">mandateCount</a> <span class="badge badge-dp">dp</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ElectoralDistrict">ElectoralDistrict</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ElectoralDistrict</code></p>
+<p><strong>Valkrets</strong> / Electoral District</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>One of the 29 electoral districts for Riksdag elections.</dd>
+<dt>Definition (sv)</dt><dd>En av de 29 valkretsarna för val till riksdagen.</dd>
+<dt>In range of</dt><dd><a href="#prop-inDistrict">inDistrict</a> <span class="badge badge-op">op</span>, <a href="#prop-representsDistrict">representsDistrict</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="FixedSeat">FixedSeat</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/FixedSeat</code></p>
+<p><strong>Fast mandat</strong> / Fixed Seat</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A fixed seat — one of the 310 seats distributed among the electoral districts.</dd>
+<dt>Definition (sv)</dt><dd>Ett fast mandat — ett av de 310 mandaten som fördelas i valkretsarna.</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Government">Government</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Government</code></p>
+<p><strong>Regeringen</strong> / The Government</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Swedish Government as a collective body.</dd>
+<dt>Definition (sv)</dt><dd>Sveriges regering som kollektivt organ.</dd>
+<dt>Subclass of</dt><dd><code>FormalOrganization</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="JusticeOfSupremeCourt">JusticeOfSupremeCourt</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/JusticeOfSupremeCourt</code></p>
+<p><strong>Justitieråd</strong> / Justice of the Supreme Court</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A justice serving on the Council on Legislation, drawn from the Supreme Court or the Supreme Administrative Court.</dd>
+<dt>Definition (sv)</dt><dd>Ett justitieråd som tjänstgör i Lagrådet, hämtat från Högsta domstolen eller Högsta förvaltningsdomstolen.</dd>
+<dt>Subclass of</dt><dd><code>Person</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="MemberOfParliament">MemberOfParliament</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/MemberOfParliament</code></p>
+<p><strong>Riksdagsledamot</strong> / Member of Parliament</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A member of the Swedish Riksdag.</dd>
+<dt>Definition (sv)</dt><dd>En ledamot av Sveriges riksdag.</dd>
+<dt>Subclass of</dt><dd><code>Person</code>, <code>Person</code></dd>
+<dt>Has subclasses</dt><dd><a href="#Speaker">Speaker</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Minister">Minister</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Minister</code></p>
+<p><strong>Statsråd</strong> / Minister</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A minister in the Swedish Government.</dd>
+<dt>Definition (sv)</dt><dd>Ett statsråd i Sveriges regering.</dd>
+<dt>Subclass of</dt><dd><code>Person</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Ministry">Ministry</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Ministry</code></p>
+<p><strong>Departement</strong> / Ministry</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A ministry within the Government Offices.</dd>
+<dt>Definition (sv)</dt><dd>Ett departement inom Regeringskansliet.</dd>
+<dt>Subclass of</dt><dd><code>OrganizationalUnit</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ParliamentaryBody">ParliamentaryBody</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ParliamentaryBody</code></p>
+<p><strong>Parlamentariskt organ</strong> / Parliamentary Body</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A formal organization within the Riksdag, e.g. the Riksdag itself, the Riksdag Board, or the Riksdag Administration.</dd>
+<dt>Definition (sv)</dt><dd>En formell organisation inom riksdagen, t.ex. riksdagen själv, riksdagsstyrelsen eller riksdagsförvaltningen.</dd>
+<dt>Subclass of</dt><dd><code>FormalOrganization</code></dd>
+<dt>Has subclasses</dt><dd><a href="#CouncilOnLegislation">CouncilOnLegislation</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="ParliamentaryTenure">ParliamentaryTenure</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/ParliamentaryTenure</code></p>
+<p><strong>Riksdagsmandat</strong> / Parliamentary Tenure</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Time-bounded tenure as a member of parliament, linked to an electoral district and mandate period.</dd>
+<dt>Definition (sv)</dt><dd>Tidsavgränsat mandat som riksdagsledamot, kopplat till en valkrets och mandatperiod.</dd>
+<dt>Subclass of</dt><dd><code>Membership</code></dd>
+<dt>In domain of</dt><dd><a href="#prop-representsDistrict">representsDistrict</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="PartyMembership">PartyMembership</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/PartyMembership</code></p>
+<p><strong>Partimedlemskap</strong> / Party Membership</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Time-bounded membership linking a person to a political party during a specific period.</dd>
+<dt>Definition (sv)</dt><dd>Tidsavgränsat medlemskap som kopplar en person till ett politiskt parti under en viss period.</dd>
+<dt>Subclass of</dt><dd><code>Membership</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="PoliticalParty">PoliticalParty</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/PoliticalParty</code></p>
+<p><strong>Politiskt parti</strong> / Political Party</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>A political party represented in the Riksdag.</dd>
+<dt>Definition (sv)</dt><dd>Ett politiskt parti representerat i riksdagen.</dd>
+<dt>Subclass of</dt><dd><code>FormalOrganization</code></dd>
+<dt>In domain of</dt><dd><a href="#prop-partyAbbreviation">partyAbbreviation</a> <span class="badge badge-dp">dp</span></dd>
+<dt>In range of</dt><dd><a href="#prop-forParty">forParty</a> <span class="badge badge-op">op</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="Speaker">Speaker</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/Speaker</code></p>
+<p><strong>Talman</strong> / Speaker</p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The Speaker or Deputy Speaker of the Riksdag.</dd>
+<dt>Definition (sv)</dt><dd>Riksdagens talman eller vice talman.</dd>
+<dt>Subclass of</dt><dd><a href="#MemberOfParliament">MemberOfParliament</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h2 id="object-properties">Object Properties</h2>
+<h3 id="prop-forParty">forParty</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/forParty</code></p>
+<p><strong>för parti</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The party the election result pertains to.</dd>
+<dt>Definition (sv)</dt><dd>Det parti som valresultatet avser.</dd>
+<dt>Domain</dt><dd><a href="#ElectionResult">ElectionResult</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#PoliticalParty">PoliticalParty</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasMembership">hasMembership</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasMembership</code></p>
+<p><strong>har medlemskap</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Links a person to a time-bounded membership.</dd>
+<dt>Definition (sv)</dt><dd>Kopplar en person till ett tidsavgränsat medlemskap.</dd>
+<dt>Range</dt><dd><code>Membership</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-hasRole">hasRole</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/hasRole</code></p>
+<p><strong>har roll</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The role a person holds within a membership (e.g. chair, member, alternate).</dd>
+<dt>Definition (sv)</dt><dd>Den roll en person har inom ett medlemskap (t.ex. ordförande, ledamot, suppleant).</dd>
+<dt>Range</dt><dd><code>Concept</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-inDistrict">inDistrict</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/inDistrict</code></p>
+<p><strong>i valkrets</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The electoral district the election result pertains to.</dd>
+<dt>Definition (sv)</dt><dd>Den valkrets som valresultatet avser.</dd>
+<dt>Domain</dt><dd><a href="#ElectionResult">ElectionResult</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ElectoralDistrict">ElectoralDistrict</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-inElection">inElection</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/inElection</code></p>
+<p><strong>i val</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The general election the result belongs to.</dd>
+<dt>Definition (sv)</dt><dd>Det riksdagsval som valresultatet hör till.</dd>
+<dt>Domain</dt><dd><a href="#ElectionResult">ElectionResult</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#Election">Election</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-inOrganization">inOrganization</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/inOrganization</code></p>
+<p><strong>i organisation</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The organization a membership pertains to.</dd>
+<dt>Definition (sv)</dt><dd>Den organisation som ett medlemskap avser.</dd>
+<dt>Range</dt><dd><code>FormalOrganization</code></dd>
+<dt>Sub-property of</dt><dd><code>organization</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-partOf">partOf</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/partOf</code></p>
+<p><strong>del av</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Hierarchical organizational relationship.</dd>
+<dt>Definition (sv)</dt><dd>Hierarkisk organisationsrelation.</dd>
+<dt>Range</dt><dd><code>FormalOrganization</code></dd>
+<dt>Sub-property of</dt><dd><code>subOrganizationOf</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-representsDistrict">representsDistrict</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/representsDistrict</code></p>
+<p><strong>representerar valkrets</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The electoral district a member represents.</dd>
+<dt>Definition (sv)</dt><dd>Den valkrets som en ledamot representerar.</dd>
+<dt>Domain</dt><dd><a href="#ParliamentaryTenure">ParliamentaryTenure</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><a href="#ElectoralDistrict">ElectoralDistrict</a> <span class="badge badge-class">c</span></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h2 id="datatype-properties">Datatype Properties</h2>
+<h3 id="prop-birthYear">birthYear</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/birthYear</code></p>
+<p><strong>födelseår</strong></p>
+<dl class="definition">
+<dt>Range</dt><dd><code>gYear</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-electionDate">electionDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/electionDate</code></p>
+<p><strong>valdag</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#Election">Election</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>date</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-endDate">endDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/endDate</code></p>
+<p><strong>slutdatum</strong></p>
+<dl class="definition">
+<dt>Range</dt><dd><code>date</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-gender">gender</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/gender</code></p>
+<p><strong>kön</strong></p>
+<dl class="definition">
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-imageUrl">imageUrl</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/imageUrl</code></p>
+<p><strong>bild-URL</strong></p>
+<dl class="definition">
+<dt>Range</dt><dd><code>anyURI</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-intressentId">intressentId</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/intressentId</code></p>
+<p><strong>intressent-ID</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Unique identifier from the Riksdag API (intressent_id).</dd>
+<dt>Definition (sv)</dt><dd>Unikt identifieringsnummer från riksdagens API (intressent_id).</dd>
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-mandateCount">mandateCount</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/mandateCount</code></p>
+<p><strong>mandatantal</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>The number of seats a party received in a given election result.</dd>
+<dt>Definition (sv)</dt><dd>Antalet mandat ett parti erhållit i ett visst valresultat.</dd>
+<dt>Domain</dt><dd><a href="#ElectionResult">ElectionResult</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>nonNegativeInteger</code></dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-organCode">organCode</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/organCode</code></p>
+<p><strong>organkod</strong></p>
+<dl class="definition">
+<dt>Definition (en)</dt><dd>Abbreviation code for a Riksdag body (e.g. FiU, KU, AU).</dd>
+<dt>Definition (sv)</dt><dd>Förkortningskod för ett riksdagsorgan (t.ex. FiU, KU, AU).</dd>
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-partyAbbreviation">partyAbbreviation</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/partyAbbreviation</code></p>
+<p><strong>partiförkortning</strong></p>
+<dl class="definition">
+<dt>Domain</dt><dd><a href="#PoliticalParty">PoliticalParty</a> <span class="badge badge-class">c</span></dd>
+<dt>Range</dt><dd><code>string</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+<h3 id="prop-startDate">startDate</h3>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/startDate</code></p>
+<p><strong>startdatum</strong></p>
+<dl class="definition">
+<dt>Range</dt><dd><code>date</code></dd>
+<dt>Characteristics</dt><dd>Functional (max 1 value)</dd>
+</dl>
+<p class="back-to-toc"><a href="#toc">↑ back to Table of Contents</a></p>
+
+<h2 id="namespaces">Namespace Declarations</h2>
+<table class="namespace-table">
+<tr><th>Prefix</th><th>URI</th></tr>
+<tr><td><code>rksdag:</code></td><td><code>https://ontology.riksdagen.se/def/</code></td></tr>
+<tr><td><code>rksdagv:</code></td><td><code>https://ontology.riksdagen.se/vocab/</code></td></tr>
+<tr><td><code>eli:</code></td><td><code>http://data.europa.eu/eli/ontology#</code></td></tr>
+<tr><td><code>org:</code></td><td><code>http://www.w3.org/ns/org#</code></td></tr>
+<tr><td><code>foaf:</code></td><td><code>http://xmlns.com/foaf/0.1/</code></td></tr>
+<tr><td><code>schema:</code></td><td><code>https://schema.org/</code></td></tr>
+<tr><td><code>skos:</code></td><td><code>http://www.w3.org/2004/02/skos/core#</code></td></tr>
+<tr><td><code>dcterms:</code></td><td><code>http://purl.org/dc/terms/</code></td></tr>
+<tr><td><code>owl:</code></td><td><code>http://www.w3.org/2002/07/owl#</code></td></tr>
+<tr><td><code>rdfs:</code></td><td><code>http://www.w3.org/2000/01/rdf-schema#</code></td></tr>
+<tr><td><code>xsd:</code></td><td><code>http://www.w3.org/2001/XMLSchema#</code></td></tr>
+</table>
+
+
+<footer>
+    <p>Riksdag Ontology v0.1.0 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+    · <a href="index.html">Back to index</a></p>
+</footer>
+</body>
+</html>

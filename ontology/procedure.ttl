@@ -1,0 +1,425 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl:     <http://www.w3.org/2002/07/owl#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix rksdag:  <https://ontology.riksdagen.se/def/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# Procedure Module — Legislative Process Modeling
+# =============================================================================
+#
+# Design: Adapted from the UK Parliament Procedure Ontology pattern.
+# Models parliamentary procedure as a directed graph of Steps connected
+# by Routes, with actual bill progress tracked via BusinessItems in
+# WorkPackages.
+#
+# Three layers:
+#   1. Procedure (template) — the possible paths through the system
+#   2. WorkPackage (instance) — one document's journey through a procedure
+#   3. BusinessItem (event) — an actual action that occurred
+# =============================================================================
+
+<https://ontology.riksdagen.se/def/procedure>
+    a owl:Ontology ;
+    dcterms:title "Riksdagsontologin — Processmodul"@sv ,
+                  "Riksdag Ontology — Procedure Module"@en ;
+    dcterms:description
+        """Modellerar den svenska lagstiftningsprocessen som en riktad processgraf, från utredning till SFS-publicering."""@sv ,
+        """Models the Swedish legislative process as a directed process graph, from inquiry to SFS publication."""@en ;
+    owl:versionInfo "0.1.0" .
+
+# -----------------------------------------------------------------------------
+# Classes — Procedure Template Layer
+# -----------------------------------------------------------------------------
+
+rksdag:Procedure
+    a owl:Class ;
+    rdfs:label "Procedur"@sv , "Procedure"@en ;
+    rdfs:comment
+        """En formell riksdagsprocedur, t.ex. lagstiftningsprocessen, interpellationsprocessen, eller budgetprocessen."""@sv ,
+        """A formal Riksdag procedure, e.g. the legislative process, the interpellation process, or the budget process."""@en .
+
+rksdag:Step
+    a owl:Class ;
+    rdfs:label "Steg"@sv , "Step"@en ;
+    rdfs:comment
+        """Ett möjligt steg i en procedur. Steg kan vara av olika typer (handling, beslut, dokument) och kopplas samman via rutter."""@sv ,
+        """A possible step in a procedure. Steps can be of various types (action, decision, document) and are connected via routes."""@en .
+
+rksdag:Route
+    a owl:Class ;
+    rdfs:label "Rutt"@sv , "Route"@en ;
+    rdfs:comment
+        """En koppling mellan två steg i en procedur. Rutter kan ha logiska villkor (AND/OR/NOT) som styr vilka vägar ett ärende kan ta."""@sv ,
+        """A connection between two steps in a procedure. Routes may have logical constraints (AND/OR/NOT) governing which paths a matter can take."""@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Instance Layer (Actual Progress)
+# -----------------------------------------------------------------------------
+
+rksdag:WorkPackage
+    a owl:Class ;
+    rdfs:label "Ärendepaket"@sv , "Work Package"@en ;
+    rdfs:comment
+        """Ett ärendes resa genom en procedur — samlar alla händelser (BusinessItems) som berör ett specifikt ärende (t.ex. en propositions väg genom riksdagen)."""@sv ,
+        """A matter's journey through a procedure — collects all events (BusinessItems) relating to a specific matter (e.g. a government bill's passage through the Riksdag)."""@en .
+
+rksdag:BusinessItem
+    a owl:Class ;
+    rdfs:label "Händelse"@sv , "Business Item"@en ;
+    rdfs:comment
+        """En faktisk händelse i behandlingen av ett ärende — t.ex. 'proposition 2024/25:42 hänvisades till FiU den 15 jan'."""@sv ,
+        """An actual event in the processing of a matter — e.g. 'bill 2024/25:42 was referred to FiU on 15 Jan'."""@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Procedural Stage Types
+# -----------------------------------------------------------------------------
+
+rksdag:ProceduralStage
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Step ;
+    rdfs:label "Procedursteg"@sv , "Procedural Stage"@en ;
+    rdfs:comment
+        """Abstrakt överklass för definierade steg i den svenska lagstiftningsprocessen."""@sv ,
+        """Abstract superclass for defined stages in the Swedish legislative process."""@en .
+
+rksdag:InquiryStage
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Utredningsfas"@sv , "Inquiry Stage"@en ;
+    rdfs:comment
+        "Fas där en statlig utredning tillsätts och genomförs."@sv ,
+        "Stage where a government inquiry is appointed and conducted."@en .
+
+rksdag:ConsultationStage
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Remissfas"@sv , "Consultation Stage"@en ;
+    rdfs:comment
+        """Remissförfarandet — utredningsbetänkande skickas till remissinstanser."""@sv ,
+        """The consultation procedure — inquiry report sent to consultation bodies."""@en .
+
+rksdag:CouncilReviewStage
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Lagrådsgranskningsfas"@sv , "Council Review Stage"@en ;
+    rdfs:comment
+        "Lagrådet granskar lagförslaget."@sv ,
+        "The Council on Legislation reviews the bill."@en .
+
+rksdag:Tabling
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Bordläggning"@sv , "Tabling"@en ;
+    rdfs:comment
+        "Formell bordläggning av ett dokument i kammaren."@sv ,
+        "Formal tabling of a document in the chamber."@en .
+
+rksdag:CommitteeReferral
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Hänvisning"@sv , "Committee Referral"@en ;
+    rdfs:comment
+        "Hänvisning av ett dokument till ett utskott för beredning."@sv ,
+        "Referral of a document to a committee for processing."@en .
+
+rksdag:MotionPeriod
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Motionstid"@sv , "Motion Period"@en ;
+    rdfs:comment
+        """Den 15-dagarsperiod under vilken följdmotioner kan lämnas till en proposition."""@sv ,
+        """The 15-day period during which follow-up motions may be submitted to a government bill."""@en .
+
+rksdag:CommitteeDeliberation
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Utskottsbehandling"@sv , "Committee Deliberation"@en ;
+    rdfs:comment
+        "Utskottets beredning av ärendet."@sv ,
+        "The committee's deliberation on the matter."@en .
+
+rksdag:ChamberDebate
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Ärendedebatt"@sv , "Chamber Debate"@en ;
+    rdfs:comment
+        "Debatt i kammaren om ett betänkande."@sv ,
+        "Debate in the chamber on a committee report."@en .
+
+rksdag:ChamberDecision
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Kammarens beslut"@sv , "Chamber Decision"@en ;
+    rdfs:comment
+        """Riksdagens beslut i kammaren — genom acklamation eller omröstning."""@sv ,
+        """The Riksdag's decision in the chamber — by acclamation or division."""@en .
+
+rksdag:Promulgation
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Utfärdande"@sv , "Promulgation"@en ;
+    rdfs:comment
+        "Utfärdande och publicering av en författning i SFS."@sv ,
+        "Promulgation and publication of a statute in SFS."@en .
+
+rksdag:Withdrawal
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Återkallelse"@sv , "Withdrawal"@en ;
+    rdfs:comment
+        "Återkallelse av en proposition eller motion."@sv ,
+        "Withdrawal of a government bill or motion."@en .
+
+rksdag:Recommittal
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Återförvisning"@sv , "Recommittal"@en ;
+    rdfs:comment
+        "Återförvisning till utskottet (kräver 1/3 av ledamöterna)."@sv ,
+        "Recommittal to the committee (requires 1/3 of members)."@en .
+
+rksdag:Deferral
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Uppskov"@sv , "Deferral"@en ;
+    rdfs:comment
+        "Uppskov med behandling till ett senare tillfälle."@sv ,
+        "Deferral of consideration to a later occasion."@en .
+
+# -----------------------------------------------------------------------------
+# Classes — Sessions and Periods
+# -----------------------------------------------------------------------------
+
+rksdag:ParliamentarySession
+    a owl:Class ;
+    rdfs:label "Riksmöte"@sv , "Parliamentary Session"@en ;
+    rdfs:comment
+        "Ett riksmöte — den årliga sessionen (t.ex. 2024/25)."@sv ,
+        "A parliamentary session — the annual session (e.g. 2024/25)."@en .
+
+rksdag:MandatePeriod
+    a owl:Class ;
+    rdfs:label "Mandatperiod"@sv , "Mandate Period"@en ;
+    rdfs:comment
+        "En fyraårig mandatperiod (valperiod)."@sv ,
+        "A four-year mandate period (electoral term)."@en .
+
+# -----------------------------------------------------------------------------
+# Object Properties — Procedure Template
+# -----------------------------------------------------------------------------
+
+rksdag:hasProcedure
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:WorkPackage ;
+    rdfs:range rksdag:Procedure ;
+    rdfs:label "har procedur"@sv , "has procedure"@en .
+
+rksdag:hasStep
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Procedure ;
+    rdfs:range rksdag:Step ;
+    rdfs:label "har steg"@sv , "has step"@en ;
+    rdfs:comment
+        "Ett steg som ingår i proceduren."@sv ,
+        "A step that is part of the procedure."@en ;
+    owl:inverseOf rksdag:stepOf .
+
+rksdag:stepOf
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Step ;
+    rdfs:range rksdag:Procedure ;
+    rdfs:label "steg i"@sv , "step of"@en ;
+    rdfs:comment
+        "Den procedur som detta steg tillhör."@sv ,
+        "The procedure to which this step belongs."@en ;
+    owl:inverseOf rksdag:hasStep .
+
+rksdag:fromStep
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Route ;
+    rdfs:range rksdag:Step ;
+    rdfs:label "från steg"@sv , "from step"@en ;
+    rdfs:comment
+        "Det steg som rutten utgår från."@sv ,
+        "The step from which the route originates."@en .
+
+rksdag:toStep
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Route ;
+    rdfs:range rksdag:Step ;
+    rdfs:label "till steg"@sv , "to step"@en ;
+    rdfs:comment
+        "Det steg som rutten leder till."@sv ,
+        "The step to which the route leads."@en .
+
+rksdag:routeLogic
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:Route ;
+    rdfs:range skos:Concept ;
+    rdfs:label "ruttlogik"@sv , "route logic"@en ;
+    rdfs:comment
+        "Logisk operator för rutten: AND, OR, NOT."@sv ,
+        "Logical operator for the route: AND, OR, NOT."@en .
+
+# -----------------------------------------------------------------------------
+# Object Properties — Instance Progress
+# -----------------------------------------------------------------------------
+
+rksdag:hasBusinessItem
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:WorkPackage ;
+    rdfs:range rksdag:BusinessItem ;
+    rdfs:label "har händelse"@sv , "has business item"@en ;
+    rdfs:comment
+        "En händelse som ingår i ärendepaketet."@sv ,
+        "A business item that is part of the work package."@en .
+
+rksdag:actualisesStep
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:BusinessItem ;
+    rdfs:range rksdag:Step ;
+    rdfs:label "aktualiserar steg"@sv , "actualises step"@en ;
+    rdfs:comment
+        """Kopplar en faktisk händelse till det procedursteg den realiserar."""@sv ,
+        "Links an actual event to the procedural step it realises."@en .
+
+rksdag:concernsDocument
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:BusinessItem ;
+    rdfs:range rksdag:ParliamentaryDocument ;
+    rdfs:label "avser dokument"@sv , "concerns document"@en ;
+    rdfs:comment
+        "Det dokument som händelsen avser."@sv ,
+        "The document that the business item concerns."@en .
+
+rksdag:hasSubject
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:WorkPackage ;
+    rdfs:range rksdag:ParliamentaryDocument ;
+    rdfs:label "har ämne"@sv , "has subject"@en ;
+    rdfs:comment
+        "Kopplar ett ärendepaket till dess huvuddokument."@sv ,
+        "Links a work package to its principal document."@en .
+
+rksdag:partOfMandatePeriod
+    a owl:ObjectProperty ;
+    rdfs:domain rksdag:ParliamentarySession ;
+    rdfs:range rksdag:MandatePeriod ;
+    rdfs:label "ingår i mandatperiod"@sv , "part of mandate period"@en ;
+    rdfs:comment
+        "Den mandatperiod som riksmötet tillhör."@sv ,
+        "The mandate period the parliamentary session belongs to."@en .
+
+# -----------------------------------------------------------------------------
+# Datatype Properties
+# -----------------------------------------------------------------------------
+
+rksdag:sessionId
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:ParliamentarySession ;
+    rdfs:range xsd:string ;
+    rdfs:label "riksmötes-ID"@sv , "session ID"@en ;
+    rdfs:comment "Riksmötets beteckning (t.ex. '2024/25')."@sv ,
+                 "The session designation (e.g. '2024/25')."@en .
+
+rksdag:eventDate
+    a owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain rksdag:BusinessItem ;
+    rdfs:range xsd:date ;
+    rdfs:label "händelsedatum"@sv , "event date"@en ;
+    rdfs:comment
+        "Datum då händelsen inträffade."@sv ,
+        "Date when the event occurred."@en .
+
+rksdag:activityCode
+    a owl:DatatypeProperty ;
+    rdfs:domain rksdag:BusinessItem ;
+    rdfs:range xsd:string ;
+    rdfs:label "aktivitetskod"@sv , "activity code"@en ;
+    rdfs:comment
+        """Aktivitetskod från riksdagens API (dokaktivitet.kod), t.ex. UBE, JUS, TRY, B, BEH, BES."""@sv ,
+        """Activity code from the Riksdag API (dokaktivitet.kod), e.g. UBE, JUS, TRY, B, BEH, BES."""@en .
+
+# =============================================================================
+# Gap 1: Consultation Process (Remissförfarande)
+# =============================================================================
+
+rksdag:ConsultationProcess
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Remissförfarande"@sv , "Consultation Process"@en ;
+    rdfs:comment
+        """Det formella remissförfarandet där ett utredningsbetänkande eller departementspromemoria skickas till remissinstanser för synpunkter."""@sv ,
+        """The formal consultation process where an inquiry report or ministry memorandum is sent to consultation bodies for comment."""@en .
+
+rksdag:ConsultationBody
+    a owl:Class ;
+    rdfs:label "Remissinstans"@sv , "Consultation Body"@en ;
+    rdfs:comment
+        """En myndighet, kommun, domstol eller organisation som inbjuds att lämna remissvar."""@sv ,
+        """An agency, municipality, court, or organization invited to submit a consultation response."""@en .
+
+# =============================================================================
+# Gap 3: Budget Process (Rambeslutsmodellen)
+# =============================================================================
+
+rksdag:BudgetProcedure
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Procedure ;
+    rdfs:label "Budgetprocess"@sv , "Budget Procedure"@en ;
+    rdfs:comment
+        """Rambeslutsmodellen — riksdagens tvåstegsprocess för budgetbeslut med utgiftsramar följt av anslagsbeslut per utgiftsområde."""@sv ,
+        """The framework decision model — the Riksdag's two-step budget process with expenditure ceilings followed by appropriation decisions per expenditure area."""@en .
+
+rksdag:FrameworkDecision
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Rambeslut"@sv , "Framework Decision"@en ;
+    rdfs:comment
+        """Riksdagens första budgetomröstning som fastställer utgiftstak och ramar för de 27 utgiftsområdena."""@sv ,
+        """The Riksdag's first budget vote that sets the expenditure ceiling and frameworks for the 27 expenditure areas."""@en .
+
+rksdag:ExpenditureAreaDecision
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Beslut per utgiftsområde"@sv , "Expenditure Area Decision"@en ;
+    rdfs:comment
+        """Riksdagens andra budgetsteg — beslut om anslag inom varje utgiftsområde, baserat på rambeslutets ramar."""@sv ,
+        """The Riksdag's second budget step — appropriation decisions within each expenditure area, based on the framework decision."""@en .
+
+# =============================================================================
+# Gap 4: EU Subsidiarity Procedure
+# =============================================================================
+
+rksdag:EUSubsidiarityProcedure
+    a owl:Class ;
+    rdfs:subClassOf rksdag:Procedure ;
+    rdfs:label "EU-subsidiaritetsprövning"@sv , "EU Subsidiarity Procedure"@en ;
+    rdfs:comment
+        """Riksdagens prövning av om ett EU-lagförslag strider mot subsidiaritetsprincipen."""@sv ,
+        """The Riksdag's assessment of whether an EU legislative proposal violates the subsidiarity principle."""@en .
+
+rksdag:SubsidiarityCheck
+    a owl:Class ;
+    rdfs:subClassOf rksdag:ProceduralStage ;
+    rdfs:label "Subsidiaritetsprövning"@sv , "Subsidiarity Check"@en ;
+    rdfs:comment
+        """Det procedursteg där ett utskott granskar ett EU-förslags förenlighet med subsidiaritetsprincipen inom åttaveckorsfristen."""@sv ,
+        """The procedural step where a committee examines an EU proposal's compatibility with the subsidiarity principle within the eight-week deadline."""@en .
+
+# -----------------------------------------------------------------------------
+# Disjointness Axioms
+# -----------------------------------------------------------------------------
+
+rksdag:Procedure owl:disjointWith rksdag:Step .
+rksdag:Procedure owl:disjointWith rksdag:Route .
+rksdag:Procedure owl:disjointWith rksdag:WorkPackage .
+rksdag:Procedure owl:disjointWith rksdag:BusinessItem .
+rksdag:Step owl:disjointWith rksdag:Route .
+rksdag:Step owl:disjointWith rksdag:WorkPackage .
+rksdag:WorkPackage owl:disjointWith rksdag:BusinessItem .
+rksdag:ParliamentarySession owl:disjointWith rksdag:MandatePeriod .

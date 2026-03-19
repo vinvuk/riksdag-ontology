@@ -1,0 +1,82 @@
+@prefix rdf:     <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:    <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos:    <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd:     <http://www.w3.org/2001/XMLSchema#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix rksdagv: <https://ontology.riksdagen.se/vocab/> .
+
+# =============================================================================
+# SKOS Concept Scheme — Political Parties (Riksdagspartier)
+# =============================================================================
+
+rksdagv:PartyScheme
+    a skos:ConceptScheme ;
+    skos:prefLabel "Riksdagspartier"@sv , "Parliamentary Parties"@en ;
+    dcterms:description
+        "Politiska partier representerade i Sveriges riksdag."@sv ,
+        "Political parties represented in the Swedish Riksdag."@en ;
+    dcterms:created "2026-03-19"^^xsd:date .
+
+rksdagv:party-S
+    a skos:Concept ;
+    skos:inScheme rksdagv:PartyScheme ;
+    skos:notation "S" ;
+    skos:prefLabel "Socialdemokraterna"@sv , "Social Democrats"@en ;
+    skos:altLabel "SAP"@sv .
+
+rksdagv:party-M
+    a skos:Concept ;
+    skos:inScheme rksdagv:PartyScheme ;
+    skos:notation "M" ;
+    skos:prefLabel "Moderaterna"@sv , "Moderate Party"@en ;
+    skos:altLabel "Moderata samlingspartiet"@sv .
+
+rksdagv:party-SD
+    a skos:Concept ;
+    skos:inScheme rksdagv:PartyScheme ;
+    skos:notation "SD" ;
+    skos:prefLabel "Sverigedemokraterna"@sv , "Sweden Democrats"@en .
+
+rksdagv:party-C
+    a skos:Concept ;
+    skos:inScheme rksdagv:PartyScheme ;
+    skos:notation "C" ;
+    skos:prefLabel "Centerpartiet"@sv , "Centre Party"@en .
+
+rksdagv:party-V
+    a skos:Concept ;
+    skos:inScheme rksdagv:PartyScheme ;
+    skos:notation "V" ;
+    skos:prefLabel "Vänsterpartiet"@sv , "Left Party"@en .
+
+rksdagv:party-KD
+    a skos:Concept ;
+    skos:inScheme rksdagv:PartyScheme ;
+    skos:notation "KD" ;
+    skos:prefLabel "Kristdemokraterna"@sv , "Christian Democrats"@en .
+
+rksdagv:party-L
+    a skos:Concept ;
+    skos:inScheme rksdagv:PartyScheme ;
+    skos:notation "L" ;
+    skos:prefLabel "Liberalerna"@sv , "Liberals"@en ;
+    skos:altLabel "Folkpartiet liberalerna"@sv ;
+    skos:historyNote
+        "Bytte namn från Folkpartiet liberalerna till Liberalerna 2015."@sv ,
+        "Renamed from the Liberal People's Party to the Liberals in 2015."@en .
+
+rksdagv:party-MP
+    a skos:Concept ;
+    skos:inScheme rksdagv:PartyScheme ;
+    skos:notation "MP" ;
+    skos:prefLabel "Miljöpartiet"@sv , "Green Party"@en ;
+    skos:altLabel "Miljöpartiet de gröna"@sv .
+
+rksdagv:party-independent
+    a skos:Concept ;
+    skos:inScheme rksdagv:PartyScheme ;
+    skos:notation "-" ;
+    skos:prefLabel "Partilös"@sv , "Independent"@en ;
+    skos:definition
+        "Ledamot utan partitillhörighet."@sv ,
+        "Member without party affiliation."@en .

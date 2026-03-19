@@ -1,0 +1,31 @@
+[project]
+name = "riksdag-ontology"
+version = "0.1.0"
+description = "A formal OWL 2 DL ontology for the Swedish Riksdag"
+readme = "README.md"
+license = "CC-BY-4.0"
+requires-python = ">=3.11,<3.14"
+dependencies = [
+    "rdflib>=7.0",
+    "pyshacl>=0.26",
+    "owlrl>=6.0",
+    "morph-kgc>=2.8",
+    "requests>=2.31",
+    "click>=8.1",
+    "pyyaml>=6.0",
+    "pytest>=8.0",
+    "python-dotenv>=1.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pylode>=3.1",
+    "pre-commit>=3.6",
+]
+
+[project.scripts]
+riksdag = "pipeline.cli:cli"
+
+[build-system]
+requires = ["setuptools>=68.0"]
+build-backend = "setuptools.backends._legacy:_Backend"

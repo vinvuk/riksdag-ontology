@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Interface — Riksdag Ontology</title>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+    line-height: 1.6;
+    color: #1a1a1a;
+    max-width: 56rem;
+    margin: 0 auto;
+    padding: 2rem 1.5rem;
+}
+h1 { font-size: 1.75rem; font-weight: 600; margin-bottom: 0.5rem; }
+h2 { font-size: 1.35rem; font-weight: 600; margin-top: 2.5rem; margin-bottom: 0.75rem;
+     padding-bottom: 0.25rem; border-bottom: 1px solid #e0e0e0; }
+h3 { font-size: 1.1rem; font-weight: 600; margin-top: 1.5rem; margin-bottom: 0.5rem; }
+h4 { font-size: 1rem; font-weight: 600; margin-top: 1.25rem; margin-bottom: 0.25rem; }
+p { margin-bottom: 0.75rem; }
+a { color: #1a56db; text-decoration: none; }
+a:hover { text-decoration: underline; }
+code, .iri { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 0.85em;
+             background: #f5f5f5; padding: 0.1em 0.3em; border-radius: 3px; }
+.subtitle { color: #666; font-size: 0.95rem; margin-bottom: 1.5rem; }
+.meta { color: #888; font-size: 0.8rem; margin-bottom: 0.5rem; }
+.badge { display: inline-block; font-size: 0.7rem; font-weight: 600;
+         padding: 0.15em 0.5em; border-radius: 3px; margin-left: 0.3rem;
+         vertical-align: middle; }
+.badge-class { background: #dbeafe; color: #1e40af; }
+.badge-op { background: #dcfce7; color: #166534; }
+.badge-dp { background: #fef3c7; color: #92400e; }
+.badge-vocab { background: #f3e8ff; color: #6b21a8; }
+.toc { margin: 1rem 0 2rem; }
+.toc ol { padding-left: 1.5rem; }
+.toc li { margin: 0.2rem 0; }
+.module-grid { display: grid; grid-template-columns: 1fr; gap: 0.75rem; margin: 1rem 0; }
+.module-card { border: 1px solid #e0e0e0; border-radius: 6px; padding: 1rem;
+               transition: border-color 0.15s; }
+.module-card:hover { border-color: #1a56db; }
+.module-card h4 { margin: 0 0 0.25rem; }
+.module-card p { margin: 0; font-size: 0.85rem; color: #666; }
+.definition { margin: 0.5rem 0 1rem; padding-left: 1rem;
+              border-left: 3px solid #e0e0e0; }
+.definition dt { font-weight: 600; font-size: 0.85rem; color: #555; margin-top: 0.5rem; }
+.definition dd { margin-left: 0; font-size: 0.9rem; }
+.back-to-toc { font-size: 0.8rem; color: #888; margin-top: 0.5rem; }
+.namespace-table { width: 100%; border-collapse: collapse; margin: 1rem 0; font-size: 0.85rem; }
+.namespace-table th, .namespace-table td { text-align: left; padding: 0.4rem 0.75rem;
+                                           border-bottom: 1px solid #eee; }
+.namespace-table th { font-weight: 600; color: #555; }
+.diagram { margin: 1.5rem 0; text-align: center; }
+.diagram img, .diagram svg { max-width: 100%; }
+.stats { display: flex; gap: 1.5rem; flex-wrap: wrap; margin: 1rem 0; }
+.stat { text-align: center; }
+.stat-value { font-size: 1.5rem; font-weight: 700; color: #1a56db; }
+.stat-label { font-size: 0.7rem; color: #888; text-transform: uppercase; letter-spacing: 0.05em; }
+footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
+         font-size: 0.8rem; color: #888; }
+</style>
+</head>
+<body>
+<p class="meta"><a href="index.html">← Riksdag Ontology</a></p>
+<h1>Interface Ontology</h1>
+<p class="subtitle">Koppling — Alignment axioms mapping to ELI, rpubl, Schema.org, W3C ORG, and Dublin Core.</p>
+<p class="meta">IRI: <code>https://ontology.riksdagen.se/def/interface</code></p>
+<p class="meta">
+    Source: <a href="https://github.com/vinvuk/riksdag-ontology/blob/main/ontology/interface.ttl">interface.ttl</a>
+    · License: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+</p>
+
+
+<div class="stats">
+    <div class="stat"><div class="stat-value">0</div><div class="stat-label">Classes</div></div>
+    <div class="stat"><div class="stat-value">0</div><div class="stat-label">Object Properties</div></div>
+    <div class="stat"><div class="stat-value">0</div><div class="stat-label">Datatype Properties</div></div>
+</div>
+
+<nav class="toc"><h2 id="toc">Table of Contents</h2><ol>
+<li><a href="#namespaces">Namespaces</a></li>
+</ol></nav>
+
+<h2 id="namespaces">Namespace Declarations</h2>
+<table class="namespace-table">
+<tr><th>Prefix</th><th>URI</th></tr>
+<tr><td><code>rksdag:</code></td><td><code>https://ontology.riksdagen.se/def/</code></td></tr>
+<tr><td><code>rksdagv:</code></td><td><code>https://ontology.riksdagen.se/vocab/</code></td></tr>
+<tr><td><code>eli:</code></td><td><code>http://data.europa.eu/eli/ontology#</code></td></tr>
+<tr><td><code>org:</code></td><td><code>http://www.w3.org/ns/org#</code></td></tr>
+<tr><td><code>foaf:</code></td><td><code>http://xmlns.com/foaf/0.1/</code></td></tr>
+<tr><td><code>schema:</code></td><td><code>https://schema.org/</code></td></tr>
+<tr><td><code>skos:</code></td><td><code>http://www.w3.org/2004/02/skos/core#</code></td></tr>
+<tr><td><code>dcterms:</code></td><td><code>http://purl.org/dc/terms/</code></td></tr>
+<tr><td><code>owl:</code></td><td><code>http://www.w3.org/2002/07/owl#</code></td></tr>
+<tr><td><code>rdfs:</code></td><td><code>http://www.w3.org/2000/01/rdf-schema#</code></td></tr>
+<tr><td><code>xsd:</code></td><td><code>http://www.w3.org/2001/XMLSchema#</code></td></tr>
+</table>
+
+
+<footer>
+    <p>Riksdag Ontology v0.1.0 · <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+    · <a href="index.html">Back to index</a></p>
+</footer>
+</body>
+</html>
