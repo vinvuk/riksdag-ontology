@@ -7,16 +7,16 @@ flowchart BT
     Speaker[Speaker]
     foaf_Person[foaf:Person]:::ext
     schema_Person[schema:Person]:::ext
-    Minister -->|subclass| foaf_Person
-    Speaker -->|subclass| MemberOfParliament
+    AlternateMember -->|subclass| foaf_Person
     MemberOfParliament -->|subclass| foaf_Person
     MemberOfParliament -->|subclass| schema_Person
-    AlternateMember -->|subclass| foaf_Person
+    Minister -->|subclass| foaf_Person
+    Speaker -->|subclass| MemberOfParliament
+    style AlternateMember fill:#bfdbfe,stroke:#94a3b8,color:#1e293b
+    style MemberOfParliament fill:#bfdbfe,stroke:#94a3b8,color:#1e293b
     style Minister fill:#bfdbfe,stroke:#94a3b8,color:#1e293b
     style Speaker fill:#bfdbfe,stroke:#94a3b8,color:#1e293b
-    style MemberOfParliament fill:#bfdbfe,stroke:#94a3b8,color:#1e293b
-    style AlternateMember fill:#bfdbfe,stroke:#94a3b8,color:#1e293b
-    style schema_Person fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray: 5 5
     style foaf_Person fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray: 5 5
+    style schema_Person fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray: 5 5
 </pre>
 </div>

@@ -84,174 +84,50 @@ footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid #e0e0e0;
 <h2>Diagrams</h2>
 <p class="meta">Solid arrows = subclass (rdfs:subClassOf). Dashed arrows = object properties. Dashed boxes = external standards.</p>
 <h3>Class alignments</h3>
-<div class="mermaid-diagram">
-<pre class="mermaid">
-flowchart LR
-    GovernmentBill[GovernmentBill]
-    eli_LegalResource[eli:LegalResource]
-    GovernmentBill -->|subClassOf| eli_LegalResource
-    Statute[Statute]
-    Statute -->|subClassOf| eli_LegalResource
-    Act[Act]
-    Act -->|subClassOf| eli_LegalResource
-    Ordinance[Ordinance]
-    Ordinance -->|subClassOf| eli_LegalResource
-    rpubl_Forfattning[rpubl:Forfattning]
-    Statute -->|subClassOf| rpubl_Forfattning
-    MemberOfParliament[MemberOfParliament]
-    schema_Person[schema:Person]
-    MemberOfParliament -->|subClassOf| schema_Person
-    Committee[Committee]
-    schema_Organization[schema:Organization]
-    Committee -->|subClassOf| schema_Organization
-    PoliticalParty[PoliticalParty]
-    PoliticalParty -->|subClassOf| schema_Organization
-    ParliamentaryBody[ParliamentaryBody]
-    ParliamentaryBody -->|subClassOf| schema_Organization
-    Government[Government]
-    schema_GovernmentOrganization[schema:GovernmentOrganization]
-    Government -->|subClassOf| schema_GovernmentOrganization
-    Ministry[Ministry]
-    Ministry -->|subClassOf| schema_GovernmentOrganization
-    ParliamentaryDocument[ParliamentaryDocument]
-    schema_Legislation[schema:Legislation]
-    ParliamentaryDocument -->|subClassOf| schema_Legislation
-    rpubl_Proposition[rpubl:Proposition]
-    GovernmentBill <-->|equivalentClass| rpubl_Proposition
-    GovernmentInquiryReport[GovernmentInquiryReport]
-    rpubl_Utredningsbetankande[rpubl:Utredningsbetankande]
-    GovernmentInquiryReport <-->|equivalentClass| rpubl_Utredningsbetankande
-    rpubl_Lag[rpubl:Lag]
-    Act <-->|equivalentClass| rpubl_Lag
-    rpubl_Forordning[rpubl:Forordning]
-    Ordinance <-->|equivalentClass| rpubl_Forordning
-    style MemberOfParliament fill:#bfdbfe,stroke:#94a3b8,color:#1e293b
-    style schema_GovernmentOrganization fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style GovernmentBill fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
-    style schema_Person fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style ParliamentaryDocument fill:#dcfce7,stroke:#94a3b8,color:#1e293b
-    style GovernmentInquiryReport fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style Statute fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
-    style rpubl_Utredningsbetankande fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style schema_Legislation fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style schema_Organization fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style ParliamentaryBody fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style rpubl_Proposition fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style rpubl_Forordning fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style Government fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style Act fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
-    style rpubl_Lag fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style Ministry fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style rpubl_Forfattning fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style PoliticalParty fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style Committee fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style Ordinance fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
-    style eli_LegalResource fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-</pre>
-</div>
+<table class="namespace-table">
+<tr><th>Riksdag class</th><th>Relationship</th><th>External class</th><th>Standard</th></tr>
+<tr><td><code>rksdag:Act</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:LegalResource</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:GovernmentBill</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:LegalResource</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:Ordinance</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:LegalResource</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:Statute</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:LegalResource</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:Act</code></td><td><code>≡ equivalentClass</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Lag</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:GovernmentBill</code></td><td><code>≡ equivalentClass</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Proposition</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:GovernmentInquiryReport</code></td><td><code>≡ equivalentClass</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Utredningsbetankande</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:Ordinance</code></td><td><code>≡ equivalentClass</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Forordning</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:Statute</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Forfattning</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:Committee</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Organization</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:Government</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:GovernmentOrganization</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:MemberOfParliament</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Person</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:Ministry</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:GovernmentOrganization</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:ParliamentaryBody</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Organization</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:ParliamentaryDocument</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Legislation</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:PoliticalParty</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Organization</code></span></td><td>SCHEMA</td></tr>
+</table>
 <h3>Property alignments</h3>
-<div class="mermaid-diagram">
-<pre class="mermaid">
-flowchart LR
-    documentDate[documentDate]
-    eli_date_document[eli:date_document]
-    documentDate -->|subPropertyOf| eli_date_document
-    entryIntoForceDate[entryIntoForceDate]
-    eli_date_entry_into_force[eli:date_entry_into_force]
-    entryIntoForceDate -->|subPropertyOf| eli_date_entry_into_force
-    amends[amends]
-    eli_amends[eli:amends]
-    amends -->|subPropertyOf| eli_amends
-    repeals[repeals]
-    eli_repeals[eli:repeals]
-    repeals -->|subPropertyOf| eli_repeals
-    hasExpression[hasExpression]
-    eli_has_expression[eli:has_expression]
-    hasExpression -->|subPropertyOf| eli_has_expression
-    hasFormat[hasFormat]
-    eli_has_format[eli:has_format]
-    hasFormat -->|subPropertyOf| eli_has_format
-    sfsNumber[sfsNumber]
-    rpubl_fsNummer[rpubl:fsNummer]
-    sfsNumber -->|subPropertyOf| rpubl_fsNummer
-    rpubl_ikrafttradandedatum[rpubl:ikrafttradandedatum]
-    entryIntoForceDate -->|subPropertyOf| rpubl_ikrafttradandedatum
-    documentTitle[documentTitle]
-    schema_name[schema:name]
-    documentTitle -->|subPropertyOf| schema_name
-    author[author]
-    schema_author[schema:author]
-    author -->|subPropertyOf| schema_author
-    hasMembership[hasMembership]
-    org_hasMembership[org:hasMembership]
-    hasMembership -->|subPropertyOf| org_hasMembership
-    inOrganization[inOrganization]
-    org_organization[org:organization]
-    inOrganization -->|subPropertyOf| org_organization
-    hasRole[hasRole]
-    org_role[org:role]
-    hasRole -->|subPropertyOf| org_role
-    partOf[partOf]
-    org_subOrganizationOf[org:subOrganizationOf]
-    partOf -->|subPropertyOf| org_subOrganizationOf
-    organCode[organCode]
-    org_identifier[org:identifier]
-    organCode -->|subPropertyOf| org_identifier
-    designation[designation]
-    dcterms_identifier[dcterms:identifier]
-    designation -->|subPropertyOf| dcterms_identifier
-    dcterms_date[dcterms:date]
-    documentDate -->|subPropertyOf| dcterms_date
-    dcterms_title[dcterms:title]
-    documentTitle -->|subPropertyOf| dcterms_title
-    dcterms_creator[dcterms:creator]
-    author -->|subPropertyOf| dcterms_creator
-    intressentId[intressentId]
-    foaf_accountName[foaf:accountName]
-    intressentId -->|subPropertyOf| foaf_accountName
-    imageUrl[imageUrl]
-    foaf_depiction[foaf:depiction]
-    imageUrl -->|subPropertyOf| foaf_depiction
-    style hasFormat fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style rpubl_fsNummer fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style eli_has_format fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style partOf fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style org_hasMembership fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style eli_has_expression fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style dcterms_creator fill:#e0e7ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style intressentId fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style amends fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style documentDate fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style hasExpression fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style hasMembership fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style schema_author fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style eli_repeals fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style schema_name fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style dcterms_identifier fill:#e0e7ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style imageUrl fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style designation fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style dcterms_date fill:#e0e7ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style eli_amends fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style eli_date_document fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style author fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style inOrganization fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style repeals fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style organCode fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style org_role fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style org_identifier fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style hasRole fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style dcterms_title fill:#e0e7ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style sfsNumber fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style org_organization fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style rpubl_ikrafttradandedatum fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style foaf_accountName fill:#fff7ed,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style eli_date_entry_into_force fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style entryIntoForceDate fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style foaf_depiction fill:#fff7ed,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style documentTitle fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style org_subOrganizationOf fill:#fae8ff,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-</pre>
-</div>
+<table class="namespace-table">
+<tr><th>Riksdag property</th><th>External property</th><th>Standard</th></tr>
+<tr><td><code>rksdag:author</code></td><td><span style="background:#e0e7ff;padding:2px 8px;border-radius:4px"><code>dcterms:creator</code></span></td><td>DCTERMS</td></tr>
+<tr><td><code>rksdag:designation</code></td><td><span style="background:#e0e7ff;padding:2px 8px;border-radius:4px"><code>dcterms:identifier</code></span></td><td>DCTERMS</td></tr>
+<tr><td><code>rksdag:documentDate</code></td><td><span style="background:#e0e7ff;padding:2px 8px;border-radius:4px"><code>dcterms:date</code></span></td><td>DCTERMS</td></tr>
+<tr><td><code>rksdag:documentTitle</code></td><td><span style="background:#e0e7ff;padding:2px 8px;border-radius:4px"><code>dcterms:title</code></span></td><td>DCTERMS</td></tr>
+<tr><td><code>rksdag:amends</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:amends</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:documentDate</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:date_document</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:entryIntoForceDate</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:date_entry_into_force</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:hasExpression</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:has_expression</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:hasFormat</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:has_format</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:repeals</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:repeals</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:imageUrl</code></td><td><span style="background:#fff7ed;padding:2px 8px;border-radius:4px"><code>foaf:depiction</code></span></td><td>FOAF</td></tr>
+<tr><td><code>rksdag:intressentId</code></td><td><span style="background:#fff7ed;padding:2px 8px;border-radius:4px"><code>foaf:accountName</code></span></td><td>FOAF</td></tr>
+<tr><td><code>rksdag:hasMembership</code></td><td><span style="background:#fae8ff;padding:2px 8px;border-radius:4px"><code>org:hasMembership</code></span></td><td>ORG</td></tr>
+<tr><td><code>rksdag:hasRole</code></td><td><span style="background:#fae8ff;padding:2px 8px;border-radius:4px"><code>org:role</code></span></td><td>ORG</td></tr>
+<tr><td><code>rksdag:inOrganization</code></td><td><span style="background:#fae8ff;padding:2px 8px;border-radius:4px"><code>org:organization</code></span></td><td>ORG</td></tr>
+<tr><td><code>rksdag:organCode</code></td><td><span style="background:#fae8ff;padding:2px 8px;border-radius:4px"><code>org:identifier</code></span></td><td>ORG</td></tr>
+<tr><td><code>rksdag:partOf</code></td><td><span style="background:#fae8ff;padding:2px 8px;border-radius:4px"><code>org:subOrganizationOf</code></span></td><td>ORG</td></tr>
+<tr><td><code>rksdag:entryIntoForceDate</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:ikrafttradandedatum</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:sfsNumber</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:fsNummer</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:author</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:author</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:documentTitle</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:name</code></span></td><td>SCHEMA</td></tr>
+</table>
 
 <h2 id="namespaces">Namespace Declarations</h2>
 <table class="namespace-table">

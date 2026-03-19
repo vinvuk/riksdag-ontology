@@ -1,65 +1,19 @@
-<div class="mermaid-diagram">
-<pre class="mermaid">
-flowchart LR
-    GovernmentBill[GovernmentBill]
-    eli_LegalResource[eli:LegalResource]
-    GovernmentBill -->|subClassOf| eli_LegalResource
-    Statute[Statute]
-    Statute -->|subClassOf| eli_LegalResource
-    Act[Act]
-    Act -->|subClassOf| eli_LegalResource
-    Ordinance[Ordinance]
-    Ordinance -->|subClassOf| eli_LegalResource
-    rpubl_Forfattning[rpubl:Forfattning]
-    Statute -->|subClassOf| rpubl_Forfattning
-    MemberOfParliament[MemberOfParliament]
-    schema_Person[schema:Person]
-    MemberOfParliament -->|subClassOf| schema_Person
-    Committee[Committee]
-    schema_Organization[schema:Organization]
-    Committee -->|subClassOf| schema_Organization
-    PoliticalParty[PoliticalParty]
-    PoliticalParty -->|subClassOf| schema_Organization
-    ParliamentaryBody[ParliamentaryBody]
-    ParliamentaryBody -->|subClassOf| schema_Organization
-    Government[Government]
-    schema_GovernmentOrganization[schema:GovernmentOrganization]
-    Government -->|subClassOf| schema_GovernmentOrganization
-    Ministry[Ministry]
-    Ministry -->|subClassOf| schema_GovernmentOrganization
-    ParliamentaryDocument[ParliamentaryDocument]
-    schema_Legislation[schema:Legislation]
-    ParliamentaryDocument -->|subClassOf| schema_Legislation
-    rpubl_Proposition[rpubl:Proposition]
-    GovernmentBill <-->|equivalentClass| rpubl_Proposition
-    GovernmentInquiryReport[GovernmentInquiryReport]
-    rpubl_Utredningsbetankande[rpubl:Utredningsbetankande]
-    GovernmentInquiryReport <-->|equivalentClass| rpubl_Utredningsbetankande
-    rpubl_Lag[rpubl:Lag]
-    Act <-->|equivalentClass| rpubl_Lag
-    rpubl_Forordning[rpubl:Forordning]
-    Ordinance <-->|equivalentClass| rpubl_Forordning
-    style MemberOfParliament fill:#bfdbfe,stroke:#94a3b8,color:#1e293b
-    style schema_GovernmentOrganization fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style GovernmentBill fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
-    style schema_Person fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style ParliamentaryDocument fill:#dcfce7,stroke:#94a3b8,color:#1e293b
-    style GovernmentInquiryReport fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style Statute fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
-    style rpubl_Utredningsbetankande fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style schema_Legislation fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style schema_Organization fill:#d1fae5,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style ParliamentaryBody fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style rpubl_Proposition fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style rpubl_Forordning fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style Government fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style Act fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
-    style rpubl_Lag fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style Ministry fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style rpubl_Forfattning fill:#fecaca,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-    style PoliticalParty fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style Committee fill:#dbeafe,stroke:#94a3b8,color:#1e293b
-    style Ordinance fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
-    style eli_LegalResource fill:#fef9c3,stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5
-</pre>
-</div>
+<table class="namespace-table">
+<tr><th>Riksdag class</th><th>Relationship</th><th>External class</th><th>Standard</th></tr>
+<tr><td><code>rksdag:Act</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:LegalResource</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:GovernmentBill</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:LegalResource</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:Ordinance</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:LegalResource</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:Statute</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fef9c3;padding:2px 8px;border-radius:4px"><code>eli:LegalResource</code></span></td><td>ELI</td></tr>
+<tr><td><code>rksdag:Act</code></td><td><code>≡ equivalentClass</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Lag</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:GovernmentBill</code></td><td><code>≡ equivalentClass</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Proposition</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:GovernmentInquiryReport</code></td><td><code>≡ equivalentClass</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Utredningsbetankande</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:Ordinance</code></td><td><code>≡ equivalentClass</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Forordning</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:Statute</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#fecaca;padding:2px 8px;border-radius:4px"><code>rpubl:Forfattning</code></span></td><td>RPUBL</td></tr>
+<tr><td><code>rksdag:Committee</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Organization</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:Government</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:GovernmentOrganization</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:MemberOfParliament</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Person</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:Ministry</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:GovernmentOrganization</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:ParliamentaryBody</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Organization</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:ParliamentaryDocument</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Legislation</code></span></td><td>SCHEMA</td></tr>
+<tr><td><code>rksdag:PoliticalParty</code></td><td><code>⊑ subClassOf</code></td><td><span style="background:#d1fae5;padding:2px 8px;border-radius:4px"><code>schema:Organization</code></span></td><td>SCHEMA</td></tr>
+</table>

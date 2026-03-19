@@ -197,12 +197,12 @@ flowchart LR
     CommitteeReport -.->|hasProposalPoint| ProposalPoint
     CommitteeReport -.->|hasReservation| Reservation
     CommitteeReport -.->|hasSpecialOpinion| SpecialOpinion
-    style Reservation fill:#fce7f3,stroke:#94a3b8,color:#1e293b
+    style Debate fill:#fce7f3,stroke:#94a3b8,color:#1e293b
     style ProposalPoint fill:#fce7f3,stroke:#94a3b8,color:#1e293b
     style CommitteeReport fill:#bbf7d0,stroke:#94a3b8,color:#1e293b,stroke-dasharray: 5 5
-    style SpecialOpinion fill:#fce7f3,stroke:#94a3b8,color:#1e293b
-    style Debate fill:#fce7f3,stroke:#94a3b8,color:#1e293b
     style Speech fill:#fce7f3,stroke:#94a3b8,color:#1e293b
+    style SpecialOpinion fill:#fce7f3,stroke:#94a3b8,color:#1e293b
+    style Reservation fill:#fce7f3,stroke:#94a3b8,color:#1e293b
 </pre>
 </div>
 <h3>Core document types</h3>
@@ -217,23 +217,23 @@ flowchart BT
     ParliamentaryDocument[ParliamentaryDocument]
     WrittenQuestion[WrittenQuestion]
     eli_LegalResource[eli:LegalResource]:::ext
-    ParliamentaryCommunication -->|subclass| ParliamentaryDocument
-    WrittenQuestion -->|subclass| ParliamentaryDocument
-    Interpellation -->|subclass| ParliamentaryDocument
-    CommitteeReport -->|subclass| ParliamentaryDocument
     Motion -->|subclass| ParliamentaryDocument
-    ParliamentaryDocument -->|subclass| eli_LegalResource
+    WrittenQuestion -->|subclass| ParliamentaryDocument
+    ParliamentaryCommunication -->|subclass| ParliamentaryDocument
     GovernmentBill -->|subclass| ParliamentaryDocument
+    CommitteeReport -->|subclass| ParliamentaryDocument
+    ParliamentaryDocument -->|subclass| eli_LegalResource
+    Interpellation -->|subclass| ParliamentaryDocument
     Motion -.->|respondsTo| GovernmentBill
     GovernmentBill -.->|basedOn| ParliamentaryDocument
     CommitteeReport -.->|resultsIn| ParliamentaryCommunication
-    style ParliamentaryCommunication fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
-    style WrittenQuestion fill:#fef3c7,stroke:#94a3b8,color:#1e293b
-    style Interpellation fill:#fef3c7,stroke:#94a3b8,color:#1e293b
-    style CommitteeReport fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
     style Motion fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
-    style ParliamentaryDocument fill:#dcfce7,stroke:#94a3b8,color:#1e293b
+    style WrittenQuestion fill:#fef3c7,stroke:#94a3b8,color:#1e293b
+    style ParliamentaryCommunication fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
     style GovernmentBill fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
+    style CommitteeReport fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
+    style ParliamentaryDocument fill:#dcfce7,stroke:#94a3b8,color:#1e293b
+    style Interpellation fill:#fef3c7,stroke:#94a3b8,color:#1e293b
     style eli_LegalResource fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray: 5 5
 </pre>
 </div>
@@ -247,17 +247,17 @@ flowchart BT
     Ordinance[Ordinance]
     Statute[Statute]
     eli_LegalResource[eli:LegalResource]:::ext
-    Act -->|subclass| Statute
     Statute -->|subclass| eli_LegalResource
+    Act -->|subclass| Statute
     Ordinance -->|subclass| Statute
     AmendmentAct -->|subclass| Act
     ConsolidatedVersion -.->|baseLaw| Statute
     ConsolidatedVersion -.->|includesAmendments| AmendmentAct
     Statute -.->|consolidatedBy| ConsolidatedVersion
-    style Act fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
     style Statute fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
-    style ConsolidatedVersion fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
+    style Act fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
     style Ordinance fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
+    style ConsolidatedVersion fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
     style AmendmentAct fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
     style eli_LegalResource fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray: 5 5
 </pre>
@@ -272,17 +272,17 @@ flowchart BT
     Motion[Motion]
     MultiPartyMotion[MultiPartyMotion]
     PartyMotion[PartyMotion]
-    IndividualMotion -->|subclass| Motion
-    PartyMotion -->|subclass| Motion
     CommitteeMotion -->|subclass| Motion
-    FollowUpMotion -->|subclass| Motion
+    PartyMotion -->|subclass| Motion
+    IndividualMotion -->|subclass| Motion
     MultiPartyMotion -->|subclass| Motion
-    style IndividualMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
-    style PartyMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
+    FollowUpMotion -->|subclass| Motion
     style CommitteeMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
+    style PartyMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
     style Motion fill:#bbf7d0,stroke:#94a3b8,color:#1e293b
-    style FollowUpMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
+    style IndividualMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
     style MultiPartyMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
+    style FollowUpMotion fill:#d1fae5,stroke:#94a3b8,color:#1e293b
 </pre>
 </div>
 <h2 id="classes">Classes</h2>

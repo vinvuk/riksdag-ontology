@@ -150,10 +150,10 @@ flowchart LR
     WorkPackage -.->|hasBusinessItem| BusinessItem
     BusinessItem -.->|actualisesStep| Step
     style Route fill:#fef3c7,stroke:#94a3b8,color:#1e293b
-    style Procedure fill:#fef3c7,stroke:#94a3b8,color:#1e293b
-    style BusinessItem fill:#fde68a,stroke:#94a3b8,color:#1e293b
-    style WorkPackage fill:#fde68a,stroke:#94a3b8,color:#1e293b
     style ProceduralStage fill:#fed7aa,stroke:#94a3b8,color:#1e293b
+    style WorkPackage fill:#fde68a,stroke:#94a3b8,color:#1e293b
+    style BusinessItem fill:#fde68a,stroke:#94a3b8,color:#1e293b
+    style Procedure fill:#fef3c7,stroke:#94a3b8,color:#1e293b
     style Step fill:#fef3c7,stroke:#94a3b8,color:#1e293b
 </pre>
 </div>
@@ -168,17 +168,17 @@ flowchart BT
     ProceduralStage[ProceduralStage]
     Promulgation[Promulgation]
     Tabling[Tabling]
-    ChamberDebate -->|subclass| ProceduralStage
-    Promulgation -->|subclass| ProceduralStage
     ChamberDecision -->|subclass| ProceduralStage
+    ChamberDebate -->|subclass| ProceduralStage
     Tabling -->|subclass| ProceduralStage
+    Promulgation -->|subclass| ProceduralStage
     CommitteeReferral -->|subclass| ProceduralStage
     CommitteeDeliberation -->|subclass| ProceduralStage
-    style ChamberDebate fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
     style ProceduralStage fill:#fed7aa,stroke:#94a3b8,color:#1e293b
-    style Promulgation fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
     style ChamberDecision fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
+    style ChamberDebate fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
     style Tabling fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
+    style Promulgation fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
     style CommitteeReferral fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
     style CommitteeDeliberation fill:#f1f5f9,stroke:#94a3b8,color:#1e293b
 </pre>

@@ -7,17 +7,17 @@ flowchart BT
     Ordinance[Ordinance]
     Statute[Statute]
     eli_LegalResource[eli:LegalResource]:::ext
-    Act -->|subclass| Statute
     Statute -->|subclass| eli_LegalResource
+    Act -->|subclass| Statute
     Ordinance -->|subclass| Statute
     AmendmentAct -->|subclass| Act
     ConsolidatedVersion -.->|baseLaw| Statute
     ConsolidatedVersion -.->|includesAmendments| AmendmentAct
     Statute -.->|consolidatedBy| ConsolidatedVersion
-    style Act fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
     style Statute fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
-    style ConsolidatedVersion fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
+    style Act fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
     style Ordinance fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
+    style ConsolidatedVersion fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
     style AmendmentAct fill:#f3e8ff,stroke:#94a3b8,color:#1e293b
     style eli_LegalResource fill:#f8fafc,stroke:#cbd5e1,color:#64748b,stroke-dasharray: 5 5
 </pre>

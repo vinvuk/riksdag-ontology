@@ -204,112 +204,94 @@ def build_mermaid(g: Graph, ddef: dict) -> str:
     return "\n".join(lines)
 
 
-def build_interface_mermaid() -> dict[str, str]:
-    """Build Mermaid diagrams for the interface module showing alignment mappings.
+def build_interface_tables() -> dict[str, str]:
+    """Build HTML alignment tables for the interface module.
 
     Returns:
-        Dict of diagram_id → mermaid code.
+        Dict of diagram_id → HTML table string.
     """
     g = Graph()
     g.parse(ONTOLOGY_DIR / "interface.ttl", format="turtle")
 
-    ELI = Namespace("http://data.europa.eu/eli/ontology#")
-    RPUBL = Namespace("http://rinfo.lagrummet.se/ns/2008/11/rinfo/publ#")
-    SCHEMA = Namespace("https://schema.org/")
-    ORG = Namespace("http://www.w3.org/ns/org#")
-    DCTERMS = Namespace("http://purl.org/dc/terms/")
-    FOAF = Namespace("http://xmlns.com/foaf/0.1/")
-
     def prefix_name(uri):
         s = str(uri)
-        for ns, pfx in [(str(ELI), "eli:"), (str(RPUBL), "rpubl:"), (str(SCHEMA), "schema:"),
-                         (str(ORG), "org:"), (str(DCTERMS), "dcterms:"), (str(FOAF), "foaf:"),
-                         (str(RKSDAG), "")]:
+        prefixes = [
+            ("http://data.europa.eu/eli/ontology#", "eli:"),
+            ("http://rinfo.lagrummet.se/ns/2008/11/rinfo/publ#", "rpubl:"),
+            ("https://schema.org/", "schema:"),
+            ("http://www.w3.org/ns/org#", "org:"),
+            ("http://purl.org/dc/terms/", "dcterms:"),
+            ("http://xmlns.com/foaf/0.1/", "foaf:"),
+            (str(RKSDAG), "rksdag:"),
+        ]
+        for ns, pfx in prefixes:
             if s.startswith(ns):
                 return pfx + s[len(ns):]
         return s.split("/")[-1].split("#")[-1]
 
-    # --- Class alignments ---
-    class_lines = ["flowchart LR"]
-    class_nodes = set()
+    def std_color(name):
+        if name.startswith("eli:"): return "#fef9c3"
+        if name.startswith("rpubl:"): return "#fecaca"
+        if name.startswith("schema:"): return "#d1fae5"
+        if name.startswith("org:"): return "#fae8ff"
+        if name.startswith("dcterms:"): return "#e0e7ff"
+        if name.startswith("foaf:"): return "#fff7ed"
+        return "#f1f5f9"
 
+    # Collect class alignments
+    class_rows = []
     for s, p, o in g.triples((None, RDFS.subClassOf, None)):
-        if not isinstance(s, URIRef) or not isinstance(o, URIRef):
-            continue
-        if not str(s).startswith(str(RKSDAG)):
-            continue
-        sn = prefix_name(s)
-        on = prefix_name(o)
-        if sn not in class_nodes:
-            class_lines.append(f"    {safe_id(sn)}[{sn}]")
-            class_nodes.add(sn)
-        if on not in class_nodes:
-            class_lines.append(f"    {safe_id(on)}[{on}]")
-            class_nodes.add(on)
-        class_lines.append(f"    {safe_id(sn)} -->|subClassOf| {safe_id(on)}")
-
+        if isinstance(s, URIRef) and isinstance(o, URIRef) and str(s).startswith(str(RKSDAG)):
+            if not str(o).startswith(str(RKSDAG)):
+                class_rows.append((prefix_name(s), "rdfs:subClassOf", prefix_name(o)))
     for s, p, o in g.triples((None, OWL.equivalentClass, None)):
-        if not isinstance(s, URIRef) or not isinstance(o, URIRef):
-            continue
-        sn = prefix_name(s)
-        on = prefix_name(o)
-        if sn not in class_nodes:
-            class_lines.append(f"    {safe_id(sn)}[{sn}]")
-            class_nodes.add(sn)
-        if on not in class_nodes:
-            class_lines.append(f"    {safe_id(on)}[{on}]")
-            class_nodes.add(on)
-        class_lines.append(f"    {safe_id(sn)} <-->|equivalentClass| {safe_id(on)}")
+        if isinstance(s, URIRef) and isinstance(o, URIRef) and str(s).startswith(str(RKSDAG)):
+            class_rows.append((prefix_name(s), "owl:equivalentClass", prefix_name(o)))
 
-    # Style rksdag nodes vs external
-    for n in class_nodes:
-        sid = safe_id(n)
-        if not any(n.startswith(p) for p in ["eli:", "rpubl:", "schema:", "org:", "dcterms:", "foaf:"]):
-            color = COLORS.get(n, "#dbeafe")
-            class_lines.append(f"    style {sid} fill:{color},stroke:#94a3b8,color:#1e293b")
-        else:
-            if n.startswith("eli:"): color = "#fef9c3"
-            elif n.startswith("rpubl:"): color = "#fecaca"
-            elif n.startswith("schema:"): color = "#d1fae5"
-            else: color = "#f8fafc"
-            class_lines.append(f"    style {sid} fill:{color},stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5")
-
-    # --- Property alignments ---
-    prop_lines = ["flowchart LR"]
-    prop_nodes = set()
-
+    # Collect property alignments
+    prop_rows = []
     for s, p, o in g.triples((None, RDFS.subPropertyOf, None)):
-        if not isinstance(s, URIRef) or not isinstance(o, URIRef):
-            continue
-        if not str(s).startswith(str(RKSDAG)):
-            continue
-        sn = prefix_name(s)
-        on = prefix_name(o)
-        if sn not in prop_nodes:
-            prop_lines.append(f"    {safe_id(sn)}[{sn}]")
-            prop_nodes.add(sn)
-        if on not in prop_nodes:
-            prop_lines.append(f"    {safe_id(on)}[{on}]")
-            prop_nodes.add(on)
-        prop_lines.append(f"    {safe_id(sn)} -->|subPropertyOf| {safe_id(on)}")
+        if isinstance(s, URIRef) and isinstance(o, URIRef) and str(s).startswith(str(RKSDAG)):
+            if not str(o).startswith(str(RKSDAG)):
+                prop_rows.append((prefix_name(s), "rdfs:subPropertyOf", prefix_name(o)))
 
-    for n in prop_nodes:
-        sid = safe_id(n)
-        if not any(n.startswith(p) for p in ["eli:", "rpubl:", "schema:", "org:", "dcterms:", "foaf:"]):
-            prop_lines.append(f"    style {sid} fill:#dbeafe,stroke:#94a3b8,color:#1e293b")
-        else:
-            if n.startswith("eli:"): color = "#fef9c3"
-            elif n.startswith("rpubl:"): color = "#fecaca"
-            elif n.startswith("schema:"): color = "#d1fae5"
-            elif n.startswith("org:"): color = "#fae8ff"
-            elif n.startswith("dcterms:"): color = "#e0e7ff"
-            elif n.startswith("foaf:"): color = "#fff7ed"
-            else: color = "#f8fafc"
-            prop_lines.append(f"    style {sid} fill:{color},stroke:#cbd5e1,color:#374151,stroke-dasharray: 5 5")
+    # Group by target standard
+    def std_name(ext):
+        return ext.split(":")[0] if ":" in ext else "other"
+
+    # Build class table
+    class_html = ['<table class="namespace-table">',
+                  '<tr><th>Riksdag class</th><th>Relationship</th><th>External class</th><th>Standard</th></tr>']
+    for src, rel, tgt in sorted(class_rows, key=lambda r: (std_name(r[2]), r[0])):
+        badge = "≡" if "equivalent" in rel else "⊑"
+        color = std_color(tgt)
+        std = std_name(tgt).upper()
+        class_html.append(
+            f'<tr><td><code>{src}</code></td>'
+            f'<td><code>{badge} {rel.split(":")[-1]}</code></td>'
+            f'<td><span style="background:{color};padding:2px 8px;border-radius:4px">'
+            f'<code>{tgt}</code></span></td>'
+            f'<td>{std}</td></tr>'
+        )
+    class_html.append('</table>')
+
+    # Build property table
+    prop_html = ['<table class="namespace-table">',
+                 '<tr><th>Riksdag property</th><th>External property</th><th>Standard</th></tr>']
+    for src, rel, tgt in sorted(prop_rows, key=lambda r: (std_name(r[2]), r[0])):
+        color = std_color(tgt)
+        std = std_name(tgt).upper()
+        prop_html.append(
+            f'<tr><td><code>{src}</code></td>'
+            f'<td><span style="background:{color};padding:2px 8px;border-radius:4px">'
+            f'<code>{tgt}</code></span></td>'
+            f'<td>{std}</td></tr>'
+        )
+    prop_html.append('</table>')
 
     return {
-        "interface-classes": "\n".join(class_lines),
-        "interface-properties": "\n".join(prop_lines),
+        "interface-classes": "\n".join(class_html),
+        "interface-properties": "\n".join(prop_html),
     }
 
 
@@ -347,14 +329,13 @@ def main():
             print(f"  ✓ {ddef['id']}.html — {ddef['title']}")
             total += 1
 
-    # Interface module — special handling
+    # Interface module — HTML tables instead of diagrams
     print(f"\ninterface:")
-    interface_diagrams = build_interface_mermaid()
+    interface_tables = build_interface_tables()
     titles = {"interface-classes": "Class alignments", "interface-properties": "Property alignments"}
-    for did, mermaid in interface_diagrams.items():
-        html = render_html(did, mermaid)
+    for did, table_html in interface_tables.items():
         out_path = DOCS_DIR / f"{did}.html"
-        out_path.write_text(html, encoding="utf-8")
+        out_path.write_text(table_html, encoding="utf-8")
         print(f"  ✓ {did}.html — {titles.get(did, did)}")
         total += 1
 
